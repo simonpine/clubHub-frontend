@@ -1,0 +1,157 @@
+//--------------------------Title
+.mainTitle {
+    max-width: 1350px;
+    font-size: 100px;
+    padding: 20px;
+    letter-spacing: 10px;
+    font-weight: 900;
+    line-height: 1.8;
+    @include flex(row, center, space-between, center, wrap)
+}
+
+.thinFill {
+    font-weight: 400;
+}
+
+.TitleCont {
+    width: 99vw;
+    min-height: 100vh;
+    @include flex(row, center, center, center, wrap)
+}
+
+.img1 {
+    width: 38%;
+    height: 125px;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.img2 {
+    width: 50%;
+    height: 125px;
+    border-radius: 00px 0px 100px 00px;
+    overflow: hidden;
+}
+
+.img3 {
+    margin-top: 30px;
+    width: 70%;
+    height: 125px;
+    border-radius: 00px 100px 100px 00px;
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.topMargin{
+    margin-top: 30px;
+}
+//--------------------------Navbar
+.LandingNav{ 
+    top: 20px;
+    position:fixed ;
+    width: 100%;
+    height: 50px;
+    @include flex(row, center, space-between, center, wrap)
+
+}
+.logoCont{
+    margin-left: 20px;
+    background-color: map-get($map:$colors, $key: 'bgBlack');
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    @include flex(row, center, center, center, wrap);
+    border: 0px;
+    
+    & img{
+        width: 25px;
+        height: 25px;
+        
+    }
+    transition: 0.2s;
+    &:hover{
+        background-color: map-get($map:$colors, $key: 'bgBlackHover');
+        cursor: pointer;
+    }
+}
+.getIn{
+    font-size: 15px;
+    margin-right: 20px;
+    background-color: map-get($map:$colors, $key: 'bgBlack');
+    width: 130px;
+    height: 40px;
+    border: none;
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    transition: 0.2s;
+    &:hover{
+        background-color: map-get($map:$colors, $key: 'bgBlackHover');
+        cursor: pointer;
+    }
+    &:active{
+        color: map-get($map:$colors, $key: 'complement1');
+    }
+}
+//----------------------------------Content
+.contContiner{
+    height: 100vh;
+    width: 99vw;
+    @include flex(row, center, center, center, wrap)
+}
+.Content{
+    max-width: 1350px;
+    height:  60%;
+    display: grid;
+    grid-template-rows: repeat(3, 33%);
+    grid-template-columns: repeat(3, 33%);
+    column-gap: 0.5%;
+    row-gap: 0.5%;
+    justify-items: center;
+    align-items:center;
+    grid-template-areas: 
+    "p1 p1 img8"
+    "img7 colImg img8"
+    "img7 p2 p2";
+}
+p{
+    line-height: 1.8;
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    font-weight: 200;
+}
+.p1{
+    align-self: flex-start;
+    grid-area: p1;
+}
+.p2{
+    align-self: flex-end;
+    grid-area: p2;
+}
+.logoCenter{
+    width: 120px;
+    margin-bottom: 10px;
+    grid-area: colImg;
+}
+.img7{
+    align-self: flex-end;
+    border-radius: 20px;
+    overflow: hidden;
+    justify-self: start;
+    width: 270px;
+    height: 330px;
+    grid-area: img7;
+}
+.img8{
+    align-self: flex-start;
+    border-radius: 20px;
+    overflow: hidden;
+    justify-self: end;
+    width: 270px;
+    height: 330px;
+    grid-area: img8;
+}
