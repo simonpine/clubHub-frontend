@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
 $colors: (
-    'bgBlur':#00000025,
+    'bgBlur':#00000044,
     'bgBlack':#0000008c,
     'bgBlackHover':#000000c0,
     'bg':#102026,
@@ -8,6 +8,9 @@ $colors: (
     'complement1': #d6ad7b,
     'complement2': #8195A6,
     'complement3': #4F6273,
+    'complement2Bg': #d6ad7b63,
+    'complement2BgHover': #d6ad7b9d,
+    'complementBg': #344b5f31,
 );
 
 @mixin flex($flexDirection, $alignContent, $justifyContent, $alignItems, $wrap) {
@@ -34,7 +37,7 @@ html {
 
 
 html::-webkit-scrollbar {
-    width: 7px;
+    width: 1px;
 }
 
 html::-webkit-scrollbar-track {

@@ -13,10 +13,12 @@ function App() {
         <a href='#Welcome' className='logoCont'>
           <img src={clubHub} alt='clubHub, app logo' />
         </a>
-        <button className='getIn'>Get in</button>
+        <Link to={{
+          pathname: "/login",
+        }} className='getIn'>Get in</Link>
       </div>
       <Title />
-      <Content/>
+      <Content />
     </div>
   );
 }

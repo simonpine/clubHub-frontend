@@ -81,6 +81,7 @@ img {
 .getIn{
     font-size: 15px;
     margin-right: 20px;
+    text-decoration: none;
     background-color: map-get($map:$colors, $key: 'bgBlack');
     width: 130px;
     height: 40px;
@@ -96,6 +97,7 @@ img {
     &:active{
         color: map-get($map:$colors, $key: 'complement1');
     }
+    @include flex(row, center, center, center, wrap);
 }
 //----------------------------------Content
 .contContiner{
