@@ -1,71 +1,133 @@
-.LogInNav{ 
+.LogInNav {
     top: 20px;
-    position:fixed ;
+    position: fixed;
     width: 100%;
     height: 50px;
     @include flex(row, center, end, center, wrap)
 }
-.logoLogin{
+
+.logoLogin {
     width: 350px;
 }
-.Log{
+
+.Log {
     width: 100vw;
     min-height: 100vh;
     @include flex(row, center, space-evenly, center, wrap)
 }
-.formLogin{
+
+.formLogin {
     margin: 20px;
     width: 400px;
     height: 450px;
-    background-color: map-get($map:$colors, $key: 'bgBlur');
+    background-color: map-get($map: $colors, $key: 'bgBlur');
     border-radius: 40px;
     padding: 40px;
     @include flex(column, normal, space-between, normal, wrap)
 }
-.h1LogCards{
+
+.h1LogCards {
     letter-spacing: 5px;
     font-size: 40px;
 }
-.inputText{
+
+.inputText {
     width: 90%;
     font-size: 15px;
-    background-color: map-get($map:$colors, $key: 'complementBg');
+    background-color: map-get($map: $colors, $key: 'complementBg');
     padding: 10px 5%;
     border: none;
-    border-bottom: 1px solid map-get($map:$colors, $key: 'complement1');
+    border-bottom: 1px solid map-get($map: $colors, $key: 'complement1');
     transition: 0.2s;
     font-weight: 200;
-    &:focus{
-        background-color: map-get($map:$colors, $key: 'complement2Bg');
+
+    &:focus {
+        background-color: map-get($map: $colors, $key: 'complement2Bg');
         outline: none;
     }
 }
-.inputIdentify{
+
+.inputIdentify {
     letter-spacing: 3px;
     font-size: 20px;
     font-weight: 400;
     margin-bottom: 10px;
 }
-.logInButton{
-    background-color: map-get($map:$colors, $key: 'complement2Bg');
-    &:hover{
-        background-color: map-get($map:$colors, $key: 'complement2BgHover');
+
+.logInButton {
+    background-color: map-get($map: $colors, $key: 'complement2Bg');
+
+    &:hover {
+        background-color: map-get($map: $colors, $key: 'complement2BgHover');
     }
-    &:active{
+
+    &:active {
         color: black;
     }
+
+    &:disabled {
+        background-color: map-get($map: $colors, $key: 'complementBg');
+        color: map-get($map: $colors, $key: 'fontDis');
+    }
 }
-.thirButton{
+
+.thirButton {
     margin-top: 5px;
-    color: map-get($map:$colors, $key: 'complement3');
+    color: map-get($map: $colors, $key: 'complement3');
     text-decoration: none;
     font-size: 15px;
     align-self: flex-end;
-    &:active{
-        
-        color: map-get($map:$colors, $key: 'complement2');
+
+    &:active {
+
+        color: map-get($map: $colors, $key: 'complement2');
     }
 }
-.sectionFormCont{
+
+.sectionFormCont {
     @include flex(column, normal, space-between, normal, wrap)
 }
+.errorAnoun{
+    font-weight: 100;
+    font-size: 15px;
+    color: map-get($map: $colors, $key: 'error');
+    height: 20px;
+}
+
+//================================Loading
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .loadingCont{
+    width: 400px;
+    height: 450px;
+    position: absolute;
+    margin: 20px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+  }

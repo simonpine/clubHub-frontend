@@ -4,36 +4,24 @@ import clubHub from '../img/clubHub.svg';
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { getUser } from "../api";
-function LogIn() {
+function NewAccount() {
     const [loading, setloading] = useState(false)
     const [err, setErr] = useState(false)
     const [nameRef, setNameRef] = useState('')
     const [passwordRef, setPasswordRef] = useState('')
     const navigate = useNavigate();
 
+
     return (
         <ContextUser.Consumer>
             {({ user, saveUser }) => {
-                async function LogInFunction(evt) {
-                    evt.preventDefault();
-                    await setloading(true)
-                    setErr(false)
-                    const res = await getUser(nameRef)
-                    if (res.length === 0 || res[0].pasword !== passwordRef) {
-                        setErr(true)
-                    }
-                    else {
-                        await saveUser(res[0])
-                        await console.log(user)
-                    }
-                    await setloading(false)
-                }
+
                 return (
                     <div>
                         <div className='LogInNav'>
                             <button onClick={() => navigate(-1)} className='getIn'>Return</button>
                         </div>
-                        <div className="Log">
+                        {/* <div className="Log">
                             <div className='logoLogin'>
                                 <img src={clubHub} alt='clubHub, app logo' />
                             </div>
@@ -61,11 +49,11 @@ function LogIn() {
                                     <button disabled={nameRef.length === 0 || passwordRef.length === 0} className="getIn logInButton">Log in</button>
                                 </form>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 )
             }}
         </ContextUser.Consumer>
     )
 }
-export default LogIn
+export default NewAccount

@@ -5,12 +5,14 @@ $colors: (
     'bgBlackHover':#000000c0,
     'bg':#102026,
     'font': #ffff,
+    'fontDis': #ffffff86,
     'complement1': #d6ad7b,
     'complement2': #8195A6,
     'complement3': #4F6273,
     'complement2Bg': #d6ad7b63,
     'complement2BgHover': #d6ad7b9d,
     'complementBg': #344b5f31,
+    'error': #f18080c9,
 );
 
 @mixin flex($flexDirection, $alignContent, $justifyContent, $alignItems, $wrap) {
