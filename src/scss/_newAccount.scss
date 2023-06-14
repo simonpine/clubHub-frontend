@@ -1,0 +1,7 @@
+.CreateCont{
+    width: 70vw;
+    height: 60vh;
+    background-color: map-get($map: $colors, $key: 'bgBlur');
+    border-radius: 40px;
+    padding: 40px;
+}

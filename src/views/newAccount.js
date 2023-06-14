@@ -50,6 +50,14 @@ function NewAccount() {
                                 </form>
                             </div>
                         </div> */}
+                        <div className="Log">
+                            <form className="CreateCont">
+                                <h1 className="h1LogCards">New account</h1>
+                                <div></div>
+                                <button className="getIn logInButton">Create</button>
+
+                            </form>
+                        </div>
                     </div>
                 )
             }}
