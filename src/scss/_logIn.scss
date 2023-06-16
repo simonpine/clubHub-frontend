@@ -7,6 +7,9 @@
 }
 
 .logoLogin {
+    margin: 20px;
+    animation-name: apear;
+    animation-duration: 0.3s;
     width: 350px;
 }
 
@@ -17,6 +20,8 @@
 }
 
 .formLogin {
+    animation-name: apear;
+    animation-duration: 0.3s;
     margin: 20px;
     width: 400px;
     height: 450px;
@@ -147,3 +152,15 @@
 .log2{
     flex-direction: row-reverse;
 }
+
+// =====================================================Animation
+@keyframes apear {
+    0%   {
+        margin-bottom: 40px;
+        opacity: 0;
+    }
+    100% {
+        margin-bottom: 20px;
+        opacity: 1;
+    }
+  }

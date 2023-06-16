@@ -1,0 +1,111 @@
+.surebg {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: map-get($map: $colors, $key: 'bgBlackHover');
+    backdrop-filter: blur(10px);
+    animation-name: apearBg;
+    animation-duration: 0.2s;
+    z-index: 1;
+    border: none;
+}
+
+.sureCont {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+@keyframes apearBg {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.sureSection {
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    background-color: map-get($map: $colors, $key: 'bg');
+    @include flex(column, center, space-between, flex-end, wrap);
+    border-radius: 20px;
+    z-index: 342859;
+    animation-name: apear;
+    animation-duration: 0.2s;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    & h2 {
+        margin-bottom: 20px;
+    }
+
+    & div {
+        width: 100%;
+        @include flex(row, center, space-between, flex-end, wrap);
+
+        & button {
+            margin: 0px;
+        }
+    }
+}
+
+.red {
+    color: map-get($map: $colors, $key: 'error');
+}
+
+.userLogoSettings {
+    // background-color: aliceblue;
+    border: 1px solid map-get($map: $colors, $key: 'complement1');
+    width: 450px;
+    height: 450px;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+//=================================File Input
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile+label {
+    @extend .getIn;
+    margin-top: 10px;
+}
+
+.inputfile+label svg {
+    width: 15px;
+    height: 15px;
+    fill: currentColor;
+    margin-right: 20px;
+}
+
+.container-input {
+    width: 100%;
+    @include flex(row, center, space-between, flex-end, wrap);
+
+    & button {
+        margin: 0px;
+    }
+}
+
+.logOutButton {
+    margin-left: 20px;
+}
+
+.ImgChanger {
+    margin: 20px;
+    animation-name: apear;
+    animation-duration: 0.3s;
+}

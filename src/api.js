@@ -1,5 +1,7 @@
 const API = 'http://localhost:2000/user'
 const AP2 = 'http://localhost:2000/users'
+
+export const usersImg = 'http://localhost:2000/images/'
 // const API2 = 'http://10.0.2.2:2000/task'
 
 // export const getTasks = async () => {
@@ -52,7 +54,7 @@ export const putUser = async (userName, pasword, question, answer) => {
 //     })
 //     // return await res.json()
 // }
-export const editUser = async (userName, clubs, pasword, userImg, question, answer) => {
+export const editUser = async (userName, clubs, pasword, userImg, question, answer, oldUserName) => {
     const obj = await {
         userName,
         clubs,
@@ -61,10 +63,21 @@ export const editUser = async (userName, clubs, pasword, userImg, question, answ
         question,
         answer,
     }
-    const res = await fetch(`${API}/${userName}`, {
+    await fetch(`${API}/${oldUserName}`, {
         method: 'PUT',
         headers: { Accept: 'application/json', "Content-Type": 'application/json' },
         body: JSON.stringify(obj)
+    })
+
+}
+
+
+export const uploadFile = async (body) => {
+
+    await fetch(`${API}/photo/upload`, {
+        method: 'POST',
+        // headers: { Accept: 'application/json', "Content-Type": 'application/json' },
+        body: body
     })
 
 }

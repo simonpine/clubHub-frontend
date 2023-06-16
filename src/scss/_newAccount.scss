@@ -1,4 +1,7 @@
 .CreateCont{
+    animation-name: apear;
+    animation-duration: 0.3s;
+    margin: 20px;
     width: 70vw;
     min-height: 60vh;
     background-color: map-get($map: $colors, $key: 'bgBlur');
