@@ -83,8 +83,8 @@ img {
     margin-right: 20px;
     text-decoration: none;
     background-color: map-get($map:$colors, $key: 'bgBlack');
-    width: 130px;
-    height: 40px;
+    width: fit-content;
+    padding: 8px 20px;
     border: none;
     border-radius: 100px;
     font-weight: 500;

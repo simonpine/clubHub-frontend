@@ -12,8 +12,17 @@ export const CustomProvider = ({ children }) => {
         if ((localStorage.length) > 0) {
             const search = JSON.parse(localStorage.getItem("user"))
             const res = await getUser(search)
-            setUser(res[0])
-            // navigate('/home')
+            if(res.length > 0){
+                setUser(res[0])
+                navigate('/home')
+            }
+            else{
+                localStorage.clear()
+                navigate('/login')
+            }
+        }
+        else {
+            navigate('/login')
         }
     }
 

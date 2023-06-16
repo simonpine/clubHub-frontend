@@ -5,7 +5,8 @@ import Home from "../views/home.js";
 import Bg from "../components/bg.js";
 import NewAccount from "../views/newAccount.js";
 import { CustomProvider } from "../context/userContext.js";
-import { ContextUser } from "../context/userContext.js";
+import ForgotPassword from "../views/forgotPassword.js";
+import ForgotPasswordRecover from "../views/ForgotPasswordRecover.js";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -31,9 +32,28 @@ export const router = createBrowserRouter([
 
     },
     {
+        path: '/forgotPassword',
+        element:
+            <CustomProvider>
+                <Bg rot={true} />
+                <ForgotPassword />
+            </CustomProvider>,
+
+    },
+    {
+        path: '/forgotPassword/:id',
+        element:
+            <CustomProvider>
+                <Bg rot={true} />
+                <ForgotPasswordRecover />
+            </CustomProvider>,
+
+    },
+    {
         path: '/home',
         element:
             <CustomProvider>
+                <Bg rot={true} />
                 <Home />
             </CustomProvider>,
 

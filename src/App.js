@@ -3,8 +3,8 @@ import Bg from './components/bg';
 import Title from './components/title';
 import Content from './components/content';
 import clubHub from './img/clubHub.svg'
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 function App() {
   return (
     <div id='Welcome' className="App">

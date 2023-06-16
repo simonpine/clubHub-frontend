@@ -1,7 +1,17 @@
 .CreateCont{
     width: 70vw;
-    height: 60vh;
+    min-height: 60vh;
     background-color: map-get($map: $colors, $key: 'bgBlur');
     border-radius: 40px;
     padding: 40px;
+    @include flex(column, normal, space-between, normal, wrap)
+}
+.inputsContainerCreateUser{
+    @include flex(row, center, space-between, center, wrap)
+}
+.sectionInputCreateUser{
+    width: 47%;
+    height: 320px;
+    @include flex(column, stretch, space-between, stretch, wrap);
+    margin: 20px 0px;
 }

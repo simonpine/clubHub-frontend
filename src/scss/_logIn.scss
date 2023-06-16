@@ -11,7 +11,7 @@
 }
 
 .Log {
-    width: 100vw;
+    width: 99%;
     min-height: 100vh;
     @include flex(row, center, space-evenly, center, wrap)
 }
@@ -52,6 +52,12 @@
     font-size: 20px;
     font-weight: 400;
     margin-bottom: 10px;
+    display: flex;
+    & div{
+        font-weight: 100;
+        color: map-get($map: $colors, $key: 'complement1');
+        margin-left: 10px;
+    }
 }
 
 .logInButton {
@@ -68,6 +74,7 @@
     &:disabled {
         background-color: map-get($map: $colors, $key: 'complementBg');
         color: map-get($map: $colors, $key: 'fontDis');
+        cursor: auto;
     }
 }
 
@@ -87,11 +94,12 @@
 .sectionFormCont {
     @include flex(column, normal, space-between, normal, wrap)
 }
-.errorAnoun{
+
+.errorAnoun {
     font-weight: 100;
     font-size: 15px;
     color: map-get($map: $colors, $key: 'error');
-    height: 20px;
+    height: 0px;
 }
 
 //================================Loading
@@ -103,8 +111,9 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-  }
-  .lds-dual-ring:after {
+}
+
+.lds-dual-ring:after {
     content: " ";
     display: block;
     width: 64px;
@@ -114,20 +123,27 @@
     border: 6px solid #fff;
     border-color: #fff transparent #fff transparent;
     animation: lds-dual-ring 1.2s linear infinite;
-  }
-  @keyframes lds-dual-ring {
+}
+
+@keyframes lds-dual-ring {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
-  .loadingCont{
+}
+
+.loadingCont {
     width: 400px;
     height: 450px;
     position: absolute;
     margin: 20px;
     padding: 40px;
     backdrop-filter: blur(10px);
-  }
+}
+//=================================================\
+.log2{
+    flex-direction: row-reverse;
+}

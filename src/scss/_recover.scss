@@ -1,0 +1,18 @@
+.formRecover1 {
+    @extend .formLogin;
+    height: 250px;
+}
+
+.notReg {
+
+    width: 600px;
+    
+    // color: map-get($map: $colors, $key: 'error')
+}
+.borderNone{
+    border: none;
+}
+.formChangePass{
+    height: 600px;
+    width: 450px;
+}
