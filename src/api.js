@@ -1,7 +1,7 @@
-const API = 'http://localhost:2000/user'
-const AP2 = 'http://localhost:2000/users'
+const API = 'https://clubhub-backend.up.railway.app/user'
+const AP2 = 'https://clubhub-backend.up.railway.app/users'
 
-export const usersImg = 'http://localhost:2000/images/'
+export const usersImg = 'https://clubhub-backend.up.railway.app/images/'
 // const API2 = 'http://10.0.2.2:2000/task'
 
 // export const getTasks = async () => {
