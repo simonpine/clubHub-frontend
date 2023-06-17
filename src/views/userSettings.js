@@ -75,7 +75,7 @@ function ForgotPasswordRecover() {
                         formData.append('name', nameRef)
                         formData.append('old', user.userImg)
                         
-                        await editUser(nameRef, JSON.stringify(user.clubs), user.pasword, selectedImage, user.question, user.answer, user.userName)
+                        await editUser(nameRef, JSON.stringify(user.clubs), user.pasword, user.userImg, user.question, user.answer, user.userName)
                         await localStorage.setItem('user', JSON.stringify(nameRef))
                         uploadFile(formData)
                         
@@ -97,7 +97,7 @@ function ForgotPasswordRecover() {
                         formData.append('name', nameRef)
                         formData.append('old', user.userImg)
                         
-                        await editUser(nameRef, JSON.stringify(user.clubs), md5(passwordRef), selectedImage, user.question, user.answer, user.userName)
+                        await editUser(nameRef, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.userName)
                         await localStorage.setItem('user', JSON.stringify(nameRef))
                         uploadFile(formData)
                     }
