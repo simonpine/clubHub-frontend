@@ -1,18 +1,26 @@
+import io from 'socket.io-client'
+
 const API = 'https://clubhub-backend.up.railway.app/user'
 const AP2 = 'https://clubhub-backend.up.railway.app/users'
-
 export const usersImg = 'https://clubhub-backend.up.railway.app/images/'
+const socket = io('https://clubhub-backend.up.railway.app')
+const APIc = 'https://clubhub-backend.up.railway.app/clubs'
+const AP2c = 'https://clubhub-backend.up.railway.app/users'
+export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners/'
+
+//===========================Users
 
 // const API = 'http://localhost:2000/user'
 // const AP2 = 'http://localhost:2000/users'
+// export const usersImg = 'http://localhost:2000/images/usersImg/'
+// const socket = io('http://localhost:2000')
 
-// export const usersImg = 'http://localhost:2000/images/'
-// const API2 = 'http://10.0.2.2:2000/task'
+// //==========================Clubs
 
-// export const getTasks = async () => {
-//     const res = await fetch(API)
-//     return await res.json()
-// }
+// const APIc = 'http://localhost:2000/clubs'
+// const AP2c = 'http://localhost:2000/users'
+// export const BannersImg = 'http://localhost:2000/images/banners/'
+
 
 export const getUser = async (id) => {
     const res = await fetch(`${API}/${id}`)
@@ -80,6 +88,16 @@ export const editUser = async (userName, clubs, pasword, userImg, question, answ
 export const uploadFile = async (body) => {
 
     await fetch(`${API}/photo/upload`, {
+        method: 'POST',
+        // headers: { Accept: 'application/json', "Content-Type": 'application/json' },
+        body: body
+    })
+
+}
+
+export const newClub = async (body) => {
+
+    await fetch(`${APIc}/upload`, {
         method: 'POST',
         // headers: { Accept: 'application/json', "Content-Type": 'application/json' },
         body: body

@@ -1,8 +1,7 @@
 import { ContextUser } from "../context/userContext"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { getUser, editUser, uploadFile } from "../api";
-import { usersImg } from "../api";
+import { getUser, editUser, uploadFile, usersImg } from "../api";
 function ForgotPasswordRecover() {
     const [loading, setloading] = useState(false)
 

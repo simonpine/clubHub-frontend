@@ -8,6 +8,7 @@ import { CustomProvider } from "../context/userContext.js";
 import ForgotPassword from "../views/forgotPassword.js";
 import ForgotPasswordRecover from "../views/ForgotPasswordRecover.js";
 import UserSettings from "../views/userSettings.js";
+import CreateClub from "../views/createClub.js";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -65,6 +66,15 @@ export const router = createBrowserRouter([
             <CustomProvider>
                 <Bg rot={true} />
                 <UserSettings />
+            </CustomProvider>,
+
+    },
+    {
+        path: '/createClub',
+        element:
+            <CustomProvider>
+                <Bg rot={false} />
+                <CreateClub />
             </CustomProvider>,
 
     },
