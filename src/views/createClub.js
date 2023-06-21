@@ -40,14 +40,14 @@ function CreateClub() {
                     else {
                         const idForUpload = Math.random().toString(36).substr(2, 32)
 
-                        formData.append('image', renameFile(selectedImage, idForUpload))
-                        formData.append('id', idForUpload)
-                        formData.append('title', nameRef)
-                        formData.append('description', descriptioRef)
-                        formData.append('grades', JSON.stringify([]))
-                        formData.append('members', JSON.stringify([]))
-                        formData.append('currtentClubs', user.clubs)
-                        formData.append('clubOwner', user.userName)
+                        await formData.append('image', renameFile(selectedImage, idForUpload))
+                        await formData.append('id', idForUpload)
+                        await formData.append('title', nameRef)
+                        await formData.append('description', descriptioRef)
+                        await formData.append('grades', JSON.stringify([]))
+                        await formData.append('members', JSON.stringify([]))
+                        await formData.append('currtentClubs', user.clubs)
+                        await formData.append('clubOwner', user.userName)
 
                         await newClub(formData)
                         await window.location.reload(false)

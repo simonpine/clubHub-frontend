@@ -64,41 +64,41 @@ function ForgotPasswordRecover() {
                         
                     }
                     else if (passwordRef === '' & nameRef === '') {
-                        formData.append('image', renameFile(selectedImage, user.userName))
-                        formData.append('name', user.userName)
-                        formData.append('old', user.userImg)
-                        uploadFile(formData)
+                        await formData.append('image', renameFile(selectedImage, user.userName))
+                        await formData.append('name', user.userName)
+                        await formData.append('old', user.userImg)
+                        await uploadFile(formData)
                     }
                     else if(passwordRef === ''){
-                        formData.append('image', renameFile(selectedImage, nameRef))
-                        formData.append('name', nameRef)
-                        formData.append('old', user.userImg)
+                        await formData.append('image', renameFile(selectedImage, nameRef))
+                        await formData.append('name', nameRef)
+                        await formData.append('old', user.userImg)
                         
                         await editUser(nameRef, JSON.stringify(user.clubs), user.pasword, user.userImg, user.question, user.answer, user.userName)
                         await localStorage.setItem('user', JSON.stringify(nameRef))
-                        uploadFile(formData)
+                        await uploadFile(formData)
                         
                     }
                     else if(nameRef === ''){
-                        formData.append('image', renameFile(selectedImage, user.userName))
-                        formData.append('name', user.userName)
-                        formData.append('old', user.userImg)
+                        await formData.append('image', renameFile(selectedImage, user.userName))
+                        await formData.append('name', user.userName)
+                        await formData.append('old', user.userImg)
                         
                         await editUser(user.userName, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.userName)
-                        uploadFile(formData)
+                        await uploadFile(formData)
                     }
                     else if(selectedImage === null){
                         await editUser(nameRef, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.userName)
                         await localStorage.setItem('user', JSON.stringify(nameRef))
                     }
                     else {
-                        formData.append('image', renameFile(selectedImage, nameRef))
-                        formData.append('name', nameRef)
-                        formData.append('old', user.userImg)
+                        await formData.append('image', renameFile(selectedImage, nameRef))
+                        await formData.append('name', nameRef)
+                        await formData.append('old', user.userImg)
                         
                         await editUser(nameRef, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.userName)
                         await localStorage.setItem('user', JSON.stringify(nameRef))
-                        uploadFile(formData)
+                        await uploadFile(formData)
                     }
 
                     await window.location.reload(false);
@@ -127,7 +127,7 @@ function ForgotPasswordRecover() {
                         <div className="Log">
                             <div className="ImgChanger">
                                 <div className='userLogoSettings'>
-                                    {selectedImage ? <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' /> : <img src={usersImg + user.userImg} alt='_Users logo' />}
+                                    {selectedImage ? <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' /> : user.userImg?  <img src={usersImg + user.userImg} alt='_Users logo' /> : <></>}
                                 </div>
 
                                 <div className="container-input">

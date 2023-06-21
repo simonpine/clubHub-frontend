@@ -8,7 +8,8 @@ const APIc = 'https://clubhub-backend.up.railway.app/clubs'
 const AP2c = 'https://clubhub-backend.up.railway.app/users'
 export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners/'
 
-//===========================Users
+
+// //===========================Users
 
 // const API = 'http://localhost:2000/user'
 // const AP2 = 'http://localhost:2000/users'
