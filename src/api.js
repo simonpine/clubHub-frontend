@@ -2,7 +2,7 @@ import io from 'socket.io-client'
 
 const API = 'https://clubhub-backend.up.railway.app/user'
 const AP2 = 'https://clubhub-backend.up.railway.app/users'
-export const usersImg = 'https://clubhub-backend.up.railway.app/images/'
+export const usersImg = 'https://clubhub-backend.up.railway.app/images/usersImg/'
 const socket = io('https://clubhub-backend.up.railway.app')
 const APIc = 'https://clubhub-backend.up.railway.app/clubs'
 const AP2c = 'https://clubhub-backend.up.railway.app/users'
