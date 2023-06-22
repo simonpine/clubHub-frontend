@@ -1,26 +1,26 @@
 import io from 'socket.io-client'
 
-// const API = 'https://clubhub-backend.up.railway.app/user'
-// const AP2 = 'https://clubhub-backend.up.railway.app/users'
-// export const usersImg = 'https://clubhub-backend.up.railway.app/images/usersImg/'
-// const socket = io('https://clubhub-backend.up.railway.app')
-// const APIc = 'https://clubhub-backend.up.railway.app/clubs'
-// const AP2c = 'https://clubhub-backend.up.railway.app/users'
-// export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners/'
+const API = 'https://clubhub-backend.up.railway.app/user'
+const AP2 = 'https://clubhub-backend.up.railway.app/users'
+export const usersImg = 'https://clubhub-backend.up.railway.app/images/usersImg/'
+const socket = io('https://clubhub-backend.up.railway.app')
+const APIc = 'https://clubhub-backend.up.railway.app/clubs'
+const AP2c = 'https://clubhub-backend.up.railway.app/users'
+export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners/'
 
 
-//===========================Users
+// //===========================Users
 
-const API = 'http://localhost:2000/user'
-const AP2 = 'http://localhost:2000/users'
-export const usersImg = 'http://localhost:2000/images/usersImg/'
-const socket = io('http://localhost:2000')
+// const API = 'http://localhost:2000/user'
+// const AP2 = 'http://localhost:2000/users'
+// export const usersImg = 'http://localhost:2000/images/usersImg/'
+// const socket = io('http://localhost:2000')
 
-//==========================Clubs
+// //==========================Clubs
 
-const APIc = 'http://localhost:2000/clubs'
-const AP2c = 'http://localhost:2000/users'
-export const BannersImg = 'http://localhost:2000/images/banners/'
+// const APIc = 'http://localhost:2000/clubs'
+// const AP2c = 'http://localhost:2000/users'
+// export const BannersImg = 'http://localhost:2000/images/banners/'
 
 
 export const getUser = async (id) => {
