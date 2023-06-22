@@ -109,3 +109,12 @@
     animation-name: apear;
     animation-duration: 0.3s;
 }
+.loadingSure{
+    width: 340px;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    backdrop-filter: blur(1px);
+    & div{
+        margin-top: 80px;
+        @include flex(row, center, center, center, wrap);
+    }
+}

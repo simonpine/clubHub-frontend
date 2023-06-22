@@ -8,7 +8,7 @@ export const CustomProvider = ({ children }) => {
     const navigate = useNavigate()
     const [user, setUser] = useState(null)
 
-    const setDefault = async () => {
+    async function setDefault() {
         if ((localStorage.length) > 0) {
             const search = JSON.parse(localStorage.getItem("user"))
             const res = await getUser(search)
@@ -26,9 +26,7 @@ export const CustomProvider = ({ children }) => {
             navigate('/login')
         }
     }
-
     useEffect(() => {
-        // navigate('/login')
         setDefault()
     }, [])
     function saveUser(item) {
@@ -39,7 +37,7 @@ export const CustomProvider = ({ children }) => {
 
 
     return (
-        <ContextUser.Provider value={{ user, saveUser, setDefault }}>
+        <ContextUser.Provider value={{ user, saveUser }}>
             {children}
         </ContextUser.Provider>
     )

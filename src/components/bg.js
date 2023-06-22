@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function Bg({ rot }) {
+function Bg({rot}) {
   const [circle1, setCircle1] = useState('-150px')
   const [circle2, setCircle2] = useState('-150px')
   const [rotation, setRotation] = useState('')
@@ -9,7 +9,7 @@ function Bg({ rot }) {
     if (rot) {
       setRotation('rota')
     }
-  }, [])
+  }, [rot])
   window.addEventListener("scroll", () => {
     const pix = window.pageYOffset
     setCircle1(`${(pix * 1.7) - 150}px`)

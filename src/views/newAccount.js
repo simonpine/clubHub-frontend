@@ -17,7 +17,7 @@ function NewAccount() {
     const md5 = require('md5')
     return (
         <ContextUser.Consumer>
-            {({ }) => {
+            {() => {
 
                 async function CreateFunction(evt) {
                     evt.preventDefault();

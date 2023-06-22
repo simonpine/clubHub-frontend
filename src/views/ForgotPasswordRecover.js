@@ -20,36 +20,37 @@ function ForgotPasswordRecover() {
     const md5 = require('md5')
     const { id } = useParams()
 
-    async function getFullUser() {
-        const [res] = await getUser(id)
-        if (res !== undefined) {
-            setExist(true)
-            setQuestion(res['question'])
-            setAnswer(res['answer'])
-            setMyObj(res)
-        }
-        await setloading(false)
-    }
+
 
     useEffect(() => {
+        async function getFullUser() {
+            const [res] = await getUser(id)
+            if (res !== undefined) {
+                await setExist(true)
+                await setQuestion(res['question'])
+                await setAnswer(res['answer'])
+                await setMyObj(res)
+            }
+            await setloading(false)
+        }
         getFullUser()
-    }, [])
 
+    }, [id])
     return (
         <ContextUser.Consumer>
-            {({ saveUser }) => {
+            {() => {
                 async function LogInFunction(evt) {
                     evt.preventDefault();
                     await setloading(true)
                     setErr('')
 
-                    if(passwordRef !== confirmPasswordRef){
+                    if (passwordRef !== confirmPasswordRef) {
                         setErr('The password do not match')
                     }
-                    else if(md5(answerRef) !== answer){
+                    else if (md5(answerRef) !== answer) {
                         setErr('The answer is incorrect')
                     }
-                    else{
+                    else {
                         await editUser(myObj.userName, JSON.stringify(myObj.clubs), md5(passwordRef), myObj.userImg, myObj.question, myObj.answer, myObj.userName)
                         await navigate('/login')
                     }
@@ -75,7 +76,6 @@ function ForgotPasswordRecover() {
                                         </div>
                                         <div>
                                             <h2 className="inputIdentify">Question:<div>{question}</div></h2>
-                                            {/* <h3 className="inputText borderNone">{question}</h3> */}
                                         </div>
                                         <div>
                                             <h2 className="inputIdentify">Answer:</h2>

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 import { newClub } from "../api";
 
-function CreateClub() {
+function JoinClub() {
     const [loading, setloading] = useState(false)
 
     const [err, setErr] = useState('')
@@ -26,45 +26,43 @@ function CreateClub() {
             lastModified: originalFile.lastModified,
         });
     }
-    async function submitClub(user) {
-        await setloading(true)
-        setErr('')
-        if (nameRef.replaceAll(' ', '').length === 0 || descriptioRef.replaceAll(' ', '').length === 0) {
-            setErr('The name/description cannot be empty')
-        }
-        else if(descriptioRef.length > 255){
-            setErr('The description is too long')
-        }
-        else {
-            const idForUpload = await Math.random().toString(36).substr(2, 32)
-
-            const UploadFile = renameFile(selectedImage, idForUpload)
-            await formData.append('image', UploadFile)
-            await formData.append('id', idForUpload)
-            await formData.append('title', nameRef)
-            await formData.append('description', descriptioRef)
-            await formData.append('grades', JSON.stringify([]))
-            await formData.append('members', JSON.stringify([]))
-            await formData.append('clubsOfOwner', JSON.stringify([...user.clubs, { own: true, clubId: idForUpload, clubTitle: nameRef, clubBanner: UploadFile.name, clubDescription: descriptioRef }]))
-            await formData.append('clubOwner', user.userName)
-
-            await newClub(formData)
-            await user.clubs.push({ own: true, clubId: idForUpload, clubTitle: nameRef, clubBanner: UploadFile.name, clubDescription: descriptioRef })
-            await navigate('/home')
-        }
-
-
-        await setloading(false)
-
-    }
     const formData = new FormData()
     return (
         <ContextUser.Consumer>
             {({ user }) => {
+                // async function changeData(evt) {
+                //     evt.preventDefault();
+                //     await setloading(true)
+                //     setErr('')
+                //     if (nameRef.replaceAll(' ', '').length === 0 || descriptioRef.replaceAll(' ', '').length === 0) {
+                //         setErr('The name/description cannot be empty')
+                //     }
+                //     else {
+                //         const idForUpload = await Math.random().toString(36).substr(2, 32)
+
+                //         const UploadFile = renameFile(selectedImage, idForUpload)
+                //         await formData.append('image', UploadFile)
+                //         await formData.append('id', idForUpload)
+                //         await formData.append('title', nameRef)
+                //         await formData.append('description', descriptioRef)
+                //         await formData.append('grades', JSON.stringify([]))
+                //         await formData.append('members', JSON.stringify([]))
+                //         await formData.append('clubsOfOwner', JSON.stringify([...user.clubs, { own: true, clubId: idForUpload, clubTitle: nameRef, clubBanner: UploadFile.name, clubDescription: descriptioRef }]))
+                //         await formData.append('clubOwner', user.userName)
+
+                //         await newClub(formData)
+                //         await user.clubs.push({ own: true, clubId: idForUpload, clubTitle: nameRef, clubBanner: UploadFile.name, clubDescription: descriptioRef })
+                //         await navigate('/home')
+                //     }
+
+
+                //     await setloading(false)
+
+                // }
 
                 return user !== null && (
                     <div>
-                        <div className='LandingNav'>
+                        {/* <div className='LandingNav'>
                             <Link to={{
                                 pathname: "/userSettings",
                             }} className='logoCont'>
@@ -76,9 +74,7 @@ function CreateClub() {
                             <div>
                                 {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
 
-                                <form onSubmit={(evt) => {
-                                    evt.preventDefault()
-                                    submitClub(user)}} className="formLogin">
+                                <form onSubmit={changeData} className="formLogin">
                                     <div className="headerErr">
                                         <h1 className="h1LogCards">Create Club</h1>
                                         <h3 className="errorAnoun"> {err}</h3>
@@ -132,12 +128,19 @@ function CreateClub() {
                                 </div>
 
                             </div>
+                        </div> */}
+                        <div className='LandingNav'>
+                            <Link to={{
+                                pathname: "/userSettings",
+                            }} className='logoCont'>
+                                {user.userImg !== null ? <img className="imgInBut" src={usersImg + user.userImg} alt='User Logo' /> : <img src={userPng} alt='User Logo' />}
+                            </Link>
+                            <button onClick={() => navigate(-1)} className='getIn'>Return</button>
                         </div>
-
                     </div>
                 )
             }}
         </ContextUser.Consumer>
     )
 }
-export default CreateClub
+export default JoinClub
