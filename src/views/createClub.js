@@ -32,9 +32,6 @@ function CreateClub() {
         if (nameRef.replaceAll(' ', '').length === 0 || descriptioRef.replaceAll(' ', '').length === 0) {
             setErr('The name/description cannot be empty')
         }
-        else if(descriptioRef.length > 255){
-            setErr('The description is too long')
-        }
         else {
             const idForUpload = await Math.random().toString(36).substr(2, 32)
 
@@ -113,7 +110,7 @@ function CreateClub() {
                                                     setSelectedImage(event.target.files[0]);
                                                 }
                                                 else {
-                                                    setErr('File size is huge')
+                                                    setErr('File is bigger than the expected size')
                                                 }
                                             }
 

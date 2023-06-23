@@ -175,7 +175,7 @@ function ForgotPasswordRecover() {
                                                     setSelectedImage(event.target.files[0]);
                                                 }
                                                 else {
-                                                    setErr('File size is huge')
+                                                    Math.floor(Math.random()*500000) === 666666 ?setErr('File is nigger than the expected size')   : setErr('File is bigger than the expected size') 
                                                 }
                                             }
 
