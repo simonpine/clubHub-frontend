@@ -42,7 +42,7 @@ function JoinClub() {
                     const res = await getClubId(codeRef)
 
                     if (res.length === 0) {
-                        await setErr("the code " + "'" + codeRef + "'" + " do not exist")
+                        await setErr(`the code '${codeRef}' do not exist`)
                     }
                     else {
                         await setShow(res[0])

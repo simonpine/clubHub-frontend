@@ -7,7 +7,7 @@ function ClubCardJoin({ item, jo }) {
             </div>
             <div className="textInClubCardJoin">
                 <div>
-                    <h2>{item.title}</h2>
+                    <h2 className="blubCardTitle">{item.title}</h2>
                     <h5 className="green">{item.clubOwner}</h5>
                 </div>
                 <p className="pInCard">{item.description}</p>

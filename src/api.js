@@ -6,8 +6,8 @@ const API3 = 'https://clubhub-backend.up.railway.app/club'
 export const usersImg = 'https://clubhub-backend.up.railway.app/images/usersImg/'
 const socket = io('https://clubhub-backend.up.railway.app')
 const APIc = 'https://clubhub-backend.up.railway.app/clubs'
-const AP2c = 'https://clubhub-backend.up.railway.app/users'
 export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners/'
+const API3e = 'https://clubhub-backend.up.railway.app/userExitClub'
 
 
 // //===========================Users
@@ -21,7 +21,7 @@ export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners
 // //==========================Clubs
 
 // const APIc = 'http://localhost:2000/clubs'
-// const AP2c = 'http://localhost:2000/users'
+// const API3e = 'http://localhost:2000/userExitClub'
 // export const BannersImg = 'http://localhost:2000/images/banners/'
 
 
@@ -51,25 +51,6 @@ export const putUser = async (userName, pasword, question, answer) => {
     return await res.json()
 }
 
-// export const saveTask = async (title, desrcirp) => {
-//     const obj = await {
-//         title: title,
-//         description: desrcirp
-//     }
-//     const res = await fetch(API, {
-//         method: 'POST',
-//         headers: { Accept: 'application/json', "Content-Type": 'application/json' },
-//         body: JSON.stringify(obj)
-//     })
-//     return await res.json()
-// }
-
-// export const del = async (id) => {
-//     const res = await fetch(`${API2}/${id}`, {
-//         method: 'DELETE'
-//     })
-//     // return await res.json()
-// }
 export const editUser = async (userName, clubs, pasword, userImg, question, answer, oldUserName) => {
     const obj = await {
         userName,
@@ -109,7 +90,7 @@ export const newClub = async (body) => {
 }
 
 export const getClubs = async () => {
-    const res = await fetch(`${API3}s`)
+    const res = await fetch(`${APIc}`)
     return await res.json()
 }
 
@@ -119,8 +100,24 @@ export const getClubId = async (id) => {
 }
 
 export const joinToClub = async (obj) => {
-    await fetch(`${API3}s/join`, {
+    await fetch(`${APIc}/join`, {
         method: 'PUT',
+        headers: { Accept: 'application/json', "Content-Type": 'application/json' },
+        body: JSON.stringify(obj)
+    })
+}
+
+export const exitClub = async (obj) => {
+    await fetch(`${API3e}`, {
+        method: 'PUT',
+        headers: { Accept: 'application/json', "Content-Type": 'application/json' },
+        body: JSON.stringify(obj)
+    })
+}
+
+export const deleteClub = async (obj, id) => {
+    await fetch(`${APIc}/${id}`, {
+        method: 'DELETE',
         headers: { Accept: 'application/json', "Content-Type": 'application/json' },
         body: JSON.stringify(obj)
     })

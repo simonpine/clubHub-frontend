@@ -1,20 +1,24 @@
 import { Link } from "react-router-dom";
 import { BannersImg } from "../api";
-function ClubCard({ clubCard }) {
+import { useState } from "react";
+
+function ClubCard({ clubCard, delet, exit }) {
+
+
     return (
         <div className="clubCard" key={clubCard.clubId}>
-            <button className="imgCardConatiner">
+            <Link className="imgCardConatiner">
                 <img src={BannersImg + clubCard.clubBanner} alt="Club banner" />
-            </button>
+            </Link>
             <div className="textInCard">
                 <div>
-                    <h2>{clubCard.clubTitle}</h2>
+                    <h2 className="blubCardTitle">{clubCard.clubTitle}</h2>
                     {clubCard.own ? <span className="green">Owner</span> : <span className="blue">Member</span>}
 
                 </div>
                 <p className="pInCard">{clubCard.clubDescription}</p>
             </div>
-            {clubCard.own ? <button className="DelExi">Delete</button> : <button className="DelExi">Exit</button>}
+            {clubCard.own ? <button onClick={()=> delet(clubCard.clubId)} className="DelExi">Delete</button> : <button onClick={() => exit(clubCard.clubId)} className="DelExi">Exit</button>}
         </div>
     )
 }

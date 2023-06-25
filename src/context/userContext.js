@@ -35,9 +35,12 @@ export const CustomProvider = ({ children }) => {
         navigate('/home')
     }
 
+    function deleteClub(id){
+        user.clubs = user.clubs.filter(item => item.clubId !== id)
+    }
 
     return (
-        <ContextUser.Provider value={{ user, saveUser }}>
+        <ContextUser.Provider value={{ user, saveUser, deleteClub }}>
             {children}
         </ContextUser.Provider>
     )
