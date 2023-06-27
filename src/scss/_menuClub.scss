@@ -22,6 +22,7 @@
     position: fixed;
     background-color: map-get($map: $colors, $key: 'bgBlack');
     transition: ease 0.5s;
+    z-index: 50;
 }
 
 .closeBgc {

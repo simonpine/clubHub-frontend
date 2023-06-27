@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom"
-import { usersImg } from "../api"
-import userPng from '../img/user.png'
 import menu from '../img/menu.png'
 import { useState, useEffect } from "react"
 import colibri from '../img/clubHub.svg'
 import { useNavigate } from "react-router-dom";
 import { exitClub, deleteClub } from "../api"
-
+import User from "./user"
 
 function NavClub({ user, club, main }) {
     const navigate = useNavigate()
@@ -53,11 +51,7 @@ function NavClub({ user, club, main }) {
     return (
         <>
             <div className='LandingNav'>
-                <Link to={{
-                    pathname: "/userSettings",
-                }} className='logoCont'>
-                    {user.userImg !== null ? <img className="imgInBut" src={usersImg + user.userImg} alt='User Logo' /> : <img src={userPng} alt='User Logo' />}
-                </Link>
+                <User lin={user.userImg} />
                 <button onClick={() => {
                     setClose('')
                     setClose2('')
@@ -68,8 +62,8 @@ function NavClub({ user, club, main }) {
                     <Link className="returnToHome" to={{ pathname: "/home" }}><img alt="colibriLogo" src={colibri} /></Link>
 
                     <Link className={"LinkInClubMenu " + main1} to={{ pathname: "/club/" + club.id }}>Events</Link>
-                    <Link className={"LinkInClubMenu " + main2} to={{ pathname: "/chat/" + club.id }}>Grades</Link>
-                    <Link className={"LinkInClubMenu " + main3} to={{ pathname: "/gardes/" + club.id }}>Chat</Link>
+                    <Link className={"LinkInClubMenu " + main2} to={{ pathname: "/gardes/" + club.id }}>Grades</Link>
+                    <Link className={"LinkInClubMenu " + main3} to={{ pathname: "/chat/" + club.id }}>Chat</Link>
                     {club.clubOwner === user.userName && <Link className={"LinkInClubMenu " + main4} to={{ pathname: "/Settings/" + club.id }}>Settings</Link>}
                 </div>
                 {club.clubOwner !== user.userName ? <button onClick={exit} className="DelExi">Exit club</button> : <button onClick={delet} className="DelExi">Delete club</button>}

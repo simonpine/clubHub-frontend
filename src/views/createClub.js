@@ -40,7 +40,10 @@ function CreateClub() {
             await formData.append('id', idForUpload)
             await formData.append('title', nameRef)
             await formData.append('description', descriptioRef)
-            await formData.append('grades', JSON.stringify([]))
+            await formData.append('grades', JSON.stringify({
+                students: [],
+                grades: ['grade 0'],
+            }))
             await formData.append('members', JSON.stringify([]))
             await formData.append('clubsOfOwner', JSON.stringify([...user.clubs, { own: true, clubId: idForUpload, clubTitle: nameRef, clubBanner: UploadFile.name, clubDescription: descriptioRef }]))
             await formData.append('clubOwner', user.userName)

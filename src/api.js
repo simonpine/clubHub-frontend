@@ -1,10 +1,8 @@
-import io from 'socket.io-client'
 
 const API = 'https://clubhub-backend.up.railway.app/user'
 const AP2 = 'https://clubhub-backend.up.railway.app/users'
 const API3 = 'https://clubhub-backend.up.railway.app/club'
 export const usersImg = 'https://clubhub-backend.up.railway.app/images/usersImg/'
-const socket = io('https://clubhub-backend.up.railway.app')
 const APIc = 'https://clubhub-backend.up.railway.app/clubs'
 export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners/'
 const API3e = 'https://clubhub-backend.up.railway.app/userExitClub'
@@ -16,7 +14,6 @@ const API3e = 'https://clubhub-backend.up.railway.app/userExitClub'
 // const AP2 = 'http://localhost:2000/users'
 // const API3 = 'http://localhost:2000/club'
 // export const usersImg = 'http://localhost:2000/images/usersImg/'
-// const socket = io('http://localhost:2000')
 
 // //==========================Clubs
 
@@ -125,4 +122,12 @@ export const editClub = async (obj, id) => {
         method: 'PUT',
         body: obj
     })
+}
+export const saveGrades = async (obj) => {
+    await fetch(`${API3}/grades`, {
+        method: 'POST',
+        headers: { Accept: 'application/json', "Content-Type": 'application/json' },
+        body: JSON.stringify(obj)
+    })
+
 }

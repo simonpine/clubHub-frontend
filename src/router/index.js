@@ -13,6 +13,7 @@ import CreateClub from "../views/createClub.js";
 import JoinClub from "../views/joinClub.js";
 import ClubEvent from "../views/clubEvent.js";
 import ClubSettings from "../views/clubSettings.js";
+import ClubGrades from "../views/grades.js";
 
 export const router = createBrowserRouter([
     {
@@ -110,6 +111,17 @@ export const router = createBrowserRouter([
                 <CustomProviderClub>
                     <Bg rot={true} />
                     <ClubSettings />
+                </CustomProviderClub>
+            </CustomProvider>,
+
+    },
+    {
+        path: '/gardes/:id',
+        element:
+            <CustomProvider>
+                <CustomProviderClub>
+                    <Bg rot={true} />
+                    <ClubGrades />
                 </CustomProviderClub>
             </CustomProvider>,
 
