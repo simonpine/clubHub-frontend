@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import { BannersImg } from "../api";
-import { useState } from "react";
 
 function ClubCard({ clubCard, delet, exit }) {
 
 
     return (
         <div className="clubCard" key={clubCard.clubId}>
-            <Link className="imgCardConatiner">
+            <Link to={{pathname: "/club/" + clubCard.clubId}} className="imgCardConatiner">
                 <img src={BannersImg + clubCard.clubBanner} alt="Club banner" />
             </Link>
             <div className="textInCard">

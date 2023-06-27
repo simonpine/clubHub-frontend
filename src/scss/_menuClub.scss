@@ -1,0 +1,64 @@
+.menu {
+    // width: 20vw;
+    height: 90vh;
+    padding: 5vh;
+    background-color: map-get($map: $colors, $key: 'bg');
+    right: 0;
+    position: fixed;
+    z-index: 100;
+    transition: ease 0.5s;
+    @include flex(column, flex-end, space-between, flex-start, wrap);
+}
+
+.close {
+    // top: -100%;
+    right: -100%;
+}
+
+.closeBg {
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    transition: ease 0.5s;
+}
+
+.closeBgc {
+    left: -100%;
+}
+
+.returnToHome {
+    display:flex;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 100px;
+    & img {
+        // width: 100%;
+
+        width: 100%;
+        height: 100%;
+    }
+}
+.imgTextContMenu{
+    @include flex(column, flex-end, space-between, flex-start, wrap);
+
+}
+.LinkInClubMenu{
+    text-decoration: none;
+    font-size: 20px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    background: linear-gradient(map-get($map: $colors, $key: 'complement1'),map-get($map: $colors, $key: 'complement1'));
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 2px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    &:hover{
+        background-size: 100% 2px;
+    }
+}
+.selected{
+    color: map-get($map: $colors, $key: 'complement1');
+}

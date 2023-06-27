@@ -1,10 +1,10 @@
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 
 const API = 'https://clubhub-backend.up.railway.app/user'
 const AP2 = 'https://clubhub-backend.up.railway.app/users'
 const API3 = 'https://clubhub-backend.up.railway.app/club'
 export const usersImg = 'https://clubhub-backend.up.railway.app/images/usersImg/'
-const socket = io('https://clubhub-backend.up.railway.app')
+// const socket = io('https://clubhub-backend.up.railway.app')
 const APIc = 'https://clubhub-backend.up.railway.app/clubs'
 export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners/'
 const API3e = 'https://clubhub-backend.up.railway.app/userExitClub'
@@ -73,7 +73,6 @@ export const uploadFile = async (body) => {
 
     await fetch(`${API}/photo/upload`, {
         method: 'POST',
-        // headers: { Accept: 'application/json', "Content-Type": 'application/json' },
         body: body
     })
 
@@ -83,7 +82,6 @@ export const newClub = async (body) => {
 
     await fetch(`${APIc}/upload`, {
         method: 'POST',
-        // headers: { Accept: 'application/json', "Content-Type": 'application/json' },
         body: body
     })
 
@@ -120,5 +118,11 @@ export const deleteClub = async (obj, id) => {
         method: 'DELETE',
         headers: { Accept: 'application/json', "Content-Type": 'application/json' },
         body: JSON.stringify(obj)
+    })
+}
+export const editClub = async (obj, id) => {
+    await fetch(`${API3}/${id}`, {
+        method: 'PUT',
+        body: obj
     })
 }

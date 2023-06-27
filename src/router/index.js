@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { CustomProvider } from "../context/userContext.js";
+import { CustomProviderClub } from "../context/clubContext.js";
 import App from '../App.js'
 import LogIn from '../views/loginPage.js'
 import Home from "../views/home.js";
@@ -10,6 +11,9 @@ import ForgotPasswordRecover from "../views/ForgotPasswordRecover.js";
 import UserSettings from "../views/userSettings.js";
 import CreateClub from "../views/createClub.js";
 import JoinClub from "../views/joinClub.js";
+import ClubEvent from "../views/clubEvent.js";
+import ClubSettings from "../views/clubSettings.js";
+
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -88,5 +92,26 @@ export const router = createBrowserRouter([
             </CustomProvider>,
 
     },
+    {
+        path: '/club/:id',
+        element:
+            <CustomProvider>
+                <CustomProviderClub>
+                    <Bg rot={true} />
+                    <ClubEvent />
+                </CustomProviderClub>
+            </CustomProvider>,
 
+    },
+    {
+        path: '/settings/:id',
+        element:
+            <CustomProvider>
+                <CustomProviderClub>
+                    <Bg rot={true} />
+                    <ClubSettings />
+                </CustomProviderClub>
+            </CustomProvider>,
+
+    },
 ])
