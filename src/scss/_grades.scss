@@ -1,0 +1,91 @@
+.exBut {
+    margin-left: 10px;
+    margin-right: 0px;
+    border: solid 1px map-get($map: $colors, $key: 'bgBlur');
+    height: 40px;
+    width: 40px;
+    background-color: map-get($map: $colors, $key: 'complement2BgHover');
+    border-radius: 0px;
+
+    &:hover {
+        background-color: map-get($map: $colors, $key: 'complement2BgHover');
+
+    }
+
+    &:active {
+        background-color: map-get($map: $colors, $key: 'bgBlur');
+    }
+
+    & img {
+        transform: rotate(45deg);
+    }
+}
+.gardesTableContainer {
+    background-color: map-get($map: $colors, $key: 'bgBlackHover');
+    padding: 20px 20px 20px 40px;
+    border-radius: 40px;
+    animation-duration: 0.3s;
+    animation-name: apear2;
+    width: 60vw;
+    max-height: 70vh;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    & div {
+        overflow: auto;
+        max-height: 60vh;
+        width: 100%;
+
+        & table {
+            width: 100%;
+        }
+    }
+
+}
+
+.butonsTableCont {
+    // width: 60vw;
+    margin-top: 20px;
+    @include flex(row, center, space-between, flex-end, wrap);
+
+}
+
+.inputForTable, .butLine {
+    border-bottom: 1px solid map-get($map: $colors, $key: 'complement1');
+}
+
+.h2InGradesTable {
+    margin: 10px 0px;
+    font-size: 20px;
+}
+
+.prinInTale {
+    color: map-get($map: $colors, $key: 'complement1');
+}
+.lesOpp{
+    opacity: 0.3;
+}
+.h3InTable{
+    margin: 10px 0px;
+    font-size: 15px;
+    font-weight: 100;
+}
+
+.loadingContTable{
+    @include flex(column, center, center, center, wrap);
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    z-index: 100;
+    & div{
+        height: 140px;
+        position: absolute;
+        align-self: center;
+        @include flex(column, center, center, center, wrap);
+    }
+}

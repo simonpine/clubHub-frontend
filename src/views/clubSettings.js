@@ -2,20 +2,16 @@ import { ContextClub } from "../context/clubContext"
 import { ContextUser } from "../context/userContext"
 import NavClub from "../components/navClub"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { BannersImg, editClub } from "../api"
 function ClubSettings() {
     const [loading, setloading] = useState(false)
-
+    const [loading2, setloading2] = useState(false)
+    const [sure, setSure] = useState(false)
     const [err, setErr] = useState('')
     const [descriptioRef, setDescriptioRef] = useState('')
     const [nameRef, setNameRef] = useState('')
     const [fileName, setFileName] = useState('Change banner')
-
     const [selectedImage, setSelectedImage] = useState(null);
-
-    const navigate = useNavigate();
-
     function renameFile(originalFile, newName) {
         const fin = originalFile.type.split('/')
         return new File([originalFile], (newName + '.' + fin[1]), {
@@ -29,15 +25,12 @@ function ClubSettings() {
             {({ user }) => {
                 return user && (
                     <ContextClub.Consumer>
-                        {({ club, setClub }) => {
+                        {({ club }) => {
 
                             async function changeClub(evt) {
                                 await evt.preventDefault();
-                                setErr('')
+                                await await setloading2(true)
                                 await setloading(true)
-                                // if (nameRef.replaceAll(' ', '').length === 0 || descriptioRef.replaceAll(' ', '').length === 0) {
-                                //     setErr('The name/description cannot be empty')
-                                // }
 
                                 if (nameRef === '' & selectedImage === null) {
 
@@ -321,10 +314,29 @@ function ClubSettings() {
                                 await setSelectedImage(null)
                                 await setFileName('Change banner')
                                 await setloading(false)
+                                await setloading2(false)
+                                await setSure(false)
                             }
 
                             return club && (
                                 <div>
+                                    {sure &&
+                                        <div className="sureCont">
+
+                                            <div className="sureSection">
+
+                                                <h2>Are you sure of the changes?</h2>
+                                                <div>
+                                                    <button onClick={changeClub} className="getIn">Yes, save changes</button>
+                                                    <button onClick={() => setSure(false)} className="getIn red">No, cancel</button>
+                                                </div>
+                                            </div>
+                                            {loading2 && <div className="sureSection loadingSure"><div className="lds-dual-ring"></div></div>}
+
+                                            <div className="surebg" onClick={() => setSure(false)}></div>
+                                        </div>
+                                    }
+
                                     <NavClub user={user} club={club} main={4} />
 
 
@@ -337,6 +349,7 @@ function ClubSettings() {
 
                                             <div className="container-input">
                                                 <input type="file"
+                                                    
                                                     name="myImage"
                                                     onChange={(event) => {
                                                         setErr('')
@@ -369,18 +382,21 @@ function ClubSettings() {
                                         <div>
                                             {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
 
-                                            <form onSubmit={changeClub} className="formLogin">
+                                            <form onSubmit={(evt)=> {
+                                                evt.preventDefault()
+                                                setSure(true)
+                                            }} className="formLogin">
                                                 <div className="headerErr">
-                                                    <h1 className="h1LogCards">Settings</h1>
+                                                    <h1 className="h1LogCards">Club settings</h1>
                                                     <h3 className="errorAnoun"> {err}</h3>
                                                 </div>
                                                 <div>
                                                     <h2 className="inputIdentify">Change club name:</h2>
-                                                    <input value={nameRef} onChange={(evt) => setNameRef(evt.target.value)} className="inputText" type="text" placeholder={club.title} />
+                                                    <input id='changeTitle' value={nameRef} onChange={(evt) => setNameRef(evt.target.value)} className="inputText" type="text" placeholder={club.title} />
                                                 </div>
                                                 <div>
                                                     <h2 className="inputIdentify">Change description:</h2>
-                                                    <textarea value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder={club.description} />
+                                                    <textarea id="changeDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder={club.description} />
                                                 </div>
                                                 <button disabled={(nameRef.replaceAll(' ', '').length === 0 & descriptioRef.replaceAll(' ', '').length === 0) & selectedImage === null} className="getIn logInButton">Save changes</button>
                                             </form>

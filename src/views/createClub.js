@@ -85,11 +85,11 @@ function CreateClub() {
                                     </div>
                                     <div>
                                         <h2 className="inputIdentify">Club name:</h2>
-                                        <input value={nameRef} onChange={(evt) => setNameRef(evt.target.value)} className="inputText" type="text" placeholder='Cinema club' />
+                                        <input id="ClubTitle" value={nameRef} onChange={(evt) => setNameRef(evt.target.value)} className="inputText" type="text" placeholder='Cinema club' />
                                     </div>
                                     <div>
                                         <h2 className="inputIdentify">Description:</h2>
-                                        <textarea value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder="A cinema club is a gathering of film enthusiasts who come together to watch and discuss movies. It provides a space for like-minded individuals to share their love for cinema, explore different genres, and engage in meaningful conversations about films." />
+                                        <textarea id="ClubDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder="A cinema club is a gathering of film enthusiasts who come together to watch and discuss movies. It provides a space for like-minded individuals to share their love for cinema, explore different genres, and engage in meaningful conversations about films." />
                                     </div>
                                     <button disabled={(descriptioRef.length === 0) || (nameRef.length === 0) || selectedImage === null} className="getIn logInButton">Create</button>
                                 </form>

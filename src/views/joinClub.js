@@ -90,7 +90,7 @@ function JoinClub() {
                                 <div className="formLogin">
                                     <form onSubmit={searchClub}>
                                         <h2 className="inputIdentify">Search by code:</h2>
-                                        <input value={codeRef} onChange={(evt) => setCodeRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder='97p2a1z6uwc' />
+                                        <input id="CodeOfAClub" value={codeRef} onChange={(evt) => setCodeRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder='97p2a1z6uwc' />
                                         <button disabled={(codeRef.length === 0)} className="getIn logInButton mTop">Search</button>
                                     </form>
 
