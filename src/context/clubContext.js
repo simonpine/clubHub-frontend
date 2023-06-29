@@ -16,9 +16,9 @@ export const CustomProviderClub = ({ children }) => {
         const res = await getClubId(id)
         await setClub(res[0])
         await setGrades(res[0].gardes)
+        const socket = io('http://localhost:2000',  { query: { myParam: id } })
     }
     useEffect(() => {
-        const socket = io('https://clubhub-backend.up.railway.app')
         setDefault()
     }, [])
 

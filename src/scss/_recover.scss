@@ -4,7 +4,15 @@
 }
 
 .notReg {
-    width: 600px;
+    width: fit-content;
+    background-color: map-get($map: $colors, $key: 'bgBlackHover');
+    text-align: center;
+    padding: 20px 40px;
+    border-radius: 0px 40px;
+    font-weight: 200;
+    font-size: 25px;
+    animation-name: apear2;
+    animation: 0.3s;
 }
 .borderNone{
     border: none;

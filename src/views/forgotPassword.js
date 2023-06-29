@@ -32,7 +32,7 @@ function ForgotPassword() {
                                     </div>
                                     <div className="sectionFormCont">
                                         <h2 className="inputIdentify">Username:</h2>
-                                        <input value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder="SimonPine" />
+                                        <input id="userName" value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder="SimonPine" />
                                     </div>
                                     <button disabled={nameRef.length === 0} className="getIn logInButton">Get question</button>
                                 </form>

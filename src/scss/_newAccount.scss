@@ -18,3 +18,11 @@
     @include flex(column, stretch, space-between, stretch, wrap);
     margin: 20px 0px;
 }
+.inputTextSelect{
+    @extend .inputText;
+    width: 100%;
+    // background-color: black;
+    &:focus{
+        background-color: map-get($map: $colors, $key: 'bg');
+    }
+}

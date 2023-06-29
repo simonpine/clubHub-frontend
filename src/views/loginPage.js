@@ -48,14 +48,14 @@ function LogIn() {
 
                                     <div className="sectionFormCont">
                                         <h2 className="inputIdentify">Username:</h2>
-                                        <input value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder="SimonPine" />
+                                        <input id="UserName" value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder="SimonPine" />
                                         <Link to={{
                                             pathname: "/newAccount",
                                         }} className="thirButton">Do you not have an account?</Link>
                                     </div>
                                     <div className="sectionFormCont">
                                         <h2 className="inputIdentify">Password:</h2>
-                                        <input value={passwordRef} onChange={(evt) => setPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
+                                        <input id="password" value={passwordRef} onChange={(evt) => setPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
                                         <Link to={{
                                             pathname: "/forgotPassword",
                                         }} className="thirButton">Forgot password?</Link>

@@ -79,15 +79,15 @@ function ForgotPasswordRecover() {
                                         </div>
                                         <div>
                                             <h2 className="inputIdentify">Answer:</h2>
-                                            <input value={answerRef} onChange={(evt) => setAnswerRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
+                                            <input id="answer" value={answerRef} onChange={(evt) => setAnswerRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
                                         </div>
                                         <div>
                                             <h2 className="inputIdentify">New password:</h2>
-                                            <input value={passwordRef} onChange={(evt) => setPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
+                                            <input id="newPassword" value={passwordRef} onChange={(evt) => setPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
                                         </div>
                                         <div>
                                             <h2 className="inputIdentify">Confirm password:</h2>
-                                            <input value={confirmPasswordRef} onChange={(evt) => setConfirmPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
+                                            <input id="passwordConfirm" value={confirmPasswordRef} onChange={(evt) => setConfirmPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
                                         </div>
                                         <button disabled={confirmPasswordRef.length === 0 || passwordRef.length === 0 || answerRef.length === 0} className="getIn logInButton">Change password</button>
                                     </form>

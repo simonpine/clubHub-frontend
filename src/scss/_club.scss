@@ -1,0 +1,159 @@
+.bannerPlusCopyContainer {
+    width: 300px;
+    height: fit-content;
+    background-color: map-get($map: $colors, $key: 'bgBlackHover');
+    border-radius: 40px;
+    padding: 20px;
+    @include flex(row, center, space-between, flex-end, wrap);
+    animation-name: apear2;
+    animation-duration: 0.3s;
+}
+.bannerContClub{
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+.codeAndDesCont{
+    width: 100%;
+    @include flex(row, center, space-between, center, wrap);
+    & h3{
+        font-size: 20px;
+        font-weight: 300;
+    }
+    & button{
+        margin: 0px;
+        & img{
+            // width: 10px;
+            height: 20px;
+            width: auto;
+            margin-left: 20px;
+        }
+    } 
+}
+.chatContainer{
+    @include flex(row, flex-end, space-between, flex-end, wrap);
+    width: 800px;
+    height: 600px;
+    background-color:  map-get($map: $colors, $key: 'bgBlur');
+    border-radius: 40px;
+    animation-name: apear2;
+    animation-duration: 0.3s;
+    padding: 20px;
+}
+.toTop{
+    height: 640px;
+    
+}
+.MessageInput{
+    width: 80%;
+    background: none;
+    border: none;
+    border-bottom: 2px solid map-get($map: $colors, $key: 'font');
+    transition: 0.2s;
+    padding: 10px 2.5%;
+    font-size: 15px;
+    &:focus {
+        border-bottom: 2px solid map-get($map: $colors, $key: 'complement1');
+        outline: none;
+    }
+}
+.sendButton{
+    background: none;
+    border: none;
+    &:hover{
+        cursor: pointer;
+    }
+    height: 40px;
+    width: 40px;
+}
+.formForChats{
+    width: 100%;
+    @include flex(row, center, space-between, center, wrap);
+}
+.none{
+    display: none;
+}
+.allFormCont{
+    height: 40px;
+    width: 100%;
+    @include flex(row, flex-end, space-between, flex-end, wrap);
+// overflow: hidden;
+}
+.contForFiles{
+    margin-bottom: 20px;
+    width: 100%;
+    height: 200px;
+    background-color: map-get($map: $colors, $key: 'bgBlackHover');
+    border-radius: 20px;
+    overflow: hidden;
+    animation-name: apearExample;
+    animation-duration: 0.2s;
+    border: none;
+    transition: 0.2s;
+    & img{
+        transition: 0.2s;
+    }
+    &::after{
+        display: none;
+        left: 40%;
+        top: -60% ;
+        position: relative;
+        color: map-get($map: $colors, $key: 'error');
+        font-size: 25px;
+        font-weight: 600;
+        content: 'Delete file';
+    }
+    &:hover{
+        cursor: pointer;
+        &::after{
+            display:block;
+        }
+        & img{
+            filter: blur(4px);
+            opacity: 0.2;
+        }
+    }
+}
+.errorCont{
+    margin: 10px 20px;
+    background-color: map-get($map: $colors, $key: 'bgBlackHover');
+    width: fit-content;
+    height: 20px;
+    padding: 10px 20px;
+    border-radius: 20px 20px 20px 0px;
+    animation-name: apearError;
+    animation-duration: 0.2s;
+}
+
+@keyframes apearError {
+    0% {
+        margin-left: -10px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: 20px;
+        opacity: 1;
+    }
+}
+@keyframes apearExample{
+    0% {
+        margin-bottom: -10px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-bottom: 20px;
+        opacity: 1;
+    }
+}
+.notImgFileCont{
+    // height: 80%;
+    // width: auto;
+    width: 100px;
+    height: 100px;
+    padding: 50px;
+    transform: translate(0%, 0%);
+}

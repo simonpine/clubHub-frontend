@@ -1,25 +1,25 @@
 
-const API = 'https://clubhub-backend.up.railway.app/user'
-const AP2 = 'https://clubhub-backend.up.railway.app/users'
-const API3 = 'https://clubhub-backend.up.railway.app/club'
-export const usersImg = 'https://clubhub-backend.up.railway.app/images/usersImg/'
-const APIc = 'https://clubhub-backend.up.railway.app/clubs'
-export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners/'
-const API3e = 'https://clubhub-backend.up.railway.app/userExitClub'
+// const API = 'https://clubhub-backend.up.railway.app/user'
+// const AP2 = 'https://clubhub-backend.up.railway.app/users'
+// const API3 = 'https://clubhub-backend.up.railway.app/club'
+// export const usersImg = 'https://clubhub-backend.up.railway.app/images/usersImg/'
+// const APIc = 'https://clubhub-backend.up.railway.app/clubs'
+// export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners/'
+// const API3e = 'https://clubhub-backend.up.railway.app/userExitClub'
 
 
-// //===========================Users
+//===========================Users
 
-// const API = 'http://localhost:2000/user'
-// const AP2 = 'http://localhost:2000/users'
-// const API3 = 'http://localhost:2000/club'
-// export const usersImg = 'http://localhost:2000/images/usersImg/'
+const API = 'http://localhost:2000/user'
+const AP2 = 'http://localhost:2000/users'
+const API3 = 'http://localhost:2000/club'
+export const usersImg = 'http://localhost:2000/images/usersImg/'
 
-// //==========================Clubs
+//==========================Clubs
 
-// const APIc = 'http://localhost:2000/clubs'
-// const API3e = 'http://localhost:2000/userExitClub'
-// export const BannersImg = 'http://localhost:2000/images/banners/'
+const APIc = 'http://localhost:2000/clubs'
+const API3e = 'http://localhost:2000/userExitClub'
+export const BannersImg = 'http://localhost:2000/images/banners/'
 
 
 export const getUser = async (id) => {

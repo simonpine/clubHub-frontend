@@ -22,12 +22,12 @@
 }
 .gardesTableContainer {
     background-color: map-get($map: $colors, $key: 'bgBlackHover');
-    padding: 20px 20px 20px 40px;
+    padding: 20px 40px 20px 40px;
     border-radius: 40px;
     animation-duration: 0.3s;
     animation-name: apear2;
     width: 60vw;
-    max-height: 70vh;
+    max-height: 80vh;
     position: fixed;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -88,4 +88,24 @@
         align-self: center;
         @include flex(column, center, center, center, wrap);
     }
+}
+.clubWithOutMembers{
+    width: 100%;
+    text-align: center;
+    font-weight: 200;
+}
+.thDelete{
+    width: 51px;
+}
+.NameFilterInput{
+    @extend .inputText;
+    padding: 5px 2.5%;
+    width: 95%;
+    border-radius: 40px;
+    height: 30px;
+    border: solid 1px map-get($map: $colors, $key: 'complement3');
+    margin-bottom: 10px;
+}
+.mNone{
+    margin: 0px;
 }

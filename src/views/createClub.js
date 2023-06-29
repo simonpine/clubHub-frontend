@@ -40,6 +40,8 @@ function CreateClub() {
             await formData.append('id', idForUpload)
             await formData.append('title', nameRef)
             await formData.append('description', descriptioRef)
+            await formData.append('chat', JSON.stringify([]))
+            await formData.append('events', JSON.stringify([]))
             await formData.append('grades', JSON.stringify({
                 students: [],
                 grades: ['grade 0'],

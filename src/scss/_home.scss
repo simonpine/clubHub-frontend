@@ -4,6 +4,12 @@
     margin-right: 20px;
 }
 
+.espPlusButton{
+    position: fixed;
+    right: 0px;
+    top: 25px;
+}
+
 .plusExecut {
     position: fixed;
     width: 100vw;
@@ -117,8 +123,8 @@
 }
 
 .textInCard {
-    @include flex(column, flex-start, flex-start, flex-start, wrap);
-    height: 130px;
+    @include flex(column, flex-start, center, flex-start, wrap);
+    height: 150px;
     width: 100%;
 }
 

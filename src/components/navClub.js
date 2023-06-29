@@ -50,13 +50,12 @@ function NavClub({ user, club, main }) {
     }
     return (
         <>
-            <div className='LandingNav'>
-                <User lin={user.userImg} />
+       
                 <button onClick={() => {
                     setClose('')
                     setClose2('')
-                }} className="plusButton"><img src={menu} alt="plus button icon" /></button>
-            </div>
+                }} className="plusButton espPlusButton"><img src={menu} alt="plus button icon" /></button>
+       
             <div className={'menu ' + close}>
                 <div className="imgTextContMenu">
                     <Link className="returnToHome" to={{ pathname: "/home" }}><img alt="colibriLogo" src={colibri} /></Link>
