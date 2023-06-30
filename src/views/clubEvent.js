@@ -1,6 +1,6 @@
 import { ContextClub } from "../context/clubContext"
 import { ContextUser } from "../context/userContext"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { BannersImg } from "../api"
 import User from "../components/user"
 import NavClub from "../components/navClub"
@@ -8,7 +8,11 @@ import copy from '../img/copy.png'
 import send from '../img/send.png'
 import upload from '../img/upload.png'
 import doc from '../img/document.png'
+import { useParams } from "react-router-dom";
+
+
 function ClubEvent() {
+    const { id } = useParams()
     const [message, setMessage] = useState('')
     const [err, setErr] = useState('')
     const [selectedImage, setSelectedImage] = useState(null);
@@ -25,12 +29,14 @@ function ClubEvent() {
                             <User lin={user.userImg} />
                         </div>
                         <ContextClub.Consumer>
-                            {({ club, socket }) => {
+                            {({ club, events, sumbmit }) => {
 
                                 async function hundleSubmit(evt) {
                                     evt.preventDefault()
                                     setErr('')
-                                    console.log(selectedImage)
+                                    sumbmit(club.id)
+                                    // socket.emit('newEvent', id)
+
                                 }
 
                                 return club && (
@@ -50,10 +56,12 @@ function ClubEvent() {
                                                     </div>
 
                                                 </div>
-                                            </div>
+                                            </div>                               
                                             <div className="chatContainer">
                                                 <div>
-
+                                                    {events.length !== 0 &&
+                                                        events.map(evt => <h2 key={Math.random() * 10000}>{evt}</h2>)
+                                                    }
                                                 </div>
                                                 {club.clubOwner === user.userName &&
                                                     <form className="allFormCont" onSubmit={hundleSubmit}>

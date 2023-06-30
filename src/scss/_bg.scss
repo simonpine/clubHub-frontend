@@ -1,23 +1,25 @@
-.BlurBack{
+.BlurBack {
     width: 100vw;
     height: 100vh;
     position: fixed;
-    background-color: map-get($map:$colors, $key: 'bgBlur');
-    backdrop-filter: blur(350px);
+    background-color: map-get($map: $colors, $key: 'bgBlur');
+    // backdrop-filter: blur(200px);
     z-index: -1;
 }
-.bgCont{
+
+.bgCont {
     width: 100vw;
     height: 100vh;
     position: fixed;
     z-index: -2;
 }
-.circle{
-    // filter: blur(300px);
+
+.circle {
     position: fixed;
-    border-radius: 100%;
+    // border-radius: 100%;
     z-index: -2;
 }
-.rota{
- rotate: 180deg;
+
+.rota {
+    rotate: 180deg;
 }
