@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getClubId } from "../api";
 import io from 'socket.io-client'
 import { urlBase } from "../api";
+import { sendMsgEvent } from "../api";
 let socket 
 
 export const ContextClub = createContext()
@@ -10,10 +11,6 @@ export const ContextClub = createContext()
 export const CustomProviderClub = ({ children }) => {
 
     const { id } = useParams()
-    // const socket = io('http://localhost:2000', { query: { myParam: id } })
-
-
-    // const [socket, setSocket] = useState(null)
     const [events, setEvents] = useState([])
     const [refresh, setRefresh] = useState(Math.floor(100000 + Math.random() * 900000))
     const [club, setClub] = useState(null)
@@ -23,53 +20,11 @@ export const CustomProviderClub = ({ children }) => {
         const res = await getClubId(id)
         await setClub(res[0])
         await setGrades(res[0].gardes)
-        // socket.on('newEvent', message => console.log(message))
-
-        // socket = await io('http://localhost:2000', { query: { myParam: '123' } })
+        await setEvents(res[0].events)
     }
     useEffect(() => {
         setDefault()
     }, [])
-
-    // function recive() {
-    //     socket.on('newEvent', message => {
-
-    //         // events.push(message)
-
-    //         console.log(socket)
-
-    //     })
-    //     socket.off('newEvent', message => {
-
-    //         // events.push(message)
-
-    //         console.log(socket)
-
-    //     })
-    // }
-    // useEffect(() => {
-
-    //     socket.emit('newEvent', id)
-        
-    // }, [])
-
-    // if (socket !== null)  {
-    //     socket.on('newEvent', message => {
-
-    //         // events.push(message)
-
-    //         console.log(socket)
-
-    //     })
-    //     socket.off('newEvent', message => {
-
-    //         // events.push(message)
-
-    //         console.log(socket)
-
-    //     })
-    // }
-
 
     useEffect(()=> {
 
@@ -78,10 +33,9 @@ export const CustomProviderClub = ({ children }) => {
     
         socket.emit('joinClub', id)
     
-        socket.on('emitMessage', mess => {
+        socket.on('emitMessageEvent', mess => {
             console.log(mess)
-            // setEvents([...events, mess])
-            setEvents(prevState => [...prevState, mess])
+            setEvents(prevState => [mess,...prevState])
         })
         return () => {
             socket.disconnect();
@@ -89,8 +43,11 @@ export const CustomProviderClub = ({ children }) => {
     }, [])
 
 
-    function sumbmit(mess){
-        socket.emit('newEventMessage', mess)
+    async function sumbmit(mess, forSocket){
+
+        await sendMsgEvent(mess)
+        await console.log('se subio')
+        await socket.emit('newEventMessage', forSocket)
     }
 
     return (

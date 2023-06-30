@@ -51,7 +51,7 @@ function ClubGrades() {
                                             {club.members.length > 0 ?
                                                 <>
                                                     <input placeholder="Name filter" className="NameFilterInput" id="SearchByNmae" value={searchName} onChange={(evt) => setSearchName(evt.target.value)} />
-                                                    <div>
+                                                    <div className="tableInCont">
 
                                                         <table>
 

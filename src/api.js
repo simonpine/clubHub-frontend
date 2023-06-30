@@ -22,6 +22,7 @@ export const usersImg = urlBase + '/images/usersImg/'
 const APIc = urlBase + '/clubs'
 const API3e =  urlBase + '/userExitClub'
 export const BannersImg = urlBase + '/images/banners/'
+export const chatsFlies = urlBase + '/images/chats/'
 
 
 export const getUser = async (id) => {
@@ -130,6 +131,14 @@ export const saveGrades = async (obj) => {
         method: 'POST',
         headers: { Accept: 'application/json', "Content-Type": 'application/json' },
         body: JSON.stringify(obj)
+    })
+
+}
+
+export const sendMsgEvent = async (obj) => {
+    await fetch(`${API3}/events`, {
+        method: 'POST',
+        body: obj
     })
 
 }

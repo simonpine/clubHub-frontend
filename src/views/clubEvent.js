@@ -1,21 +1,29 @@
 import { ContextClub } from "../context/clubContext"
 import { ContextUser } from "../context/userContext"
 import { useState, useEffect } from "react"
-import { BannersImg } from "../api"
+import { BannersImg, chatsFlies } from "../api"
 import User from "../components/user"
 import NavClub from "../components/navClub"
 import copy from '../img/copy.png'
 import send from '../img/send.png'
+import userImg from '../img/user.png'
 import upload from '../img/upload.png'
 import doc from '../img/document.png'
-import { useParams } from "react-router-dom";
+import { usersImg } from "../api"
 
 
 function ClubEvent() {
-    const { id } = useParams()
     const [message, setMessage] = useState('')
     const [err, setErr] = useState('')
     const [selectedImage, setSelectedImage] = useState(null);
+
+    function renameFile(originalFile, newName) {
+        const fin = originalFile.type.split('/')
+        return new File([originalFile], (newName + '.' + fin[1]), {
+            type: originalFile.type,
+            lastModified: originalFile.lastModified,
+        });
+    }
 
     return (
         <ContextUser.Consumer>
@@ -34,8 +42,78 @@ function ClubEvent() {
                                 async function hundleSubmit(evt) {
                                     evt.preventDefault()
                                     setErr('')
-                                    sumbmit(club.id)
-                                    // socket.emit('newEvent', id)
+                                    const date = new Date().valueOf();
+                                    const formData = new FormData()
+                                    let today = new Date();
+                                    const dd = String(today.getDate()).padStart(2, '0');
+                                    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                                    const yyyy = today.getFullYear();
+
+                                    today = mm + '/' + dd + '/' + yyyy
+                                    const forMoment = {
+                                        id: date,
+                                        from: user.userName,
+                                        idClub: club.id,
+                                        fileName: null,
+                                        message: null,
+                                        typeMess: null,
+                                        date: today,
+                                        logo: user.userImg,
+                                    }
+
+                                    formData.append('id', date)
+                                    formData.append('logo', user.userImg)
+                                    formData.append('date', today)
+                                    formData.append('from', user.userName)
+                                    formData.append('idClub', club.id)
+
+                                    if ((message !== '' & message.replaceAll(' ', '').length > 0) & selectedImage !== null) {
+
+                                        const UploadFile = renameFile(selectedImage, date + club.id)
+
+                                        forMoment.fileName = UploadFile.name
+                                        forMoment.message = message
+                                        formData.append('file', UploadFile)
+                                        formData.append('message', message)
+
+                                        formData.append('fileName', UploadFile.name)
+
+                                        if (selectedImage.type.split('/')[0] === 'image') {
+                                            formData.append('typeMess', 'text+img')
+                                            forMoment.typeMess = 'text+img'
+                                        }
+                                        else {
+                                            formData.append('typeMess', 'text+file')
+                                            forMoment.typeMess = 'text+file'
+                                        }
+                                    }
+                                    else if (message !== '' & message.replaceAll(' ', '').length > 0) {
+                                        forMoment.message = message
+                                        formData.append('fileName', null)
+                                        formData.append('message', message)
+                                        formData.append('typeMess', 'text')
+                                        forMoment.typeMess = 'text'
+                                    }
+                                    else {
+                                        const UploadFile = renameFile(selectedImage, date + club.id)
+
+                                        forMoment.fileName = UploadFile.name
+                                        formData.append('file', UploadFile)
+                                        formData.append('fileName', UploadFile.name)
+                                        formData.append('message', null)
+
+                                        if (selectedImage.type.split('/')[0] === 'image') {
+                                            formData.append('typeMess', 'img')
+                                            forMoment.typeMess = 'img'
+                                        }
+                                        else {
+                                            formData.append('typeMess', 'file')
+                                            forMoment.typeMess = 'file'
+                                        }
+                                    }
+                                    sumbmit(formData, forMoment)
+                                    setSelectedImage(null)
+                                    setMessage('')
 
                                 }
 
@@ -56,12 +134,50 @@ function ClubEvent() {
                                                     </div>
 
                                                 </div>
-                                            </div>                               
+                                            </div>
                                             <div className="chatContainer">
-                                                <div>
-                                                    {events.length !== 0 &&
-                                                        events.map(evt => <h2 key={Math.random() * 10000}>{evt}</h2>)
-                                                    }
+                                                <div className={club.clubOwner !== user.userName ? "oneH msgCont" : 'msgCont'}>
+                                                    <div className="messCont">
+                                                        {events.length !== 0 &&
+
+
+                                                            events.map(evt => {
+                                                                // /this.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+
+                                                                return (
+                                                                    <div key={evt.id} className={evt.from !== user.userName ? "allMessageCont" : "allMessageCont otherSender"}>
+                                                                        {evt.logo !== 'null' ? <img className="logo" alt="userLogo" src={usersImg + evt.logo} /> : <img className="logo" alt="notImgUser" src={userImg} />}
+                                                                        {(evt.typeMess !== 'file' & evt.typeMess !== 'text+file') ?
+                                                                            <div className="mess" >
+                                                                                <h4 className="messInfo">{evt.from === user.userName ? <>You</> : <>{evt.from}</>} {evt.date}</h4>
+                                                                                {evt.message !== 'null' && <h3 className="textMessage">{evt.message}</h3>}
+                                                                                {evt.fileName !== null & evt.fileName !== 'null' ? <img className="imgUploadedByUser" alt='imgUploadedByUser' src={chatsFlies + evt.fileName} /> : <></>}
+                                                                            </div>
+                                                                            :
+                                                                            <div className="mess" >
+                                                                                <h4 className="messInfo">{evt.from === user.userName ? <>You</> : <>{evt.from}</>} {evt.date}</h4>
+                                                                                {evt.message !== 'null' && <h3 className="textMessage">{evt.message}</h3>}
+                                                                                {evt.fileName !== null & evt.fileName !== 'null' ?
+                                                                                    <button onClick={() => {
+                                                                                        const aTag = document.createElement('a')
+                                                                                        aTag.href = chatsFlies + evt.fileName
+                                                                                        aTag.setAttribute('download', evt.fileName)
+                                                                                        aTag.target = 'blank'
+                                                                                        document.body.appendChild(aTag)
+                                                                                        aTag.click()
+                                                                                        aTag.remove()
+                                                                                    }} className="downLoadButton">
+                                                                                        <img alt="fileImg" src={doc} />
+                                                                                        Download
+                                                                                    </button> : <></>}
+                                                                            </div>
+                                                                        }
+                                                                    </div>
+                                                                )
+
+                                                            })
+                                                        }
+                                                    </div>
                                                 </div>
                                                 {club.clubOwner === user.userName &&
                                                     <form className="allFormCont" onSubmit={hundleSubmit}>
@@ -118,7 +234,7 @@ function ClubEvent() {
                                                             aTag.click()
                                                             aTag.remove()
                                                         }}>ashjdg</button> */}
-                                                            <button disabled={message.replace(' ', '').length < 1 & selectedImage === null} className="sendButton"><img alt="SendButton" src={send} /></button>
+                                                            <button disabled={message.replaceAll(' ', '').length < 1 & selectedImage === null} className="sendButton"><img alt="SendButton" src={send} /></button>
                                                         </div>
                                                     </form>}
                                             </div>

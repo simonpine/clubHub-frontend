@@ -1,52 +1,62 @@
 .bannerPlusCopyContainer {
     width: 300px;
     height: fit-content;
-    background-color: map-get($map: $colors, $key: 'bgBlackHover');
+    background-color: map-get($map: $colors, $key: 'bgBlack');
     border-radius: 40px;
     padding: 20px;
     @include flex(row, center, space-between, flex-end, wrap);
     animation-name: apear2;
     animation-duration: 0.3s;
 }
-.bannerContClub{
+
+.bannerContClub {
     width: 100%;
     height: 300px;
     overflow: hidden;
     border-radius: 20px;
     margin-bottom: 20px;
 }
-.codeAndDesCont{
+
+.codeAndDesCont {
     width: 100%;
     @include flex(row, center, space-between, center, wrap);
-    & h3{
+
+    & h3 {
         font-size: 20px;
         font-weight: 300;
     }
-    & button{
+
+    & button {
         margin: 0px;
-        & img{
+
+        & img {
             // width: 10px;
             height: 20px;
             width: auto;
             margin-left: 20px;
         }
-    } 
+    }
 }
-.chatContainer{
+
+.chatContainer {
     @include flex(row, flex-end, space-between, flex-end, wrap);
     width: 800px;
-    height: 600px;
-    background-color:  map-get($map: $colors, $key: 'bgBlur');
+    height: 640px;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
     border-radius: 40px;
     animation-name: apear2;
     animation-duration: 0.3s;
-    padding: 20px;
+
+    // padding: 20px;
+
 }
-.toTop{
+
+.toTop {
     height: 640px;
-    
+
 }
-.MessageInput{
+
+.MessageInput {
     width: 80%;
     background: none;
     border: none;
@@ -54,77 +64,99 @@
     transition: 0.2s;
     padding: 10px 2.5%;
     font-size: 15px;
+
     &:focus {
         border-bottom: 2px solid map-get($map: $colors, $key: 'complement1');
         outline: none;
     }
 }
-.sendButton{
+
+.sendButton {
     background: none;
     border: none;
-    &:hover{
+
+    &:hover {
         cursor: pointer;
     }
+
     height: 40px;
     width: 40px;
 }
-.formForChats{
+
+.formForChats {
     width: 100%;
     @include flex(row, center, space-between, center, wrap);
 }
-.none{
+
+.none {
     display: none;
 }
-.allFormCont{
+
+.allFormCont {
     height: 40px;
     width: 100%;
+    padding: 20px 25px 20px;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    border-radius: 0px 0px 40px 40px;
     @include flex(row, flex-end, space-between, flex-end, wrap);
-// overflow: hidden;
+    // overflow: hidden;
 }
-.contForFiles{
-    margin-bottom: 20px;
+
+.contForFiles {
+    backdrop-filter: blur(5px);
+    margin-bottom: 40px;
     width: 100%;
     height: 200px;
-    background-color: map-get($map: $colors, $key: 'bgBlackHover');
+    background-color: map-get($map: $colors, $key: 'bgBlack');
     border-radius: 20px;
     overflow: hidden;
     animation-name: apearExample;
     animation-duration: 0.2s;
     border: none;
     transition: 0.2s;
-    & img{
+
+    & img {
         transition: 0.2s;
     }
-    &::after{
+
+    &::after {
         display: none;
         left: 40%;
-        top: -60% ;
+        top: -60%;
         position: relative;
         color: map-get($map: $colors, $key: 'error');
         font-size: 25px;
         font-weight: 600;
         content: 'Delete file';
     }
-    &:hover{
+
+    &:hover {
         cursor: pointer;
-        &::after{
-            display:block;
+
+        &::after {
+            display: block;
         }
-        & img{
+
+        & img {
             filter: blur(4px);
             opacity: 0.2;
         }
     }
 }
-.errorCont{
-    margin: 10px 20px;
-    background-color: map-get($map: $colors, $key: 'bgBlackHover');
+
+.errorCont {
+    backdrop-filter: blur(3px);
+    margin: 30px 20px;
+    background-color: map-get($map: $colors, $key: 'error');
     width: fit-content;
     height: 20px;
     padding: 10px 20px;
     border-radius: 20px 20px 20px 0px;
     animation-name: apearError;
     animation-duration: 0.2s;
+    & h3{
+        color: white!important;
+    }
 }
 
 @keyframes apearError {
@@ -138,7 +170,8 @@
         opacity: 1;
     }
 }
-@keyframes apearExample{
+
+@keyframes apearExample {
     0% {
         margin-bottom: -10px;
         opacity: 0;
@@ -149,11 +182,99 @@
         opacity: 1;
     }
 }
-.notImgFileCont{
+
+.notImgFileCont {
     // height: 80%;
     // width: auto;
     width: 100px;
     height: 100px;
     padding: 50px;
     transform: translate(0%, 0%);
+}
+.msgCont{
+    width: 100%;
+    overflow: hidden;
+    height: 510px;
+    padding: 20px 25px;
+    & .messCont{
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+        rotate: 180deg;
+        @include flex(column, normal, normal, flex-end, nowrap);
+
+    }
+}
+.mess{
+    max-width: 70%;
+
+    margin-right: 10px;
+    background-color: map-get($map: $colors, $key: 'chatMessageOther');
+    rotate: 180deg;
+    padding: 10px 20px;
+    border-radius: 5px 20px 20px 20px;
+}
+.oneH{
+    height: 94%;
+}
+.messInfo{
+    margin-bottom: 5px;
+    font-weight: 100;
+    font-size: 10px;
+}
+.logo{
+    rotate: 180deg;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+}
+.allMessageCont{
+    margin-bottom: 30px;
+    margin-right: 10px;
+    @include flex(row-reverse, normal, normal, flex-end, nowrap);
+}
+.textMessage{
+    font-size: 15px;
+    font-weight: 100;
+}
+.imgUploadedByUser{
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.downLoadButton{
+    @include flex(row, center, center, center, nowrap);
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 5px;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    font-size: 15px;
+    transition: 0.3s;
+    & img{
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+    &:hover{
+        cursor: pointer;
+    }
+    &:active{
+        background-color: map-get($map: $colors, $key: 'bgBlackHover');
+        color: map-get($map: $colors, $key: 'complement1');
+    }
+}
+.otherSender{
+    flex-direction: row;
+    margin-right: 0px;
+    align-self: flex-start;
+    & .mess{
+        background-color: map-get($map: $colors, $key: 'chatMessageOwn');
+        margin: 0px;
+        margin-left: 10px;
+        border-radius: 20px 5px 20px 20px;
+    }
+
 }
