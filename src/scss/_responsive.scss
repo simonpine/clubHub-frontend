@@ -1,0 +1,196 @@
+.revers{
+    flex-direction: row-reverse;
+}
+@media (max-width: 1260px) {
+    .mainTitle {
+        margin-top: 0px;
+        line-height: normal;
+    }
+
+    .img2,
+    .img3 {
+        display: none;
+    }
+
+    .img1 {
+        width: 200px;
+    }
+
+    .Content {
+        width: 95%;
+    }
+}
+
+
+
+@media (max-width: 1000px) {
+    .mainTitle {
+        font-size: 70px;
+    }
+
+    .img1 {
+        display: none;
+    }
+
+    .img2 {
+        display: normal;
+    }
+
+    .pasd {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .ImgChanger {
+        & div {
+            width: 100%;
+        }
+
+        width: 100%;
+        margin-top: 90px;
+    }
+
+    .formLogin {
+        width: 90%;
+        padding: 5%;
+        margin: 0px;
+        // margin-bottom: 80px;
+    }
+
+    .loadingCont {
+        position: absolute;
+        left: 0px;
+        margin: 5%;
+        width: 90%;
+        padding: 0px;
+    }
+    .logoLogin {
+        display: none;
+    }
+    .LoadingAndFormCont {
+        width: 90vw;
+
+        & .formLogin {
+
+            width: 90%;
+            padding: 5%;
+            margin: 0px;
+        }
+    }
+    .clublistjoinCont{
+        padding: 10px;
+    }
+    .joinSelection{
+        margin-top: 70px;
+    }
+
+}
+
+@media (max-width: 900px) {
+    .contContiner {
+        margin: 40px 0px;
+        height: auto;
+    }
+
+    .Content {
+        // margin: 400px 0px;
+
+        height: auto;
+        grid-template-rows: repeat(3, 33%);
+        grid-template-columns: repeat(3, 33%);
+        grid-template-areas:
+            "p1 p1 img8"
+            "img7 colImg img8"
+            "img7 p2 p2";
+    }
+
+
+    .CreateCont {
+        margin-top: 80px;
+        height: auto;
+        width: 100%;
+    }
+
+    .formRecover1 {
+        width: 100%;
+    }
+
+    .inputsContainerCreateUser {
+        flex-direction: column;
+
+        & .sectionInputCreateUser {
+            width: 100%;
+        }
+    }
+
+    .formChangePass {
+        width: 100%;
+    }
+
+
+}
+
+@media (max-width: 700px) {
+    .clubListHomeContainer {
+        align-content: center;
+        flex-direction: column;
+        justify-content: center;
+        top: 60px;
+    }
+
+    .clubCard {
+        width: 90%;
+        margin: 20px 0px;
+    }
+}
+
+@media (max-width: 500px) {
+    .contContiner {
+        height: fit-content;
+    }
+
+    .img8,
+    .img7,
+    .p1,
+    .p2 {
+        margin: 20px 0px;
+        width: 100%;
+        justify-self: center;
+        align-self: center;
+    }
+
+    .img8,
+    .img7 {
+        height: 200px;
+    }
+
+    .Content {
+        height: auto;
+        grid-template-rows: repeat(9, auto);
+        grid-template-columns: 100%;
+        grid-template-areas:
+            "p1"
+            "img8"
+            "colImg"
+            "p2"
+            "img7";
+    }
+
+    .logoCenter {
+        margin: 50px 0px;
+    }
+
+    .inputIdentify {
+        flex-direction: column;
+
+        & div {
+            margin: 0px;
+        }
+    }
+}
+
+@media (max-width: 340px) {
+    .mainTitle {
+        font-size: 50px;
+    }
+}

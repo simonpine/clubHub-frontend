@@ -380,11 +380,11 @@ function ClubSettings() {
                                                         setFileName('Change banner')
                                                         setSelectedImage(null)
 
-                                                    }} className="getIn">Delete photo</button>
+                                                    }} className="getIn mtop">Delete banner</button>
                                                 </div>
 
                                             </div>
-                                            <div>
+                                            <div className="pasd">
                                                 {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
 
                                                 <form onSubmit={(evt) => {

@@ -14,6 +14,7 @@ import JoinClub from "../views/joinClub.js";
 import ClubEvent from "../views/clubEvent.js";
 import ClubSettings from "../views/clubSettings.js";
 import ClubGrades from "../views/grades.js";
+import Chat from "../views/chat.js";
 
 export const router = createBrowserRouter([
     {
@@ -122,6 +123,17 @@ export const router = createBrowserRouter([
                 <CustomProviderClub>
                     <Bg rot={true} />
                     <ClubGrades />
+                </CustomProviderClub>
+            </CustomProvider>,
+
+    },
+    {
+        path: '/chat/:id',
+        element:
+            <CustomProvider>
+                <CustomProviderClub>
+                    <Bg rot={true} />
+                    <Chat />
                 </CustomProviderClub>
             </CustomProvider>,
 

@@ -3,24 +3,34 @@ import { useParams } from "react-router-dom";
 import { getClubId } from "../api";
 import io from 'socket.io-client'
 import { urlBase } from "../api";
-import { sendMsgEvent } from "../api";
+import { sendMsgEvent, sendMsgChat } from "../api";
 let socket 
 
 export const ContextClub = createContext()
 
 export const CustomProviderClub = ({ children }) => {
-
+    
     const { id } = useParams()
     const [events, setEvents] = useState([])
+    const [chat, setChat] = useState([])
     const [refresh, setRefresh] = useState(Math.floor(100000 + Math.random() * 900000))
     const [club, setClub] = useState(null)
     const [grades, setGrades] = useState(null)
 
     async function setDefault() {
         const res = await getClubId(id)
-        await setClub(res[0])
-        await setGrades(res[0].gardes)
-        await setEvents(res[0].events)
+        if((res[0]) === undefined){
+            window.location.reload(true)
+
+        }
+        else{
+            await setClub(res[0])
+            await setGrades(res[0].gardes)
+            await setEvents(res[0].events)
+            await setChat(res[0].chat)
+            
+        }
+        
     }
     useEffect(() => {
         setDefault()
@@ -34,9 +44,13 @@ export const CustomProviderClub = ({ children }) => {
         socket.emit('joinClub', id)
     
         socket.on('emitMessageEvent', mess => {
-            console.log(mess)
             setEvents(prevState => [mess,...prevState])
         })
+
+        socket.on('emitMessageChat', mess => {
+            setChat(prevState => [mess,...prevState])
+        })
+
         return () => {
             socket.disconnect();
           };
@@ -46,12 +60,17 @@ export const CustomProviderClub = ({ children }) => {
     async function sumbmit(mess, forSocket){
 
         await sendMsgEvent(mess)
-        await console.log('se subio')
         await socket.emit('newEventMessage', forSocket)
     }
 
+    async function sumbmitChat(mess, forSocket){
+
+        await sendMsgChat(mess)
+        await socket.emit('newChatMessage', forSocket)
+    }
+
     return (
-        <ContextClub.Provider value={{ club, setClub, grades, setGrades, setRefresh, events, sumbmit }}>
+        <ContextClub.Provider value={{ club, setClub, grades, setGrades, setRefresh, events, sumbmit, chat, sumbmitChat }}>
             {children}
         </ContextClub.Provider>
     )

@@ -4,10 +4,11 @@
     margin-right: 20px;
 }
 
-.espPlusButton{
+.espPlusButton {
     position: fixed;
     right: 0px;
     top: 25px;
+    z-index: 100;
 }
 
 .plusExecut {
@@ -101,6 +102,22 @@
     height: 100px;
     width: 100%;
     border: none;
+    transition: 0.3s;
+    & img{
+        transition:0.3s,
+    }
+    &::after {
+        content: 'Get in';
+        color: map-get($map: $colors, $key: 'complement1');
+        font-weight: 500;
+        font-size: 15px;
+        margin: auto;
+        bottom: 60%;
+        left: 42%;
+        position: relative;
+        opacity: 0;
+        transition: 0.3s;
+    }
 
     & img {
         width: 100%;
@@ -109,6 +126,14 @@
     }
 
     &:hover {
+        & img{
+            opacity: 0.5;
+            filter: blur(5px);
+        }
+        &::after {
+            opacity: 1;
+        }
+
         cursor: pointer;
     }
 }

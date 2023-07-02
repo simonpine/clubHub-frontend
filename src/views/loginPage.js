@@ -37,7 +37,7 @@ function LogIn() {
                             <div className='logoLogin'>
                                 <img src={clubHub} alt='clubHub, app logo' />
                             </div>
-                            <div>
+                            <div className="LoadingAndFormCont">
                                 {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
                                 <form onSubmit={LogInFunction} className="formLogin">
                                     <div className="headerErr">

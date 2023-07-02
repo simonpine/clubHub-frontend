@@ -1,10 +1,9 @@
 import { ContextClub } from "../context/clubContext"
 import { ContextUser } from "../context/userContext"
 import { useState } from "react"
-import { BannersImg, chatsFlies } from "../api"
+import { chatsFlies } from "../api"
 import User from "../components/user"
 import NavClub from "../components/navClub"
-import copy from '../img/copy.png'
 import send from '../img/send.png'
 import userImg from '../img/user.png'
 import upload from '../img/upload.png'
@@ -12,7 +11,7 @@ import doc from '../img/document.png'
 import { usersImg } from "../api"
 
 
-function ClubEvent() {
+function Chat() {
     const [message, setMessage] = useState('')
     const [err, setErr] = useState('')
     const [selectedImage, setSelectedImage] = useState(null);
@@ -37,7 +36,7 @@ function ClubEvent() {
                             <User lin={user.userImg} />
                         </div>
                         <ContextClub.Consumer>
-                            {({ club, events, sumbmit }) => {
+                            {({ club, chat, sumbmitChat }) => {
 
                                 async function hundleSubmit(evt) {
                                     evt.preventDefault()
@@ -111,7 +110,7 @@ function ClubEvent() {
                                             forMoment.typeMess = 'file'
                                         }
                                     }
-                                    sumbmit(formData, forMoment)
+                                    sumbmitChat(formData, forMoment)
                                     setSelectedImage(null)
                                     setMessage('')
 
@@ -119,32 +118,18 @@ function ClubEvent() {
 
                                 return club && (
                                     <div>
-                                        <NavClub user={user} club={club} main={1} />
+                                        <NavClub user={user} club={club} main={3} />
                                         <div className="Log">
-                                            <div className="toTop">
-                                                <div className="bannerPlusCopyContainer">
-                                                    <div className="bannerContClub">
-                                                        <img alt="ClubBanner" src={BannersImg + club.clubBanner} />
-                                                    </div>
-                                                    <div className="codeAndDesCont">
-                                                        <h3>{club.title}:</h3>
-                                                        <button onClick={() => {
-                                                            navigator.clipboard.writeText(club.id)
-                                                        }} className="getIn logInButton">{club.id} <img src={copy} alt="copyIcon" /></button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div className="chatContainer">
-                                                <div className={club.clubOwner !== user.userName ? "oneH msgCont" : 'msgCont'}>
+                                            <div className="chatContainerGeneral">
+                                                <div className={'msgCont'}>
                                                     <div className="messCont">
-                                                        {events.length !== 0 &&
+                                                        {chat.length !== 0 &&
 
 
-                                                            events.map(evt => {
+                                                            chat.map(evt => {
                                                                 return (
                                                                     <div key={evt.id} className={evt.from !== user.userName ? "allMessageCont" : "allMessageCont otherSender"}>
-                                                                        {evt.logo !== 'null' ? <img className="logo" alt="userLogo" src={usersImg + evt.logo} /> : <img className="logo" alt="notImgUser" src={userImg} />}
+                                                                        {evt.logo !== 'null' & evt.logo !== null  ? <img className="logo" alt="userLogo" src={usersImg + evt.logo} /> : <img className="logo" alt="notImgUser" src={userImg} />}
                                                                         {(evt.typeMess !== 'file' & evt.typeMess !== 'text+file') ?
                                                                             <div className="mess" >
                                                                                 <h4 className="messInfo">{evt.from === user.userName ? <>You</> : <>{evt.from}</>} {evt.date}</h4>
@@ -177,54 +162,53 @@ function ClubEvent() {
                                                         }
                                                     </div>
                                                 </div>
-                                                {club.clubOwner === user.userName &&
-                                                    <form className="allFormCont" onSubmit={hundleSubmit}>
+                                                <form className="allFormCont" onSubmit={hundleSubmit}>
 
-                                                        {selectedImage !== null &&
-                                                            <div onClick={() => {
-                                                                setSelectedImage(null)
-                                                            }} className='contForFiles'>
-                                                                {selectedImage.type.split('/')[0] === 'image' ?
-                                                                    <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' />
-                                                                    :
+                                                    {selectedImage !== null &&
+                                                        <div onClick={() => {
+                                                            setSelectedImage(null)
+                                                        }} className='contForFiles'>
+                                                            {selectedImage.type.split('/')[0] === 'image' ?
+                                                                <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' />
+                                                                :
 
-                                                                    <img className="notImgFileCont" alt="fileIcon" src={doc} />
+                                                                <img className="notImgFileCont" alt="fileIcon" src={doc} />
 
-                                                                }
-                                                            </div>
-                                                        }
-                                                        {err !== '' &&
-                                                            <div className="errorCont">
-                                                                <h3 className="errorAnoun">{err}</h3>
-                                                            </div>
-                                                        }
-                                                        <div className="formForChats">
-                                                            <input type="file"
-                                                                name="myImage"
-                                                                onChange={(event) => {
-                                                                    setErr('')
-                                                                    setSelectedImage(null)
-                                                                    if (event.target.files[0] !== undefined) {
-                                                                        const fileSize = event.target.files[0].size;
-                                                                        if (fileSize < 900000) {
-                                                                            setSelectedImage(event.target.files[0]);
-                                                                            // console.log(event.target.files[0].type)
-                                                                        }
-                                                                        else {
-                                                                            setErr('File is bigger than the expected size')
-                                                                        }
-                                                                    }
-                                                                }} id="myImage" className="none" />
-                                                            <label className="sendButton" htmlFor="myImage">
-                                                                <img src={upload} alt="uploadIcon" />
-                                                            </label>
-                                                            <input value={message} onChange={(evt) => {
-                                                                setMessage(evt.target.value)
-                                                                setErr('')
-                                                            }} className="MessageInput" id="Message" type="text" />                    
-                                                            <button disabled={message.replaceAll(' ', '').length < 1 & selectedImage === null} className="sendButton"><img alt="SendButton" src={send} /></button>
+                                                            }
                                                         </div>
-                                                    </form>}
+                                                    }
+                                                    {err !== '' &&
+                                                        <div className="errorCont">
+                                                            <h3 className="errorAnoun">{err}</h3>
+                                                        </div>
+                                                    }
+                                                    <div className="formForChats">
+                                                        <input type="file"
+                                                            name="myImage"
+                                                            onChange={(event) => {
+                                                                setErr('')
+                                                                setSelectedImage(null)
+                                                                if (event.target.files[0] !== undefined) {
+                                                                    const fileSize = event.target.files[0].size;
+                                                                    if (fileSize < 900000) {
+                                                                        setSelectedImage(event.target.files[0]);
+                                                                        // console.log(event.target.files[0].type)
+                                                                    }
+                                                                    else {
+                                                                        setErr('File is bigger than the expected size')
+                                                                    }
+                                                                }
+                                                            }} id="myImage" className="none" />
+                                                        <label className="sendButton" htmlFor="myImage">
+                                                            <img src={upload} alt="uploadIcon" />
+                                                        </label>
+                                                        <input value={message} onChange={(evt) => {
+                                                            setMessage(evt.target.value)
+                                                            setErr('')
+                                                        }} className="MessageInput" id="Message" type="text" />
+                                                        <button disabled={message.replaceAll(' ', '').length < 1 & selectedImage === null} className="sendButton"><img alt="SendButton" src={send} /></button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -237,4 +221,4 @@ function ClubEvent() {
         </ContextUser.Consumer >
     )
 }
-export default ClubEvent
+export default Chat

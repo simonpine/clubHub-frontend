@@ -1,12 +1,3 @@
-
-// const API = 'https://clubhub-backend.up.railway.app/user'
-// const AP2 = 'https://clubhub-backend.up.railway.app/users'
-// const API3 = 'https://clubhub-backend.up.railway.app/club'
-// export const usersImg = 'https://clubhub-backend.up.railway.app/images/usersImg/'
-// const APIc = 'https://clubhub-backend.up.railway.app/clubs'
-// export const BannersImg = 'https://clubhub-backend.up.railway.app/images/banners/'
-// const API3e = 'https://clubhub-backend.up.railway.app/userExitClub'
-
 // export const urlBase = 'http://localhost:2000'
 export const urlBase = 'https://clubhub-backend.up.railway.app'
 
@@ -137,6 +128,14 @@ export const saveGrades = async (obj) => {
 
 export const sendMsgEvent = async (obj) => {
     await fetch(`${API3}/events`, {
+        method: 'POST',
+        body: obj
+    })
+
+}
+
+export const sendMsgChat = async (obj) => {
+    await fetch(`${API3}/chat`, {
         method: 'POST',
         body: obj
     })

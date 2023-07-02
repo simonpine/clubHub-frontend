@@ -84,10 +84,10 @@ function JoinClub() {
                             <button onClick={() => navigate(-1)} className='getIn'>Return</button>
                         </div>
                         <div className="Log">
-                            <div>
+                            <div className="pasd">
                                 {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
 
-                                <div className="formLogin">
+                                <div className="formLogin joinSelection">
                                     <form onSubmit={searchClub}>
                                         <h2 className="inputIdentify">Search by code:</h2>
                                         <input id="CodeOfAClub" value={codeRef} onChange={(evt) => setCodeRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder='97p2a1z6uwc' />

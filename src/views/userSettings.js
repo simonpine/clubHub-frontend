@@ -194,7 +194,7 @@ function ForgotPasswordRecover() {
                                 </div>
 
                             </div>
-                            <div>
+                            <div className="pasd">
                                 {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
 
                                 <form onSubmit={changeData} className="formLogin">

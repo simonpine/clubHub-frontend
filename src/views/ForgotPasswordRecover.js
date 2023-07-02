@@ -65,7 +65,7 @@ function ForgotPasswordRecover() {
                             <div className='logoLogin'>
                                 <img src={clubHub} alt='clubHub, app logo' />
                             </div>
-                            <div>
+                            <div className="LoadingAndFormCont">
                                 {loading && <div className="loadingCont formChangePass"><div className="lds-dual-ring"></div></div>}
                                 {exist ?
                                     <form onSubmit={LogInFunction} className="formLogin formChangePass">

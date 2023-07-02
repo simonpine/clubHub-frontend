@@ -74,29 +74,8 @@ function CreateClub() {
                             </Link>
                             <button onClick={() => navigate(-1)} className='getIn'>Return</button>
                         </div>
-                        <div className="Log">
-                            <div>
-                                {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
+                        <div className="Log revers">
 
-                                <form onSubmit={(evt) => {
-                                    evt.preventDefault()
-                                    submitClub(user)}} className="formLogin">
-                                    <div className="headerErr">
-                                        <h1 className="h1LogCards">Create Club</h1>
-                                        <h3 className="errorAnoun"> {err}</h3>
-                                    </div>
-                                    <div>
-                                        <h2 className="inputIdentify">Club name:</h2>
-                                        <input id="ClubTitle" value={nameRef} onChange={(evt) => setNameRef(evt.target.value)} className="inputText" type="text" placeholder='Cinema club' />
-                                    </div>
-                                    <div>
-                                        <h2 className="inputIdentify">Description:</h2>
-                                        <textarea id="ClubDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder="A cinema club is a gathering of film enthusiasts who come together to watch and discuss movies. It provides a space for like-minded individuals to share their love for cinema, explore different genres, and engage in meaningful conversations about films." />
-                                    </div>
-                                    <button disabled={(descriptioRef.length === 0) || (nameRef.length === 0) || selectedImage === null} className="getIn logInButton">Create</button>
-                                </form>
-
-                            </div>
                             <div className="ImgChanger">
                                 <h2 className="inputIdentify">Club banner</h2>
                                 <div className='userLogoSettings'>
@@ -130,8 +109,31 @@ function CreateClub() {
                                         setFileName('Upload photo')
                                         setSelectedImage(null)
 
-                                    }} className="getIn">Delete photo</button>
+                                    }} className="getIn">Delete banner</button>
                                 </div>
+
+                            </div>
+                            <div className="pasd">
+                                {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
+
+                                <form onSubmit={(evt) => {
+                                    evt.preventDefault()
+                                    submitClub(user)
+                                }} className="formLogin">
+                                    <div className="headerErr">
+                                        <h1 className="h1LogCards">Create Club</h1>
+                                        <h3 className="errorAnoun"> {err}</h3>
+                                    </div>
+                                    <div>
+                                        <h2 className="inputIdentify">Club name:</h2>
+                                        <input id="ClubTitle" value={nameRef} onChange={(evt) => setNameRef(evt.target.value)} className="inputText" type="text" placeholder='Cinema club' />
+                                    </div>
+                                    <div>
+                                        <h2 className="inputIdentify">Description:</h2>
+                                        <textarea id="ClubDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder="A cinema club is a gathering of film enthusiasts who come together to watch and discuss movies. It provides a space for like-minded individuals to share their love for cinema, explore different genres, and engage in meaningful conversations about films." />
+                                    </div>
+                                    <button disabled={(descriptioRef.length === 0) || (nameRef.length === 0) || selectedImage === null} className="getIn logInButton">Create</button>
+                                </form>
 
                             </div>
                         </div>

@@ -48,7 +48,7 @@ function NewAccount() {
 
                             <form onSubmit={CreateFunction} className="CreateCont">
                                 <div className="headerErr">
-                                    <h1 className="h1LogCards">Welcome</h1>
+                                    <h1 className="h1LogCards">Create account</h1>
                                     <h3 className="errorAnoun">{err}</h3>
                                 </div>
                                 <div className="inputsContainerCreateUser">
