@@ -120,7 +120,7 @@ function Chat() {
                                     <div>
                                         <NavClub user={user} club={club} main={3} />
                                         <div className="Log">
-                                            <div className="chatContainerGeneral">
+                                            <div className="chatContainerGeneral spChatChanges">
                                                 <div className={'msgCont'}>
                                                     <div className="messCont">
                                                         {chat.length !== 0 &&

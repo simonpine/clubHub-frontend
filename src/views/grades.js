@@ -108,7 +108,7 @@ function ClubGrades() {
 
                                                                                 {grades.students.map(item => {
 
-                                                                                    return item.studentName === user.userName ? <th className="butLine" key={item.studentName + index}><h3 className="h3InTable">{item.gardes[index]}</h3></th> : <th className="butLine" key={item.studentName + index}><h3 className="h3InTable lesOpp">{item.gardes[index]}</h3></th> 
+                                                                                    return (item.studentName.toLowerCase()).includes(searchName.toLowerCase()) && (item.studentName === user.userName ? <th className="butLine" key={item.studentName + index}><h3 className="h3InTable">{item.gardes[index]}</h3></th> : <th className="butLine" key={item.studentName + index}><h3 className="h3InTable lesOpp">{item.gardes[index]}</h3></th> );
                                                                                 })}
                                                                             </tr>
                                                                         )
