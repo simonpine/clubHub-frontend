@@ -346,6 +346,30 @@ function ClubSettings() {
 
 
                                         <div className="Log">
+
+                                            <div className="pasd">
+                                                {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
+
+                                                <form onSubmit={(evt) => {
+                                                    evt.preventDefault()
+                                                    setSure(true)
+                                                }} className="formLogin">
+                                                    <div className="headerErr">
+                                                        <h1 className="h1LogCards">Club settings</h1>
+                                                        <h3 className="errorAnoun"> {err}</h3>
+                                                    </div>
+                                                    <div>
+                                                        <h2 className="inputIdentify">Change club name:</h2>
+                                                        <input id='changeTitle' value={nameRef} onChange={(evt) => setNameRef(evt.target.value)} className="inputText" type="text" placeholder={club.title} />
+                                                    </div>
+                                                    <div>
+                                                        <h2 className="inputIdentify">Change description:</h2>
+                                                        <textarea id="changeDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder={club.description} />
+                                                    </div>
+                                                    <button disabled={(nameRef.replaceAll(' ', '').length === 0 & descriptioRef.replaceAll(' ', '').length === 0) & selectedImage === null} className="getIn logInButton">Save changes</button>
+                                                </form>
+
+                                            </div>
                                             <div className="ImgChanger">
                                                 <h2 className="inputIdentify">Club banner</h2>
                                                 <div className='userLogoSettings'>
@@ -382,29 +406,6 @@ function ClubSettings() {
 
                                                     }} className="getIn mtop">Delete banner</button>
                                                 </div>
-
-                                            </div>
-                                            <div className="pasd">
-                                                {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
-
-                                                <form onSubmit={(evt) => {
-                                                    evt.preventDefault()
-                                                    setSure(true)
-                                                }} className="formLogin">
-                                                    <div className="headerErr">
-                                                        <h1 className="h1LogCards">Club settings</h1>
-                                                        <h3 className="errorAnoun"> {err}</h3>
-                                                    </div>
-                                                    <div>
-                                                        <h2 className="inputIdentify">Change club name:</h2>
-                                                        <input id='changeTitle' value={nameRef} onChange={(evt) => setNameRef(evt.target.value)} className="inputText" type="text" placeholder={club.title} />
-                                                    </div>
-                                                    <div>
-                                                        <h2 className="inputIdentify">Change description:</h2>
-                                                        <textarea id="changeDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder={club.description} />
-                                                    </div>
-                                                    <button disabled={(nameRef.replaceAll(' ', '').length === 0 & descriptioRef.replaceAll(' ', '').length === 0) & selectedImage === null} className="getIn logInButton">Save changes</button>
-                                                </form>
 
                                             </div>
                                         </div>
