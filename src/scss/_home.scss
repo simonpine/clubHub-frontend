@@ -25,6 +25,7 @@
 }
 
 .miniNavHome {
+    backdrop-filter: blur(10px);
     width: 100px;
     height: auto;
     background-color: map-get($map: $colors, $key: 'bgBlack');

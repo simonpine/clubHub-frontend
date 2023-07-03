@@ -162,7 +162,7 @@ function Chat() {
                                                         }
                                                     </div>
                                                 </div>
-                                                <form className="allFormCont" onSubmit={hundleSubmit}>
+                                                <form className="allFormCont specialAllForm" onSubmit={hundleSubmit}>
 
                                                     {selectedImage !== null &&
                                                         <div onClick={() => {

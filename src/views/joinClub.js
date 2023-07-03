@@ -62,13 +62,13 @@ function JoinClub() {
                     await user.clubs.push(userClubsObj)
                     await setShow({})
                     // console.log((user.clubs))
-                    
+
 
                     await joinToClub({
                         newMembers: [...club.members, user.userName],
                         clubId: club.id,
                         clubsOfMember: (user.clubs),
-                        newMember: user.userName, 
+                        newMember: user.userName,
                     })
                     // await console.log(JSON.stringify(user))
 
@@ -83,8 +83,16 @@ function JoinClub() {
                             </Link>
                             <button onClick={() => navigate(-1)} className='getIn'>Return</button>
                         </div>
-                        <div className="Log">
-                            <div className="pasd">
+                        <div className="Log revers">
+                            <div className="clublistjoinCont">
+                                {clubList.map(item => {
+                                    return !user.clubs.some(a => a.clubId === item.id) && (
+                                        <ClubCardJoin key={item.id} jo={join} item={item} />
+
+                                    )
+                                })}
+                            </div>
+                            <div className="pasd mar0">
                                 {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
 
                                 <div className="formLogin joinSelection">
@@ -95,8 +103,8 @@ function JoinClub() {
                                     </form>
 
 
-                                    {JSON.stringify(show) === JSON.stringify({}) ? <h3 className="errorAnoun"> {err}</h3> :
-                                        <div className="bgShow">
+                                    {JSON.stringify(show) === JSON.stringify({}) ? <h3 className="errorAnoun totop"> {err}</h3> :
+                                        <div className="bgShow totop">
                                             <div className="firstPartShow">
                                                 <div className="ShowImgCont">
                                                     <img src={BannersImg + show.clubBanner} alt="Club Banner" />
@@ -108,19 +116,11 @@ function JoinClub() {
                                             </div>
                                             <p className="pInShow">{show.description}</p>
 
-                                            <button onClick={()=> join(show)} className="getIn logInButton">Join</button>
+                                            <button onClick={() => join(show)} className="getIn logInButton">Join</button>
                                         </div>
                                     }
 
                                 </div>
-                            </div>
-                            <div className="clublistjoinCont">
-                                {clubList.map(item => {
-                                    return !user.clubs.some(a => a.clubId === item.id) && (
-                                        <ClubCardJoin key={item.id} jo={join} item={item} />
-
-                                    )
-                                })}
                             </div>
                         </div>
                     </div>

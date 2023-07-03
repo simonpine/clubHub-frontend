@@ -99,7 +99,7 @@
     height: 40px;
     width: 100%;
     padding: 20px 25px 20px;
-    background-color: map-get($map: $colors, $key: 'bgBlack');
+    // background-color: map-get($map: $colors, $key: 'bgBlack');
     border-radius: 0px 0px 40px 40px;
     @include flex(row, flex-end, space-between, flex-end, wrap);
     // overflow: hidden;
@@ -157,8 +157,9 @@
     border-radius: 20px 20px 20px 0px;
     animation-name: apearError;
     animation-duration: 0.2s;
-    & h3{
-        color: white!important;
+
+    & h3 {
+        color: white !important;
     }
 }
 
@@ -185,6 +186,7 @@
         opacity: 1;
     }
 }
+
 @keyframes apearLateral {
     0% {
         margin-left: 20px;
@@ -207,12 +209,14 @@
     padding: 50px;
     transform: translate(0%, 0%);
 }
-.msgCont{
+
+.msgCont {
     width: 100%;
     overflow: hidden;
     height: 510px;
     padding: 20px 25px;
-    & .messCont{
+
+    & .messCont {
         height: 100%;
         width: 100%;
         overflow: auto;
@@ -221,7 +225,8 @@
 
     }
 }
-.mess{
+
+.mess {
     max-width: 70%;
 
     margin-right: 10px;
@@ -230,38 +235,44 @@
     padding: 10px 20px;
     border-radius: 5px 20px 20px 20px;
 }
-.oneH{
+
+.oneH {
     height: 94%;
 }
-.messInfo{
+
+.messInfo {
     margin-bottom: 5px;
     font-weight: 100;
     font-size: 10px;
 }
-.logo{
+
+.logo {
     rotate: 180deg;
     width: 30px;
     height: 30px;
     border-radius: 20px;
 }
-.allMessageCont{
+
+.allMessageCont {
     animation-name: apearLateral;
     animation-duration: 0.3s;
     margin-bottom: 30px;
     margin-right: 10px;
     @include flex(row-reverse, normal, normal, flex-end, nowrap);
 }
-.textMessage{
+
+.textMessage {
     font-size: 15px;
     font-weight: 100;
 }
-.imgUploadedByUser{
+
+.imgUploadedByUser {
     border-radius: 20px;
     margin-top: 10px;
     margin-bottom: 5px;
 }
 
-.downLoadButton{
+.downLoadButton {
     @include flex(row, center, center, center, nowrap);
     padding: 10px;
     margin-top: 10px;
@@ -271,32 +282,54 @@
     background-color: map-get($map: $colors, $key: 'bgBlack');
     font-size: 15px;
     transition: 0.3s;
-    & img{
+
+    & img {
         margin-right: 10px;
         width: 40px;
         height: 40px;
     }
-    &:hover{
+
+    &:hover {
         cursor: pointer;
     }
-    &:active{
+
+    &:active {
         background-color: map-get($map: $colors, $key: 'bgBlackHover');
         color: map-get($map: $colors, $key: 'complement1');
     }
 }
-.otherSender{
+
+.otherSender {
     flex-direction: row;
     margin-right: 0px;
     align-self: flex-start;
-    & .mess{
+
+    & .mess {
         background-color: map-get($map: $colors, $key: 'chatMessageOwn');
         margin: 0px;
         margin-left: 10px;
         border-radius: 20px 5px 20px 20px;
     }
 
+    & .messEvents {
+        margin: 0px;
+        background-color: black;
+    }
+
 }
-.chatContainerGeneral{
+
+.chatContainerGeneral {
     @extend .chatContainer;
     width: 80vw;
+}
+
+.messInfoEvents {
+    color: map-get($map: $colors, $key: 'complement1');
+}
+
+.messEvents {
+    margin: 0px;
+    border-radius: 20px;
+    background-color: black;
+    max-width: 100%;
 }

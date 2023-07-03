@@ -72,6 +72,10 @@
 
 
 @media (max-width: 1000px) {
+    .BlurBack {
+        background-color: map-get($map: $colors, $key: 'bgBlackToMobile');
+    }
+
     .mainTitle {
         font-size: 70px;
     }
@@ -87,6 +91,18 @@
     .pasd {
         width: 100%;
         padding: 20px;
+        margin-top: 70px;
+    }
+
+    .msgCont {
+        padding: 10PX;
+    }
+
+    .spChatChanges {
+        background-color: rgba(255, 255, 255, 0);
+        margin: 0px;
+        bottom: 0px;
+        position: fixed;
     }
 
     .ImgChanger {
@@ -95,15 +111,25 @@
         }
 
         width: 100%;
-        margin-top: 90px;
+        // margin-top: 90px;
     }
 
-    .formLogin {
-        animation: none;
-        width: 90%;
-        padding: 5%;
-        margin: 0px;
-        // margin-bottom: 80px;
+    .specialAllForm {
+        border-radius: 0px;
+        padding: 10px;
+        height: fit-content;
+        background-color: map-get($map: $colors, $key: 'bgBlack');
+
+    }
+
+    .logInButton {
+        &:disabled {
+            background-color: map-get($map: $colors, $key: 'complement1Disa');
+        }
+    }
+
+    .spChatChanges {
+        height: 90%;
     }
 
     .loadingCont {
@@ -112,6 +138,10 @@
         margin: 5%;
         width: 90%;
         padding: 0px;
+    }
+
+    .mar0 {
+        margin: 0px;
     }
 
     .logoLogin {
@@ -123,8 +153,8 @@
 
         & .formLogin {
 
-            width: 90%;
-            padding: 5%;
+            width: 100%;
+            padding: 0%;
             margin: 0px;
         }
     }
@@ -139,11 +169,31 @@
         margin-top: 70px;
     }
 
+    .clublistjoinCont {
+        margin-top: 70px;
+    }
+
     .gardesTableContainer {
         width: 85%;
         margin: 2.5% 0%;
         // padding: 2.5% 0%;
         padding: 5%;
+    }
+
+    .cardOfJoinList {
+        border: none;
+        border-radius: 0px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid map-get($map: $colors, $key: 'complement1');
+    }
+
+    .formLogin {
+        animation: none;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0);
+        padding: 0px;
+
+        margin: 0px;
     }
 }
 
@@ -170,6 +220,8 @@
         margin-top: 80px;
         height: auto;
         width: 100%;
+        padding: 0px;
+        background-color: rgba(255, 255, 255, 0);
     }
 
     .formRecover1 {

@@ -6,10 +6,8 @@ import User from "../components/user"
 import NavClub from "../components/navClub"
 import copy from '../img/copy.png'
 import send from '../img/send.png'
-import userImg from '../img/user.png'
 import upload from '../img/upload.png'
 import doc from '../img/document.png'
-import { usersImg } from "../api"
 
 
 function ClubEvent() {
@@ -144,15 +142,14 @@ function ClubEvent() {
                                                             events.map(evt => {
                                                                 return (
                                                                     <div key={evt.id} className={evt.from !== user.userName ? "allMessageCont" : "allMessageCont otherSender"}>
-                                                                        {evt.logo !== 'null' ? <img className="logo" alt="userLogo" src={usersImg + evt.logo} /> : <img className="logo" alt="notImgUser" src={userImg} />}
                                                                         {(evt.typeMess !== 'file' & evt.typeMess !== 'text+file') ?
-                                                                            <div className="mess" >
-                                                                                <h4 className="messInfo">{evt.from === user.userName ? <>You</> : <>{evt.from}</>} {evt.date}</h4>
+                                                                            <div className="mess messEvents" >
+                                                                                <h4 className="messInfo messInfoEvents">{evt.date}</h4>
                                                                                 {evt.message !== 'null' && <h3 className="textMessage">{evt.message}</h3>}
                                                                                 {evt.fileName !== null & evt.fileName !== 'null' ? <img className="imgUploadedByUser" alt='imgUploadedByUser' src={chatsFlies + evt.fileName} /> : <></>}
                                                                             </div>
                                                                             :
-                                                                            <div className="mess" >
+                                                                            <div className="mess messEvents" >
                                                                                 <h4 className="messInfo">{evt.from === user.userName ? <>You</> : <>{evt.from}</>} {evt.date}</h4>
                                                                                 {evt.message !== 'null' && <h3 className="textMessage">{evt.message}</h3>}
                                                                                 {evt.fileName !== null & evt.fileName !== 'null' ?
