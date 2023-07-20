@@ -1,5 +1,5 @@
-// export const urlBase = 'http://localhost:2000'
-export const urlBase = 'https://clubhub-backend.up.railway.app'
+export const urlBase = 'http://localhost:2000'
+// export const urlBase = 'https://clubhub-backend.up.railway.app'
 
 //===========================Users
 
@@ -139,6 +139,15 @@ export const sendMsgEvent = async (obj) => {
 export const sendMsgChat = async (obj) => {
     await fetch(`${API3}/chat`, {
         method: 'POST',
+        body: obj
+    })
+
+}
+
+export const calendarUpdate = async (obj) => {
+    await fetch(`${API3}/calendar`, {
+        method: 'POST',
+        headers: { Accept: 'application/json', "Content-Type": 'application/json' },
         body: obj
     })
 

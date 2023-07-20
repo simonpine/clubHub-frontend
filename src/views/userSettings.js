@@ -203,8 +203,8 @@ function ForgotPasswordRecover() {
                                             </div>
                                         </div>
                                         <div>
-                                            <h2 className="inputIdentify">Description</h2>
-                                            <textarea onChange={(evt) => setDescriptionRef(evt.target.value)} className="textArea" placeholder={user.description} />
+                                            <h2 className="inputIdentify">Description:</h2>
+                                            <textarea id="descriptionArea" onChange={(evt) => setDescriptionRef(evt.target.value)} className="textArea" placeholder={user.description} />
                                         </div>
 
                                     </div>

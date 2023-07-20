@@ -16,6 +16,7 @@ export const CustomProviderClub = ({ children }) => {
     const [refresh, setRefresh] = useState(Math.floor(100000 + Math.random() * 900000))
     const [club, setClub] = useState(null)
     const [grades, setGrades] = useState(null)
+    const [eventsCal, setEventsCal] = useState([])
 
     async function setDefault() {
         const res = await getClubId(id)
@@ -28,7 +29,7 @@ export const CustomProviderClub = ({ children }) => {
             await setGrades(res[0].gardes)
             await setEvents(res[0].events)
             await setChat(res[0].chat)
-            
+            await setEventsCal(res[0].calendarEvents)
         }
         
     }
@@ -68,9 +69,9 @@ export const CustomProviderClub = ({ children }) => {
         await sendMsgChat(mess)
         await socket.emit('newChatMessage', forSocket)
     }
-
+    console.log(club)
     return (
-        <ContextClub.Provider value={{ club, setClub, grades, setGrades, setRefresh, events, sumbmit, chat, sumbmitChat }}>
+        <ContextClub.Provider value={{ club, setClub, grades, setGrades, setRefresh, events, sumbmit, chat, sumbmitChat, eventsCal, setEventsCal }}>
             {children}
         </ContextClub.Provider>
     )

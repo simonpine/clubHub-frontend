@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import 'react-big-calendar/lib/sass/styles';
 $colors: (
     'bgBlur':#00000044,
     'bgBlack':#0000008c,
@@ -39,6 +40,7 @@ html {
 }
 
 * {
+    box-shadow: none;
     margin: 0;
     padding: 0;
     color: map-get($map: $colors, $key: 'font');

@@ -1,0 +1,147 @@
+.scheduleContainer {
+    // @extend .gardesTableContainer;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+
+    height: auto;
+    border-radius: 40px;
+    padding: 20px;
+    width: 700px;
+}
+
+.rbc-toolbar-label {
+    font-weight: 600;
+}
+
+.rbc-off-range-bg {
+    background-color: map-get($map: $colors, $key: 'complement3sub');
+}
+
+.rbc-today {
+    background-color: map-get($map: $colors, $key: 'complement2BgHover');
+}
+
+.rbc-btn-group button {
+    color: map-get($map: $colors, $key: 'font');
+    font-size: 15px;
+    border-radius: 20px;
+    border: 1px solid map-get($map: $colors, $key: 'complement1');
+    transition: 0.3s;
+
+    &:hover {
+        border: 1px solid map-get($map: $colors, $key: 'complement1');
+        color: black;
+        background-color: map-get($map: $colors, $key: 'complement1');
+        cursor: pointer;
+
+        & :active {
+            background-color: map-get($map: $colors, $key: 'complement2BgHover');
+            cursor: pointer;
+        }
+    }
+
+    & :active {
+        color: black;
+        background-color: map-get($map: $colors, $key: 'complement2BgHover');
+        cursor: pointer;
+    }
+}
+
+.rbc-toolbar button:active,
+.rbc-toolbar button.rbc-active {
+    border: 1px solid map-get($map: $colors, $key: 'complement1');
+    color: black;
+    background-color: map-get($map: $colors, $key: 'complement2BgHover');
+    box-shadow: none;
+
+    &:hover {
+        border: 1px solid map-get($map: $colors, $key: 'complement1');
+        color: black;
+        background-color: map-get($map: $colors, $key: 'complement1');
+    }
+}
+
+.rbc-month-view {
+    margin-top: 20px;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.rbc-event,
+.rbc-selected,
+.rbc-event-allday,
+.rbc-event-content {
+    background-color: map-get($map: $colors, $key: 'complement1');
+    color: black;
+    font-size: 15px;
+}
+
+.rbc-event.rbc-selected {
+    background-color: map-get($map: $colors, $key: 'complement1');
+
+}
+
+.rbc-header span {
+    font-weight: 200;
+}
+
+.rbc-button-link {
+    font-weight: 200;
+}
+
+.rbc-toolbar:last-child {
+    display: none;
+}
+
+.eventDescripCont {
+    width: 500px;
+    // background-color: map-get($map: $colors, $key: 'bgBlack');
+    height: 500px;
+    border-radius: 40px;
+}
+
+.sectionAddEv {
+    // background-color: map-get($map: $colors, $key: 'bgBlack');
+    width: 47%;
+
+    & h2 {
+        font-size: 17px;
+        font-weight: 100;
+    }
+}
+
+.formAddEv {
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    @include flex(row, stretch, space-between, stretch, wrap);
+
+}
+
+.speseccreevt {
+    @include flex(column, stretch, space-between, stretch, wrap);
+
+}
+
+.espCreateEvt {
+    padding: 5px 10px;
+    font-weight: 200;
+    margin-top: 10px;
+}
+.fullVisionEvt{
+    transition: 0.3s;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    padding: 20px;
+    border-radius: 20px;
+    height: auto;
+    & h2{
+        font-size: 20px;
+        color: map-get($map: $colors, $key: 'complement1');
+
+    }
+    & p{
+        overflow: auto;
+        max-height: 140px;
+    }
+}

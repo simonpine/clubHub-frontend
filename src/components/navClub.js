@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import colibri from '../img/clubHub.svg'
 import { useNavigate } from "react-router-dom";
 import { exitClub, deleteClub } from "../api"
-import User from "./user"
+// import User from "./user"
 
 function NavClub({ user, club, main }) {
     const navigate = useNavigate()
@@ -14,6 +14,7 @@ function NavClub({ user, club, main }) {
     const [main2, setMain2] = useState('')
     const [main3, setMain3] = useState('')
     const [main4, setMain4] = useState('')
+    const [main5, setMain5] = useState('')
     useEffect(() => {
         if (main === 1) {
             setMain1('selected')
@@ -26,6 +27,9 @@ function NavClub({ user, club, main }) {
         }
         else if (main === 4) {
             setMain4('selected')
+        }
+        else{
+            setMain5('selected')
         }
     }, [])
 
@@ -63,6 +67,7 @@ function NavClub({ user, club, main }) {
                     <Link className={"LinkInClubMenu " + main1} to={{ pathname: "/club/" + club.id }}>Events</Link>
                     <Link className={"LinkInClubMenu " + main2} to={{ pathname: "/gardes/" + club.id }}>Grades</Link>
                     <Link className={"LinkInClubMenu " + main3} to={{ pathname: "/chat/" + club.id }}>Chat</Link>
+                    <Link className={"LinkInClubMenu " + main5} to={{ pathname: "/schedule/" + club.id }}>Schedule</Link>
                     {club.clubOwner === user.userName && <Link className={"LinkInClubMenu " + main4} to={{ pathname: "/Settings/" + club.id }}>Settings</Link>}
                 </div>
                 {club.clubOwner !== user.userName ? <button onClick={exit} className="DelExi">Exit club</button> : <button onClick={delet} className="DelExi">Delete club</button>}
