@@ -104,9 +104,11 @@
     width: 100%;
     border: none;
     transition: 0.3s;
-    & img{
-        transition:0.3s,
+
+    & img {
+        transition: 0.3s,
     }
+
     &::after {
         content: 'Get in';
         color: map-get($map: $colors, $key: 'complement1');
@@ -127,10 +129,11 @@
     }
 
     &:hover {
-        & img{
+        & img {
             opacity: 0.5;
             filter: blur(5px);
         }
+
         &::after {
             opacity: 1;
         }
@@ -181,4 +184,51 @@
     height: 30px;
     overflow: hidden;
     width: fit-content;
+}
+
+.noH3 {
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.empty {
+    width: 200px;
+}
+
+.getInJoin {
+    margin: 0px;
+    @extend .getIn;
+    font-weight: 200;
+    background-color: map-get($map: $colors, $key: 'complement2Bg');
+
+    &:hover {
+        background-color: map-get($map: $colors, $key: 'complement1');
+        color: black;
+    }
+}
+
+.getInCreate {
+    margin: 0px;
+    margin-left: 10px;
+    @extend .getIn;
+    font-weight: 200;
+}
+
+.EmptyMsg {
+    animation-name: apear;
+    animation-duration: 0.3s;
+    padding-top: 140px;
+    width: 100%;
+    height: 100%;
+    @include flex(row, center, center, center, wrap);
+}
+
+.linksEmp {
+    margin-top: 20px;
+    width: 100%;
+    @include flex(row, center, space-between, center, wrap);
+}
+
+.allEmptCont {
+    @include flex(column, center, center, center, wrap);
 }

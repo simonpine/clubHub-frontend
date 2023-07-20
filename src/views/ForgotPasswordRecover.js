@@ -51,7 +51,7 @@ function ForgotPasswordRecover() {
                         setErr('The answer is incorrect')
                     }
                     else {
-                        await editUser(myObj.userName, JSON.stringify(myObj.clubs), md5(passwordRef), myObj.userImg, myObj.question, myObj.answer, myObj.userName)
+                        await editUser(myObj.userName, JSON.stringify(myObj.clubs), md5(passwordRef), myObj.userImg, myObj.question, myObj.answer, myObj.description, myObj.userName)
                         await navigate('/login')
                     }
                     await setloading(false)

@@ -38,7 +38,6 @@ export const CustomProvider = ({ children }) => {
     function deleteClub(id){
         user.clubs = user.clubs.filter(item => item.clubId !== id)
     }
-
     return (
         <ContextUser.Provider value={{ user, saveUser, deleteClub }}>
             {children}

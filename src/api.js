@@ -32,7 +32,8 @@ export const putUser = async (userName, pasword, question, answer) => {
         clubs: [],
         pasword,
         question,
-        answer
+        answer,
+        description: "👋 Hey there! I'm using ClubHub"
     }
     const res = await fetch(AP2, {
         method: 'POST',
@@ -42,7 +43,7 @@ export const putUser = async (userName, pasword, question, answer) => {
     return await res.json()
 }
 
-export const editUser = async (userName, clubs, pasword, userImg, question, answer, oldUserName) => {
+export const editUser = async (userName, clubs, pasword, userImg, question, answer, description, oldUserName) => {
     const obj = await {
         userName,
         clubs,
@@ -50,6 +51,7 @@ export const editUser = async (userName, clubs, pasword, userImg, question, answ
         userImg,
         question,
         answer,
+        description,
     }
     await fetch(`${API}/${oldUserName}`, {
         method: 'PUT',

@@ -1,6 +1,7 @@
 import { ContextUser } from "../context/userContext"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import userPng from '../img/user.png'
 import { getUser, editUser, uploadFile, usersImg } from "../api";
 function ForgotPasswordRecover() {
     const [loading, setloading] = useState(false)
@@ -10,6 +11,7 @@ function ForgotPasswordRecover() {
     const [passwordRef, setPasswordRef] = useState('')
     const [confirmPasswordRef, setConfirmPasswordRef] = useState('')
     const [nameRef, setNameRef] = useState('')
+    const [descriptionRef, setDescriptionRef] = useState('')
     const [fileName, setFileName] = useState('Upload photo')
 
     const [selectedImage, setSelectedImage] = useState(null);
@@ -57,74 +59,82 @@ function ForgotPasswordRecover() {
                 async function setTheData(evt) {
                     await evt.preventDefault();
                     await setloading2(true)
-                    if (nameRef === '' & selectedImage === null) {
-                        await editUser(user.userName, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.userName)
-                        user.pasword = await md5(passwordRef)
+                    if (descriptionRef !== '') {
+                        await editUser(user.userName, JSON.stringify(user.clubs), user.pasword, user.userImg, user.question, user.answer, descriptionRef, user.userName)
+                        user.description = await descriptionRef
                     }
-                    else if (passwordRef === '' & selectedImage === null) {
-                        await editUser(nameRef, JSON.stringify(user.clubs), user.pasword, user.userImg, user.question, user.answer, user.userName)
-                        await localStorage.setItem('user', JSON.stringify(nameRef))
-                        user.userName = await nameRef
-                    }
-                    else if (passwordRef === '' & nameRef === '') {
-                        const UploadFile = await renameFile(selectedImage, user.userName)
-                        await formData.append('image', UploadFile)
-                        await formData.append('name', user.userName)
-                        await formData.append('old', user.userImg)
-                        user.userImg = await (UploadFile.name)
-                        await uploadFile(formData)
 
-                    }
-                    else if (passwordRef === '') {
-                        const UploadFile = await renameFile(selectedImage, nameRef)
-                        await formData.append('image', UploadFile)
-                        await formData.append('name', nameRef)
-                        await formData.append('old', user.userImg)
+                    if (nameRef !== '' || selectedImage !== null || passwordRef !== '') {
+                        if (nameRef === '' & selectedImage === null & passwordRef !== '') {
+                            await editUser(user.userName, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.description, user.userName)
+                            user.pasword = await md5(passwordRef)
+                        }
+                        else if (passwordRef === '' & selectedImage === null & nameRef !== '') {
+                            await editUser(nameRef, JSON.stringify(user.clubs), user.pasword, user.userImg, user.question, user.answer, user.description, user.userName)
+                            await localStorage.setItem('user', JSON.stringify(nameRef))
+                            user.userName = await nameRef
+                        }
+                        else if (passwordRef === '' & nameRef === '' & selectedImage !== null) {
+                            const UploadFile = await renameFile(selectedImage, user.userName)
+                            await formData.append('image', UploadFile)
+                            await formData.append('name', user.userName)
+                            await formData.append('old', user.userImg)
+                            user.userImg = await (UploadFile.name)
+                            await uploadFile(formData)
 
-                        await editUser(nameRef, JSON.stringify(user.clubs), user.pasword, user.userImg, user.question, user.answer, user.userName)
-                        await localStorage.setItem('user', JSON.stringify(nameRef))
-                        await uploadFile(formData)
+                        }
+                        else if (passwordRef === '' & nameRef !== '' & selectedImage !== null) {
+                            const UploadFile = await renameFile(selectedImage, nameRef)
+                            await formData.append('image', UploadFile)
+                            await formData.append('name', nameRef)
+                            await formData.append('old', user.userImg)
 
-                        user.userName = await nameRef
-                        user.userImg = await (UploadFile.name)
+                            await editUser(nameRef, JSON.stringify(user.clubs), user.pasword, user.userImg, user.question, user.answer, user.description, user.userName)
+                            await localStorage.setItem('user', JSON.stringify(nameRef))
+                            await uploadFile(formData)
 
-                    }
-                    else if (nameRef === '') {
-                        const UploadFile = await renameFile(selectedImage, user.userName)
-                        await formData.append('image', UploadFile)
-                        await formData.append('name', user.userName)
-                        await formData.append('old', user.userImg)
+                            user.userName = await nameRef
+                            user.userImg = await (UploadFile.name)
 
-                        await editUser(user.userName, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.userName)
-                        await uploadFile(formData)
+                        }
+                        else if (nameRef === '' & passwordRef !== '' & selectedImage !== null) {
+                            const UploadFile = await renameFile(selectedImage, user.userName)
+                            await formData.append('image', UploadFile)
+                            await formData.append('name', user.userName)
+                            await formData.append('old', user.userImg)
 
-                        user.pasword = await md5(passwordRef)
-                        user.userImg = await (UploadFile.name)
-                    }
-                    else if (selectedImage === null) {
-                        await editUser(nameRef, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.userName)
-                        await localStorage.setItem('user', JSON.stringify(nameRef))
+                            await editUser(user.userName, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.description, user.userName)
+                            await uploadFile(formData)
 
-                        user.pasword = await md5(passwordRef)
-                        user.userName = await nameRef
-                    }
-                    else {
-                        const UploadFile = await renameFile(selectedImage, nameRef)
-                        await formData.append('image', UploadFile)
-                        await formData.append('name', nameRef)
-                        await formData.append('old', user.userImg)
+                            user.pasword = await md5(passwordRef)
+                            user.userImg = await (UploadFile.name)
+                        }
+                        else if (selectedImage === null & nameRef !== '' & passwordRef !== '') {
+                            await editUser(nameRef, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.description, user.userName)
+                            await localStorage.setItem('user', JSON.stringify(nameRef))
 
-                        await editUser(nameRef, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.userName)
-                        await localStorage.setItem('user', JSON.stringify(nameRef))
-                        await uploadFile(formData)
+                            user.pasword = await md5(passwordRef)
+                            user.userName = await nameRef
+                        }
+                        else {
+                            const UploadFile = await renameFile(selectedImage, nameRef)
+                            await formData.append('image', UploadFile)
+                            await formData.append('name', nameRef)
+                            await formData.append('old', user.userImg)
 
-                        user.userImg = await (UploadFile.name)
-                        user.pasword = await md5(passwordRef)
-                        user.userName = await nameRef
+                            await editUser(nameRef, JSON.stringify(user.clubs), md5(passwordRef), user.userImg, user.question, user.answer, user.description, user.userName)
+                            await localStorage.setItem('user', JSON.stringify(nameRef))
+                            await uploadFile(formData)
+
+                            user.userImg = await (UploadFile.name)
+                            user.pasword = await md5(passwordRef)
+                            user.userName = await nameRef
+                        }
                     }
 
 
                     await setNameRef('')
+                    await setDescriptionRef('')
                     await setConfirmPasswordRef('')
                     await setPasswordRef('')
                     await setSelectedImage(null)
@@ -158,67 +168,64 @@ function ForgotPasswordRecover() {
                             </div>
                         }
                         <div className="Log revers">
-                            <div className="pasd">
-                                {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
+                            {/* <div className="pasd"> */}
+                            {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
 
-                                <form onSubmit={changeData} className="formLogin">
-                                    <div className="headerErr">
-                                        <h1 className="h1LogCards">Settings</h1>
-                                        <h3 className="errorAnoun"> {err}</h3>
-                                    </div>
-                                    <div>
-                                        <h2 className="inputIdentify">New username:</h2>
-                                        <input id="NewUserNamee" value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder={user.userName} />
-                                    </div>
-                                    <div>
-                                        <h2 className="inputIdentify">New password:</h2>
-                                        <input id="NewPassword" value={passwordRef} onChange={(evt) => setPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
-                                    </div>
-                                    <div>
-                                        <h2 className="inputIdentify">Confirm password:</h2>
-                                        <input id="NewPasswordConfirm" value={confirmPasswordRef} onChange={(evt) => setConfirmPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
-                                    </div>
-                                    <button disabled={(confirmPasswordRef.length === 0 || passwordRef.length === 0) & (nameRef.length === 0) & selectedImage === null} className="getIn logInButton">Save changes</button>
-                                </form>
-
-                            </div>
-                            <div className="ImgChanger">
-                                <h2 className="inputIdentify">User photo</h2>
-
-                                <div className='userLogoSettings'>
-                                    {selectedImage ? <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' /> : user.userImg ? <img src={usersImg + user.userImg} alt='_Users logo' /> : <></>}
+                            <form onSubmit={changeData} className="CreateCont CreateContSettings">
+                                <div className="headerErr">
+                                    <h1 className="h1LogCards">Settings</h1>
+                                    <h3 className="errorAnoun"> {err}</h3>
                                 </div>
-                                <div className="container-input">
-                                    <input type="file"
-                                        name="myImage"
-                                        onChange={(event) => {
-                                            setErr('')
-                                            if (event.target.files[0] !== undefined) {
-                                                const fileSize = event.target.files[0].size;
-                                                if (fileSize < 700000) {
-                                                    setFileName(event.target.files[0].name)
-                                                    setSelectedImage(event.target.files[0]);
-                                                }
-                                                else {
-                                                    Math.floor(Math.random() * 500000) === 666666 ? setErr('File is nigger than the expected size') : setErr('File is bigger than the expected size')
-                                                }
-                                            }
+                                <div className="inputsConter">
+                                    <div className="sec">
+                                        <div>
+                                            <h2 className="inputIdentify">Profile picture:</h2>
+                                            <div>
+                                                <input type="file"
+                                                    name="myImage"
+                                                    onChange={(event) => {
+                                                        setErr('')
+                                                        if (event.target.files[0] !== undefined) {
+                                                            const fileSize = event.target.files[0].size;
+                                                            if (fileSize < 700000) {
+                                                                setFileName(event.target.files[0].name)
+                                                                setSelectedImage(event.target.files[0]);
+                                                            }
+                                                            else {
+                                                                Math.floor(Math.random() * 500000) === 666666 ? setErr('File is nigger than the expected size') : setErr('File is bigger than the expected size')
+                                                            }
+                                                        }
 
-                                        }} id="myImage" className="inputfile inputfile-1" accept="image/png, image/jpeg" />
-                                    <label htmlFor="myImage">
-                                        <svg className="iborrainputfile" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
-                                        <span className="iborrainputfile">{fileName}</span>
-                                    </label>
+                                                    }} id="myImage" className="inputfileSet inputfile-1" accept="image/png, image/jpeg" />
+                                                <label htmlFor="myImage" className="myImage">
+                                                    {selectedImage ? <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' /> : user.userImg ? <img src={usersImg + user.userImg} alt='_Users logo' /> : <img src={userPng} alt='_Users logo' />}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h2 className="inputIdentify">Description</h2>
+                                            <textarea onChange={(evt) => setDescriptionRef(evt.target.value)} className="textArea" placeholder={user.description} />
+                                        </div>
 
-                                    <button onClick={(evt) => {
-                                        evt.preventDefault()
-                                        setFileName('Upload photo')
-                                        setSelectedImage(null)
+                                    </div>
+                                    <div className="sec">
+                                        <div>
+                                            <h2 className="inputIdentify">New username:</h2>
+                                            <input id="NewUserNamee" value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder={user.userName} />
+                                        </div>
+                                        <div>
+                                            <h2 className="inputIdentify">New password:</h2>
+                                            <input id="NewPassword" value={passwordRef} onChange={(evt) => setPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
+                                        </div>
+                                        <div>
+                                            <h2 className="inputIdentify">Confirm password:</h2>
+                                            <input id="NewPasswordConfirm" value={confirmPasswordRef} onChange={(evt) => setConfirmPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
+                                        </div>
+                                    </div>
 
-                                    }} className="getIn">Delete photo</button>
                                 </div>
-
-                            </div>
+                                <button disabled={(confirmPasswordRef.length === 0 || passwordRef.length === 0) & (nameRef.length === 0) & selectedImage === null & descriptionRef.length === 0} className="getIn logInButton">Save changes</button>
+                            </form>
                         </div>
 
                     </div>
