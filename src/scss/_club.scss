@@ -1,8 +1,8 @@
 .bannerPlusCopyContainer {
-    width: 300px;
-    height: fit-content;
+    width: 200px;
+    // height: fit-content;
     background-color: map-get($map: $colors, $key: 'bgBlack');
-    border-radius: 40px;
+    border-radius: 20px;
     padding: 20px;
     @include flex(row, center, space-between, flex-end, wrap);
     animation-name: apear2;
@@ -41,21 +41,13 @@
 }
 
 .chatContainer {
-    @include flex(row, flex-end, space-between, flex-end, wrap);
-    width: 1000px;
+    @include flex(row, space-between, space-between, flex-end, wrap);
+    width: 700px;
     height: 640px;
     background-color: map-get($map: $colors, $key: 'bgBlack');
     border-radius: 40px;
     animation-name: apear2;
     animation-duration: 0.3s;
-
-    // padding: 20px;
-
-}
-
-.toTop {
-    height: 640px;
-
 }
 
 .MessageInput {
@@ -147,16 +139,23 @@
     }
 }
 
+.contForFilesEvt {
+    animation-name: apearExample2;
+    margin: 20px 0px 0px 0px;
+    z-index: 100;
+}
+
 .errorCont {
     backdrop-filter: blur(3px);
-    margin: 30px 20px;
+    margin: -70px 20px;
     background-color: map-get($map: $colors, $key: 'error');
     width: fit-content;
     height: 20px;
     padding: 10px 20px;
-    border-radius: 20px 20px 20px 0px;
+    border-radius: 0px 20px 20px 20px;
     animation-name: apearError;
     animation-duration: 0.2s;
+    z-index: 100;
 
     & h3 {
         color: white !important;
@@ -183,6 +182,18 @@
 
     100% {
         margin-bottom: 20px;
+        opacity: 1;
+    }
+}
+
+@keyframes apearExample2 {
+    0% {
+        margin-top: 10px;
+        opacity: 0;
+    }
+
+    100% {
+        margin-top: 20px;
         opacity: 1;
     }
 }
@@ -332,4 +343,58 @@
     border-radius: 20px;
     background-color: black;
     max-width: 100%;
+}
+
+.eventAllCont {
+    transform: translate(-50%, 0%);
+    left: 50%;
+    position: relative;
+    top: 100px;
+    max-width: 1000px;
+}
+
+.clubBannerEvents {
+    padding: 2% 2%;
+    width: 96%;
+    height: 160px;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.contAllLessBanner {
+    margin-top: 20px;
+    @include flex(row, normal, space-between, flex-start, nowrap);
+}
+
+.chatContainerEvt {
+    background: none;
+}
+
+.allFormContEvt {
+    height: fit-content;
+    margin: 0px 0px 20px 0px;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    border-radius: 20px;
+}
+
+.msgContEvt {
+    padding: 0px;
+    height: auto;
+}
+
+.messEvents {
+    width: 100%;
+}
+
+.allMessageContEvt {
+    margin: 20px 0px 0px 0px;
+    // margin-top: 20px;
+    animation-duration: 0s;
+    width: 100%;
+
+    & .mess {
+        border-radius: 20px;
+    }
 }

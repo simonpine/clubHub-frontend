@@ -34,9 +34,6 @@ function LogIn() {
                             <button onClick={() => navigate('/')} className='getIn'>Return</button>
                         </div>
                         <div className="Log">
-                            <div className='logoLogin'>
-                                <img src={clubHub} alt='clubHub, app logo' />
-                            </div>
                             <div className="LoadingAndFormCont">
                                 {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
                                 <form onSubmit={LogInFunction} className="formLogin">
@@ -49,19 +46,25 @@ function LogIn() {
                                     <div className="sectionFormCont">
                                         <h2 className="inputIdentify">Username:</h2>
                                         <input id="UserName" value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder="SimonPine" />
-                                        <Link to={{
-                                            pathname: "/newAccount",
-                                        }} className="thirButton">Do you not have an account?</Link>
                                     </div>
                                     <div className="sectionFormCont">
                                         <h2 className="inputIdentify">Password:</h2>
                                         <input id="password" value={passwordRef} onChange={(evt) => setPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
+                                    </div>
+                                    <button disabled={nameRef.length === 0 || passwordRef.length === 0} className="getIn logInButton">Log in</button>
+                                    <div className="forgotAndCreateCont">
                                         <Link to={{
                                             pathname: "/forgotPassword",
                                         }} className="thirButton">Forgot password?</Link>
+                                         -or- 
+                                        <Link to={{
+                                            pathname: "/newAccount",
+                                        }} className="thirButton">Not have an account?</Link>
                                     </div>
-                                    <button disabled={nameRef.length === 0 || passwordRef.length === 0} className="getIn logInButton">Log in</button>
                                 </form>
+                            </div>
+                            <div className='logoLogin'>
+                                <img src={clubHub} alt='clubHub, app logo' />
                             </div>
                         </div>
                     </div>

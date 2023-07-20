@@ -164,3 +164,9 @@
         opacity: 1;
     }
   }
+
+
+  .forgotAndCreateCont{
+    @include flex(row, center, space-between, center, wrap);
+    color: map-get($map: $colors, $key: 'complement3');
+  }
