@@ -61,14 +61,14 @@ function Schedule() {
                             {({ club, eventsCal, setEventsCal }) => {
                                 async function handleSubmit(evt) {
                                     evt.preventDefault();
-
+                                    const da = await dateRef.split('-')
                                     const nuwEvt = await {
                                         id: Date.now(),
                                         title: titleRef,
                                         description: descriptionRef,
                                         allDay: true,
-                                        start: new Date(dateRef),
-                                        end: new Date(dateRef),
+                                        start: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
+                                        end: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
                                     }
                                     await setEventsCal([...eventsCal, nuwEvt])
                                     await setDescriptionRef('')

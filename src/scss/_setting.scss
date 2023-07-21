@@ -159,6 +159,7 @@
 .inputsConter {
     width: 100%;
     height: 320px;
+    margin: 20px 0px;
     @include flex(row, center, space-between, center, wrap);
 }
 

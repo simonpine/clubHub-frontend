@@ -69,7 +69,6 @@ export const CustomProviderClub = ({ children }) => {
         await sendMsgChat(mess)
         await socket.emit('newChatMessage', forSocket)
     }
-    console.log(club)
     return (
         <ContextClub.Provider value={{ club, setClub, grades, setGrades, setRefresh, events, sumbmit, chat, sumbmitChat, eventsCal, setEventsCal }}>
             {children}

@@ -57,7 +57,7 @@ function ClubGrades() {
 
                                                             <tbody className="bod">
                                                                 <tr>
-                                                                    <th className="butLine"></th>
+                                                                    <th className="butLine">Grades / Members</th>
                                                                     {
                                                                         grades.students.map(item => {
                                                                             return (item.studentName.toLowerCase()).includes(searchName.toLowerCase()) && (item.studentName !== user.userName ? <th className="butLine" key={item.studentName}>{club.clubOwner !== user.userName ? <h2 className="lesOpp h2InGradesTable">{item.studentName}</h2> : <h2 className="h2InGradesTable">{item.studentName}</h2>}</th> : <th className="butLine" key={item.studentName}><h2 className="h2InGradesTable prinInTale">{item.studentName}</h2></th>)
