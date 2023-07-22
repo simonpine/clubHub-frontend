@@ -12,8 +12,6 @@ function ForgotPasswordRecover() {
     const [confirmPasswordRef, setConfirmPasswordRef] = useState('')
     const [nameRef, setNameRef] = useState('')
     const [descriptionRef, setDescriptionRef] = useState('')
-    const [fileName, setFileName] = useState('Upload photo')
-
     const [selectedImage, setSelectedImage] = useState(null);
 
 
@@ -138,7 +136,6 @@ function ForgotPasswordRecover() {
                     await setConfirmPasswordRef('')
                     await setPasswordRef('')
                     await setSelectedImage(null)
-                    await setFileName('Upload photo')
                     await navigate('/home')
 
                 }
@@ -188,7 +185,6 @@ function ForgotPasswordRecover() {
                                                         if (event.target.files[0] !== undefined) {
                                                             const fileSize = event.target.files[0].size;
                                                             if (fileSize < 700000) {
-                                                                setFileName(event.target.files[0].name)
                                                                 setSelectedImage(event.target.files[0]);
                                                             }
                                                             else {

@@ -64,8 +64,8 @@
     .oneH {
         height: 93%;
     }
-    
-    .msgContEvt{
+
+    .msgContEvt {
         padding: 0px;
     }
 }
@@ -196,19 +196,58 @@
 
         margin: 0px;
     }
-    .eventAllCont{
+
+    .eventAllCont {
         width: 90%;
         // margin: 20px;
     }
-    .bannerPlusCopyContainer{
+
+    .bannerPlusCopyContainer {
         display: none;
     }
-    .chatContainerEvt{
+
+    .chatContainerEvt {
         width: 90vw;
         margin: 0px;
     }
-    .msgContEvt{
+
+    .msgContEvt {
         padding: 0px;
+    }
+
+    .allCalendarCont {
+        flex-direction: column-reverse;
+    }
+
+    .eventDescripCont {
+        margin-top: 20px;
+        width: 90%;
+    }
+
+    .scheduleContainer {
+        margin-top: 100px;
+        width: 90%;
+        padding: 0px;
+        background-color: rgba(250, 235, 215, 0);
+        border-radius: 0px;
+    }
+
+
+
+    .rbc-toolbar {
+        flex-direction: column;
+    }
+
+    .rbc-toolbar-label {
+        margin: 10px;
+    }
+    .formAddEv{
+        padding: 0px;
+        background-color: rgba(250, 235, 215, 0);
+    }
+    .rbc-month-view{
+        border: 1px solid map-get($map: $colors, $key: 'complement1');
+        border-radius: 5px;
     }
 }
 
@@ -259,17 +298,20 @@
 }
 
 @media (max-width: 700px) {
-    .myImage{
+    .myImage {
         margin-bottom: 20px;
     }
-    .inputsConter{
+
+    .inputsConter {
         flex-direction: column;
         height: auto;
         width: 100%;
-        & .sec{
+
+        & .sec {
             width: 100%;
         }
     }
+
     .clubListHomeContainer {
         align-content: center;
         flex-direction: column;

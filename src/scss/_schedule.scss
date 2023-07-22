@@ -99,7 +99,7 @@
 .eventDescripCont {
     width: 500px;
     // background-color: map-get($map: $colors, $key: 'bgBlack');
-    height: 500px;
+    // height: 500px;
     border-radius: 40px;
 }
 
@@ -133,6 +133,7 @@
     margin-top: 10px;
 }
 .fullVisionEvt{
+    margin-bottom: 20px;
     transition: 0.3s;
     background-color: map-get($map: $colors, $key: 'bgBlack');
     padding: 20px;

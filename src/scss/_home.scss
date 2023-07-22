@@ -144,6 +144,7 @@
 
 .DelExi {
     @extend .getIn;
+    margin-top: 10px;
     background-color: map-get($map: $colors, $key: 'errorBg');
 
     &:active {

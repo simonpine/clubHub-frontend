@@ -73,20 +73,20 @@ function Schedule() {
                                     <div>
 
                                         <NavClub user={user} club={club} main={5} />
-                                        <div className="Log">
+                                        <div className="Log allCalendarCont">
                                             {currentId !== '' || user.userName === club.clubOwner ?
                                                 <div className="eventDescripCont">
                                                     {club.clubOwner === user.userName &&
                                                         <form onSubmit={handleSubmit} className="formAddEv">
                                                             <div className="sectionAddEv">
                                                                 <h2 className="inputIdentify">Description:</h2>
-                                                                <textarea value={descriptionRef} id="descriptionArea" onChange={(evt) => setDescriptionRef(evt.target.value)} className="textArea" placeholder={user.description} />
+                                                                <textarea value={descriptionRef} id="descriptionArea" onChange={(evt) => setDescriptionRef(evt.target.value)} className="textArea" placeholder='The cooking activity will take place in the dining room this day' />
 
                                                             </div>
                                                             <div className="sectionAddEv speseccreevt">
                                                                 <div>
                                                                     <h2 className="inputIdentify">Title:</h2>
-                                                                    <input id="NewUserNamee" value={titleRef} onChange={(evt) => setTitleRef(evt.target.value)} className="inputText" type="text" placeholder={user.userName} />
+                                                                    <input id="NewUserNamee" value={titleRef} onChange={(evt) => setTitleRef(evt.target.value)} className="inputText" type="text" placeholder='Change of location' />
 
                                                                 </div>
                                                                 <div>

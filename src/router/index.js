@@ -16,6 +16,7 @@ import ClubSettings from "../views/clubSettings.js";
 import ClubGrades from "../views/grades.js";
 import Chat from "../views/chat.js";
 import Schedule from "../views/schedule.js"; 
+import Leaderboard from "../views/leaderboard.js";
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -145,6 +146,17 @@ export const router = createBrowserRouter([
                 <CustomProviderClub>
                     <Bg rot={true} />
                     <Schedule />
+                </CustomProviderClub>
+            </CustomProvider>,
+
+    },
+    {
+        path: '/leaderboard/:id',
+        element:
+            <CustomProvider>
+                <CustomProviderClub>
+                    <Bg rot={true} />
+                    <Leaderboard />
                 </CustomProviderClub>
             </CustomProvider>,
 

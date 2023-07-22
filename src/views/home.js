@@ -8,10 +8,7 @@ import ClubCard from "../components/clubCard"
 import User from "../components/user"
 import { Link } from "react-router-dom"
 function Home() {
-
     const [addClub, setAddClub] = useState(false)
-    const [relo, setRelo] = useState()
-
     return (
 
         <>
@@ -21,16 +18,14 @@ function Home() {
                     <AddClubNav />
                 </div>}
             <ContextUser.Consumer>
-                {({ user }) => {
+                {({ user, userClubs, setUserClubs }) => {
                     async function exit(clubId) {
                         await exitClub({
                             userName: user.userName,
                             clubId: clubId,
                             userClubs: user.clubs,
                         })
-                        user.clubs = await user.clubs.filter(item => item.clubId !== clubId)
-                        setRelo(Math.random)
-
+                        setUserClubs(userClubs.filter(item => item.clubId !== clubId))
                     }
                     async function delet(clubId) {
                         await deleteClub({
@@ -38,19 +33,17 @@ function Home() {
                             clubsOfOwner: user.clubs,
                             clubId: clubId,
                         }, clubId)
-                        user.clubs = await user.clubs.filter(item => item.clubId !== clubId)
-                        setRelo(Math.random)
+                        setUserClubs(userClubs.filter(item => item.clubId !== clubId))
                     }
                     return user !== null && (
                         <>
-
                             <div className='LandingNav'>
                                 <User lin={user.userImg} />
                                 <button onClick={() => setAddClub(!addClub)} className="plusButton"><img src={plusIcon} alt="plus button icon" /></button>
                             </div>
                             {JSON.stringify(user.clubs) !== JSON.stringify([]) ?
                                 <div className="clubListHomeContainer">
-                                    {user.clubs.map((clubCard) => {
+                                    {userClubs.map((clubCard) => {
                                         return (
                                             <ClubCard key={clubCard.clubId} delet={delet} exit={exit} user={user} clubCard={clubCard} />
                                         )
@@ -72,8 +65,6 @@ function Home() {
                                     </div>
                                 </div>
                             }
-
-
                         </>
                     )
                 }}
