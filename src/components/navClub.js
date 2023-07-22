@@ -28,7 +28,7 @@ function NavClub({ user, club, main }) {
         else if (main === 4) {
             setMain4('selected')
         }
-        else{
+        else {
             setMain5('selected')
         }
     }, [])
@@ -54,15 +54,15 @@ function NavClub({ user, club, main }) {
     }
     return (
         <>
-       
-                <button onClick={() => {
-                    setClose('')
-                    setClose2('')
-                }} className="plusButton espPlusButton"><img src={menu} alt="plus button icon" /></button>
-       
+            <Link to={{ pathname: "/home" }} className="getIn espPlusButton2">Back Home</Link>
+            <button onClick={() => {
+                setClose('')
+                setClose2('')
+            }} className="plusButton espPlusButton"><img src={menu} alt="plus button icon" /></button>
+
             <div className={'menu ' + close}>
                 <div className="imgTextContMenu">
-                    <Link className="returnToHome" to={{ pathname: "/home" }}><img alt="colibriLogo" src={colibri} /></Link>
+                    {/* <Link className="returnToHome" to={{ pathname: "/home" }}><img alt="colibriLogo" src={colibri} /></Link> */}
 
                     <Link className={"LinkInClubMenu " + main1} to={{ pathname: "/club/" + club.id }}>Events</Link>
                     <Link className={"LinkInClubMenu " + main2} to={{ pathname: "/gardes/" + club.id }}>Grades</Link>

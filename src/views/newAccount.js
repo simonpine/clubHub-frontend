@@ -68,7 +68,7 @@ function NewAccount() {
                                     </div>
                                     <div className="sectionInputCreateUser">
                                         <div>
-                                            <h2 className="inputIdentify">Recovey question:</h2>
+                                            <h2 className="inputIdentify">Recovery question:</h2>
                                             <select id="mySelect" onChange={(evt) => {
                                                 setQuestionRef(evt.target.value)
                                             }} className="inputTextSelect">
@@ -83,7 +83,7 @@ function NewAccount() {
                                                 <option>What is your favorite movie?</option>
                                                 <option>In which city did you have your first job?</option>
                                                 <option value='What was the name of your childhood hero?'>What was the name of your childhood hero?</option>
-                                                <option value='Name of your first pet'>Name of your first pet</option>
+                                                <option value='Name of your first pet'>What was the name of your first pet?</option>
                                             </select>
                                         </div>
                                         <div>

@@ -179,7 +179,7 @@ function ForgotPasswordRecover() {
                                 <div className="inputsConter">
                                     <div className="sec">
                                         <div>
-                                            <h2 className="inputIdentify">Profile picture:</h2>
+                                            {/* <h2 className="inputIdentify">Profile picture:</h2> */}
                                             <div>
                                                 <input type="file"
                                                     name="myImage"

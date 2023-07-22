@@ -63,3 +63,14 @@
 .selected{
     color: map-get($map: $colors, $key: 'complement1');
 }
+.espPlusButton2{
+    position: fixed;
+    top: 25px;
+    margin: 0px;
+    left: 50%;
+    z-index: 61;
+    transform: translate(-50%, 0%);
+    height: 25px;
+    backdrop-filter: blur(10px);
+
+}

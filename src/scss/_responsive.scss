@@ -21,12 +21,12 @@
         width: 95%;
     }
 
-    .toTop,
-    .chatContainer {
-        animation: none;
-        width: 90%;
-        margin: 5%;
-    }
+    // .toTop,
+    // .chatContainer {
+    //     animation: none;
+    //     width: 90%;
+    //     margin: 5%;
+    // }
 
     .msgCont {
         height: 80%;
@@ -43,9 +43,6 @@
         }
     }
 
-    .chatContainer {
-        height: 90vh;
-    }
 
     .Log {
         width: 100%;
@@ -66,6 +63,10 @@
 
     .oneH {
         height: 93%;
+    }
+    
+    .msgContEvt{
+        padding: 0px;
     }
 }
 
@@ -195,6 +196,20 @@
 
         margin: 0px;
     }
+    .eventAllCont{
+        width: 90%;
+        // margin: 20px;
+    }
+    .bannerPlusCopyContainer{
+        display: none;
+    }
+    .chatContainerEvt{
+        width: 90vw;
+        margin: 0px;
+    }
+    .msgContEvt{
+        padding: 0px;
+    }
 }
 
 @media (max-width: 900px) {
@@ -244,6 +259,17 @@
 }
 
 @media (max-width: 700px) {
+    .myImage{
+        margin-bottom: 20px;
+    }
+    .inputsConter{
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        & .sec{
+            width: 100%;
+        }
+    }
     .clubListHomeContainer {
         align-content: center;
         flex-direction: column;
