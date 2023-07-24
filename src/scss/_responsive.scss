@@ -225,6 +225,7 @@
     }
 
     .scheduleContainer {
+        animation-duration: 0s;
         margin-top: 100px;
         width: 90%;
         padding: 0px;
@@ -240,10 +241,6 @@
 
     .rbc-toolbar-label {
         margin: 10px;
-    }
-    .formAddEv{
-        padding: 0px;
-        background-color: rgba(250, 235, 215, 0);
     }
     .rbc-month-view{
         border: 1px solid map-get($map: $colors, $key: 'complement1');
@@ -298,6 +295,15 @@
 }
 
 @media (max-width: 700px) {
+    .formAddEv, .fullVisionEvt{
+        width: 80%;
+        & .rowInForm{
+            flex-direction: column;
+            & .sectionAddEv{
+                width: 100%;
+            }
+        }
+    }
     .myImage {
         margin-bottom: 20px;
     }

@@ -10,7 +10,7 @@ import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import { calendarUpdate } from "../api"
-
+import close from '../img/close.png'
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
 };
@@ -24,7 +24,7 @@ const localizer = dateFnsLocalizer({
 });
 
 function Schedule() {
-    // const [loading, setloading] = useState(false)
+    const [sure, setSure] = useState(false)
     const [descriptionRef, setDescriptionRef] = useState('')
     const [titleRef, setTitleRef] = useState('')
     const [dateRef, setDateRef] = useState('')
@@ -50,99 +50,134 @@ function Schedule() {
                             {({ club, eventsCal, setEventsCal }) => {
                                 async function handleSubmit(evt) {
                                     evt.preventDefault();
-                                    const da = await dateRef.split('-')
-                                    const nuwEvt = await {
-                                        id: Date.now(),
-                                        title: titleRef,
-                                        description: descriptionRef,
-                                        allDay: true,
-                                        start: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
-                                        end: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
-                                    }
-                                    await setEventsCal([...eventsCal, nuwEvt])
-                                    await setDescriptionRef('')
-                                    await setTitleRef('')
-                                    await setDateRef('')
+                                    console.log(dateRef)
+                                    // const da = await dateRef.split('-')
+                                    // const nuwEvt = await {
+                                    //     id: Date.now(),
+                                    //     title: titleRef,
+                                    //     description: descriptionRef,
+                                    //     allDay: true,
+                                    //     start: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
+                                    //     end: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
+                                    // }
+                                    // await setEventsCal([...eventsCal, nuwEvt])
+                                    // await setDescriptionRef('')
+                                    // await setTitleRef('')
+                                    // await setDateRef('')
 
-                                    await calendarUpdate(JSON.stringify({
-                                        clubId: club.id,
-                                        calendarEvts: [...eventsCal, nuwEvt],
-                                    }))
+                                    // await calendarUpdate(JSON.stringify({
+                                    //     clubId: club.id,
+                                    //     calendarEvts: [...eventsCal, nuwEvt],
+                                    // }))
                                 }
                                 return club && (
-                                    <div>
 
-                                        <NavClub user={user} club={club} main={5} />
-                                        <div className="Log allCalendarCont">
-                                            {currentId !== '' || user.userName === club.clubOwner ?
-                                                <div className="eventDescripCont">
-                                                    {club.clubOwner === user.userName &&
-                                                        <form onSubmit={handleSubmit} className="formAddEv">
-                                                            <div className="sectionAddEv">
-                                                                <h2 className="inputIdentify">Description:</h2>
-                                                                <textarea value={descriptionRef} id="descriptionArea" onChange={(evt) => setDescriptionRef(evt.target.value)} className="textArea" placeholder='The cooking activity will take place in the dining room this day' />
+                                    <>
+
+                                        {sure &&
+                                            <div className="sureCont">
+
+                                                <form onSubmit={handleSubmit} className="formAddEv">
+                                                    <button onClick={() => {
+                                                        setSure(false)
+                                                    }} className="closeButtonFormColendar">
+                                                        <img src={close} alt="colse button" />
+                                                    </button>
+                                                    <div className="rowInForm">
+                                                        <div className="sectionAddEv">
+                                                            <h2 className="inputIdentify">Description:</h2>
+                                                            <textarea value={descriptionRef} id="descriptionArea" onChange={(evt) => setDescriptionRef(evt.target.value)} className="textArea" placeholder='The cooking activity will take place in the dining room this day' />
+
+                                                        </div>
+                                                        <div className="sectionAddEv speseccreevt">
+                                                            <div>
+                                                                <h2 className="inputIdentify">Title:</h2>
+                                                                <input id="NewUserNamee" value={titleRef} onChange={(evt) => setTitleRef(evt.target.value)} className="inputText" type="text" placeholder='Change of location' />
 
                                                             </div>
-                                                            <div className="sectionAddEv speseccreevt">
-                                                                <div>
-                                                                    <h2 className="inputIdentify">Title:</h2>
-                                                                    <input id="NewUserNamee" value={titleRef} onChange={(evt) => setTitleRef(evt.target.value)} className="inputText" type="text" placeholder='Change of location' />
-
-                                                                </div>
-                                                                <div>
-                                                                    <h2 className="inputIdentify">Date:</h2>
-                                                                    <input className="inputText" value={dateRef} type="date" onChange={(evt) => setDateRef(evt.target.value)} />
-                                                                </div>
-                                                                <button disabled={titleRef.length === 0 || dateRef === '' || descriptionRef.length === 0} className="getIn logInButton espCreateEvt">Add event</button>
+                                                            <div>
+                                                                <h2 className="inputIdentify">Date:</h2>
+                                                                <input className="inputText" value={dateRef} type="date" onChange={(evt) => setDateRef(evt.target.value)} />
                                                             </div>
-                                                        </form>
-                                                    }
+                                                            <button disabled={titleRef.length === 0 || dateRef === '' || descriptionRef.length === 0} className="getIn logInButton espCreateEvt">Add event</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
 
-                                                    {currentId !== '' &&
-                                                        <div className="fullVisionEvt">
-                                                        <h2>{currentTitle}</h2>
-                                                        <p>{currentDescription}</p>
-                                                        {currentTitle !== '' & club.clubOwner === user.userName ?
-                                                            <button onClick={() => {
-                                                                const newArr = eventsCal.filter((item) => item.id !== currentId)
-                                                                setEventsCal(newArr)
-                                                                calendarUpdate(JSON.stringify({
-                                                                    clubId: club.id,
-                                                                    calendarEvts: newArr,
-                                                                }))
-                                                                setCurrentDescription('')
-                                                                setCurrentId('')
-                                                                setCurrentTitle('')
-                                                            }} className="DelExi">Delete event</button>
-                                                            :
-                                                            <></>
-                                                        }
-                                                    </div>}
-
-                                                </div>
-                                                :
-                                                <></>
-                                                }
-                                            <div className="scheduleContainer">
-                                                <div className="myCustomHeight">
-                                                    <Calendar
-                                                        localizer={localizer}
-                                                        events={eventsCal}
-                                                        startAccessor="start"
-                                                        endAccessor="end"
-                                                        style={{ height: '500px' }}
-                                                        views={{
-                                                            month: true,
-                                                            agenda: true,
-                                                        }}
-                                                        onSelectEvent={handleSelectEvent}
-                                                    />
-                                                </div>
-
+                                                <div className="surebg" onClick={() => setSure(false)}></div>
                                             </div>
-                                        </div>
+                                        }
 
-                                    </div>
+
+                                        {currentId !== '' &&
+                                            <div className="sureCont">
+
+                                                <div className="fullVisionEvt">
+                                                    <button onClick={() => {
+                                                        setCurrentId('')
+                                                    }} className="closeButtonFormColendar">
+                                                        <img src={close} alt="colse button" />
+                                                    </button>
+                                                    <h2>{currentTitle}</h2>
+                                                    <p>{currentDescription}</p>
+                                                    {currentTitle !== '' & club.clubOwner === user.userName ?
+                                                        <button onClick={() => {
+                                                            const newArr = eventsCal.filter((item) => item.id !== currentId)
+                                                            setEventsCal(newArr)
+                                                            calendarUpdate(JSON.stringify({
+                                                                clubId: club.id,
+                                                                calendarEvts: newArr,
+                                                            }))
+                                                            setCurrentDescription('')
+                                                            setCurrentId('')
+                                                            setCurrentTitle('')
+                                                        }} className="DelExi">Delete event</button>
+                                                        :
+                                                        <></>
+                                                    }
+                                                </div>
+
+                                                <div className="surebg" onClick={() => setCurrentId('')}></div>
+                                            </div>
+                                        }
+
+                                        <div>
+
+                                            <NavClub user={user} club={club} main={5} />
+                                            <div className="Log allCalendarCont">
+                                                <div className="scheduleContainer">
+                                                    <div className="myCustomHeight">
+                                                        <Calendar
+                                                            localizer={localizer}
+                                                            events={eventsCal}
+                                                            startAccessor="start"
+                                                            endAccessor="end"
+                                                            style={{ height: '500px' }}
+                                                            views={{
+                                                                month: true,
+                                                                agenda: true,
+                                                            }}
+                                                            onSelectEvent={handleSelectEvent}
+                                                            onSelectSlot={(asd) => {
+
+                                                                const qwe = new Date(asd.start).toLocaleDateString('en-GB').split('/')
+                                                                setDateRef(`${qwe[2]}-${qwe[1]}-${qwe[0]}`)
+                                                                setSure(true)
+
+                                                            }}
+                                                            selectable={club.clubOwner === user.userName}
+                                                        />
+                                                    </div>
+                                                    {club.clubOwner === user.userName &&
+                                                        <button onClick={() => {
+                                                            setSure(true)
+                                                        }} className="getIn logInButton mTop">New event</button>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </>
                                 )
                             }}
                         </ContextClub.Consumer>
