@@ -50,25 +50,25 @@ function Schedule() {
                             {({ club, eventsCal, setEventsCal }) => {
                                 async function handleSubmit(evt) {
                                     evt.preventDefault();
-                                    console.log(dateRef)
-                                    // const da = await dateRef.split('-')
-                                    // const nuwEvt = await {
-                                    //     id: Date.now(),
-                                    //     title: titleRef,
-                                    //     description: descriptionRef,
-                                    //     allDay: true,
-                                    //     start: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
-                                    //     end: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
-                                    // }
-                                    // await setEventsCal([...eventsCal, nuwEvt])
-                                    // await setDescriptionRef('')
-                                    // await setTitleRef('')
-                                    // await setDateRef('')
+                                    const da = await dateRef.split('-')
+                                    const nuwEvt = await {
+                                        id: Date.now(),
+                                        title: titleRef,
+                                        description: descriptionRef,
+                                        allDay: true,
+                                        start: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
+                                        end: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
+                                    }
+                                    await setEventsCal([...eventsCal, nuwEvt])
+                                    await setDescriptionRef('')
+                                    await setTitleRef('')
+                                    await setDateRef('')
 
-                                    // await calendarUpdate(JSON.stringify({
-                                    //     clubId: club.id,
-                                    //     calendarEvts: [...eventsCal, nuwEvt],
-                                    // }))
+                                    await calendarUpdate(JSON.stringify({
+                                        clubId: club.id,
+                                        calendarEvts: [...eventsCal, nuwEvt],
+                                    }))
+                                    await setSure(false)
                                 }
                                 return club && (
 
@@ -99,7 +99,7 @@ function Schedule() {
                                                                 <h2 className="inputIdentify">Date:</h2>
                                                                 <input className="inputText" value={dateRef} type="date" onChange={(evt) => setDateRef(evt.target.value)} />
                                                             </div>
-                                                            <button disabled={titleRef.length === 0 || dateRef === '' || descriptionRef.length === 0} className="getIn logInButton espCreateEvt">Add event</button>
+                                                            <button disabled={titleRef.length === 0 || dateRef === '' || descriptionRef.length === 0} className="getIn espCreateEvt">Add event</button>
                                                         </div>
                                                     </div>
                                                 </form>

@@ -28,6 +28,9 @@ function NewAccount() {
                     if (userName !== undefined) {
                         setErr('The username is already taken')
                     }
+                    else if (nameRef.length > 45) {
+                        setErr('The username cannot have more than 45 characters')
+                    }
                     else if (passwordRef !== confirmPasswordRef || answerRef !== confirmAnswerRef) {
                         setErr('The password/answer do not match')
                     }

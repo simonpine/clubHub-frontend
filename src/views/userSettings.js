@@ -35,6 +35,9 @@ function ForgotPasswordRecover() {
         if (passwordRef !== confirmPasswordRef) {
             await setErr('The password do not match')
         }
+        else if (nameRef.length > 45) {
+            setErr('The username cannot have more than 45 characters')
+        }
         else if (nameRef.length !== 0) {
             const [res] = await getUser(nameRef)
             if (res === undefined) {
