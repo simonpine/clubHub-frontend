@@ -1,21 +1,23 @@
 import { ContextClub } from "../context/clubContext"
 import { ContextUser } from "../context/userContext"
 import { useState } from "react"
-import { chatsFlies } from "../api"
+import { chatsFlies, getUser } from "../api"
 import User from "../components/user"
 import NavClub from "../components/navClub"
 import send from '../img/send.png'
-import userImg from '../img/user.png'
+import userImgPng from '../img/user.png'
 import upload from '../img/upload.png'
 import doc from '../img/document.png'
 import { usersImg } from "../api"
+import close from '../img/close.png'
 
 
 function Chat() {
     const [message, setMessage] = useState('')
     const [err, setErr] = useState('')
     const [selectedImage, setSelectedImage] = useState(null);
-
+    const [userInfo, setUserInfo] = useState(null);
+    const [sure, setSure] = useState(false)
     function renameFile(originalFile, newName) {
         const fin = originalFile.type.split('/')
         return new File([originalFile], (newName + '.' + fin[1]), {
@@ -23,10 +25,14 @@ function Chat() {
             lastModified: originalFile.lastModified,
         });
     }
-
+    async function getUserInfo(userName) {
+        const result = await getUser(userName)
+        await setUserInfo(result[0])
+        await setSure(true)
+    }
     return (
         <ContextUser.Consumer>
-            {({ user }) => {
+            {({ user, userClubs, serUserClubs }) => {
 
                 return user && (
 
@@ -118,7 +124,33 @@ function Chat() {
 
                                 return club && (
                                     <div>
-                                        <NavClub user={user} club={club} main={3} />
+                                        <NavClub user={user} club={club} main={3} userClubs={userClubs} serUserClubs={serUserClubs} />
+                                        {sure &&
+                                            <div className="sureCont">
+
+                                                <div className="formAddEv">
+                                                    <div className="xplusTitle">
+                                                        <button onClick={() => {
+                                                            setSure(false)
+                                                        }} className="closeButtonFormColendar">
+                                                            <img src={close} alt="colse button" />
+                                                        </button>
+                                                        <h3 className="cardTitleUSer">User info</h3>
+                                                    </div>
+                                                    <div>
+                                                        {userInfo.userImg !== null && <img alt="User icon" className="moreInfoBanner" src={usersImg + userInfo.userImg} />}                                                        <div>
+                                                            {userInfo.userImg !== null ? <h1 className="h1UserInfo h1MoreInfo">{userInfo.userName}</h1> : <h1 className="h1UserInfo">{userInfo.userName}</h1>}
+                                                            <p className="pMoreInfo">{userInfo.description}</p>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="surebg" onClick={() => {
+                                                    setSure(false)
+                                                }}></div>
+                                            </div>
+                                        }
                                         <div className="Log">
                                             <div className="chatContainerGeneral spChatChanges">
                                                 <div className={'msgCont'}>
@@ -129,7 +161,11 @@ function Chat() {
                                                             chat.map(evt => {
                                                                 return (
                                                                     <div key={evt.id} className={evt.from !== user.userName ? "allMessageCont" : "allMessageCont otherSender"}>
-                                                                        {evt.logo !== 'null' & evt.logo !== null  ? <img className="logo" alt="userLogo" src={usersImg + evt.logo} /> : <img className="logo" alt="notImgUser" src={userImg} />}
+                                                                        {evt.logo !== 'null' & evt.logo !== null ? <img onClick={() => {
+                                                                            getUserInfo(evt.from)
+                                                                        }} className="logo" alt="userLogo" src={usersImg + evt.logo} /> : <img onClick={() => {
+                                                                            getUserInfo(evt.from)
+                                                                        }} className="logo" alt="notImgUser" src={userImgPng} />}
                                                                         {(evt.typeMess !== 'file' & evt.typeMess !== 'text+file') ?
                                                                             <div className="mess" >
                                                                                 <h4 className="messInfo">{evt.from === user.userName ? <>You</> : <>{evt.from}</>} {evt.date}</h4>

@@ -2,10 +2,10 @@
 import { ContextUser } from "../context/userContext"
 import { Link } from "react-router-dom"
 import userPng from '../img/user.png'
-import { usersImg } from "../api"
+import close from '../img/close.png'
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react";
-import { getClubs, getClubId, BannersImg, joinToClub } from "../api";
+import { getClubs, getClubId, BannersImg, usersImg, joinToClub } from "../api";
 import ClubCardJoin from '../components/clubCardJoin'
 
 function JoinClub() {
@@ -15,6 +15,8 @@ function JoinClub() {
     const [codeRef, setCodeRef] = useState('')
     const [clubList, setClubList] = useState([])
     const [show, setShow] = useState({})
+    const [moreInfoClub, setMoreInfoClub] = useState({})
+    const [sure, setSure] = useState(false)
     const navigate = useNavigate();
     useEffect(() => {
         async function clubListFunction() {
@@ -25,7 +27,7 @@ function JoinClub() {
     }, [])
     return (
         <ContextUser.Consumer>
-            {({ user }) => {
+            {({ user, userClubs, setUserClubs }) => {
                 async function searchClub(evt) {
                     await setloading(true)
                     await evt.preventDefault()
@@ -33,7 +35,7 @@ function JoinClub() {
 
                     await setErr('')
 
-                    if (user.clubs.some(a => a.clubId === codeRef)) {
+                    if (userClubs.some(a => a.clubId === codeRef)) {
                         await setCodeRef('')
                         await setloading(false)
                         return await setErr("You are already a member of that club")
@@ -52,6 +54,10 @@ function JoinClub() {
                 }
 
                 async function join(club) {
+                    setSure(true)
+                    setMoreInfoClub(club)
+                }
+                async function serverChange(club) {
                     const userClubsObj = await {
                         clubId: club.id,
                         own: false,
@@ -59,22 +65,46 @@ function JoinClub() {
                         clubBanner: club.clubBanner,
                         clubDescription: club.description,
                     }
-                    await user.clubs.push(userClubsObj)
+                    await setUserClubs([...userClubs, userClubsObj])
                     await setShow({})
-                    // console.log((user.clubs))
-
-
                     await joinToClub({
                         newMembers: [...club.members, user.userName],
                         clubId: club.id,
-                        clubsOfMember: (user.clubs),
+                        clubsOfMember: ([...userClubs, userClubsObj]),
                         newMember: user.userName,
                     })
-                    // await console.log(JSON.stringify(user))
-
                 }
                 return user !== null && (
                     <div>
+                        {sure &&
+                            <div className="sureCont">
+
+                                <div className="formAddEv">
+                                    <button onClick={() => {
+                                        setSure(false)
+                                    }} className="closeButtonFormColendar">
+                                        <img src={close} alt="colse button" />
+                                    </button>
+                                    <div>
+                                        <img alt="Club Banner" className="moreInfoBanner" src={BannersImg + moreInfoClub.clubBanner} />
+                                        <div>
+                                            <h1 className="h1MoreInfo">{moreInfoClub.title}</h1>
+                                            <h3 className="OwnerClubMoreInfo">Owner: {moreInfoClub.clubOwner}</h3>
+                                            <p className="pMoreInfo">{moreInfoClub.description}</p>
+                                            <button className="getIn logInButton" onClick={() => {
+                                                serverChange(moreInfoClub)
+                                                setSure(false)
+                                            }}>Join</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="surebg" onClick={() => {
+                                    setMoreInfoClub({})
+                                    setSure(false)
+                                }}></div>
+                            </div>
+                        }
                         <div className='LandingNav'>
                             <Link to={{
                                 pathname: "/userSettings",
@@ -85,12 +115,14 @@ function JoinClub() {
                         </div>
                         <div className="Log revers">
                             <div className="clublistjoinCont">
-                                {clubList.map(item => {
-                                    return !user.clubs.some(a => a.clubId === item.id) && (
-                                        <ClubCardJoin key={item.id} jo={join} item={item} />
+                                <div className="forTheStick">
+                                    {clubList.map(item => {
+                                        return !userClubs.some(a => a.clubId === item.id) && (
+                                            <ClubCardJoin key={item.id} jo={join} item={item} />
 
-                                    )
-                                })}
+                                        )
+                                    })}
+                                </div>
                             </div>
                             <div className="pasd mar0">
                                 {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
@@ -114,9 +146,9 @@ function JoinClub() {
                                                     <h5 className="green">{show.clubOwner}</h5>
                                                 </div>
                                             </div>
-                                            <p className="pInShow">{show.description}</p>
+                                            <p className="pInShow">{show.description.slice(0, 170)} ...</p>
 
-                                            <button onClick={() => join(show)} className="getIn logInButton">Join</button>
+                                            <button onClick={() => join(show)} className="getIn logInButton">More info</button>
                                         </div>
                                     }
 

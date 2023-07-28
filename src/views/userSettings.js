@@ -158,8 +158,8 @@ function ForgotPasswordRecover() {
 
                                     <h2>Are you sure of the changes?</h2>
                                     <div>
-                                        <button onClick={setTheData} className="getIn">Yes, save changes</button>
-                                        <button onClick={() => setSure(false)} className="getIn red">No, cancel</button>
+                                        <button onClick={setTheData} className="getIn especialButtonSure">Yes, save changes</button>
+                                        <button onClick={() => setSure(false)} className="getIn especialButtonSure red">No, cancel</button>
                                     </div>
                                 </div>
                                 {loading2 && <div className="sureSection loadingSure"><div className="lds-dual-ring"></div></div>}
@@ -202,18 +202,18 @@ function ForgotPasswordRecover() {
                                             </div>
                                         </div>
                                         <div>
-                                            <h2 className="inputIdentify">Description:</h2>
+                                            <h2 className="inputIdentify">Change description:</h2>
                                             <textarea id="descriptionArea" onChange={(evt) => setDescriptionRef(evt.target.value)} className="textArea" placeholder={user.description} />
                                         </div>
 
                                     </div>
                                     <div className="sec">
                                         <div>
-                                            <h2 className="inputIdentify">New username:</h2>
+                                            <h2 className="inputIdentify">Change username:</h2>
                                             <input id="NewUserNamee" value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder={user.userName} />
                                         </div>
                                         <div>
-                                            <h2 className="inputIdentify">New password:</h2>
+                                            <h2 className="inputIdentify">Change password:</h2>
                                             <input id="NewPassword" value={passwordRef} onChange={(evt) => setPasswordRef(evt.target.value.replace(' ', ''))} className="inputText" type="password" placeholder="******" />
                                         </div>
                                         <div>

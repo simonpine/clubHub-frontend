@@ -1,5 +1,5 @@
-// export const urlBase = 'http://localhost:2000'
-export const urlBase = 'https://clubhub-backend.up.railway.app'
+export const urlBase = 'http://localhost:2000'
+// export const urlBase = 'https://clubhub-backend.up.railway.app'
 
 //===========================Users
 

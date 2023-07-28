@@ -258,10 +258,15 @@
 }
 
 .logo {
+
     rotate: 180deg;
     width: 30px;
     height: 30px;
     border-radius: 20px;
+
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 .allMessageCont {
@@ -398,4 +403,15 @@
     & .mess {
         border-radius: 20px;
     }
+}
+.xplusTitle{
+    @include flex(row, normal, space-between, flex-start, nowrap);
+}
+.cardTitleUSer{
+    font-weight: 200;
+    color: map-get($map: $colors, $key: 'complement1');
+
+}
+.h1UserInfo{
+    margin-bottom: 10px;
 }

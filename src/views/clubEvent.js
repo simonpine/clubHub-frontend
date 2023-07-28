@@ -25,7 +25,7 @@ function ClubEvent() {
 
     return (
         <ContextUser.Consumer>
-            {({ user }) => {
+            {({ user, userClubs, setUserClubs }) => {
 
                 return user && (
 
@@ -117,7 +117,7 @@ function ClubEvent() {
 
                                 return club && (
                                     <div>
-                                        <NavClub user={user} club={club} main={1} />
+                                        <NavClub user={user} club={club} main={1} userClubs={userClubs} setUserClubs={setUserClubs} />
 
                                         <div className="eventAllCont">
                                             <div className="clubBannerEvents" style={{

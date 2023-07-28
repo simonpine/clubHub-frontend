@@ -21,7 +21,7 @@ function ClubGrades() {
 
     return (
         <ContextUser.Consumer>
-            {({ user }) => {
+            {({ user, userClubs, setUserClubs }) => {
                 return user && (
                     <>
                         <div className='LandingNav'>
@@ -43,14 +43,14 @@ function ClubGrades() {
 
                                 return club && (
                                     <div>
-                                        <NavClub user={user} club={club} main={2} />
+                                        <NavClub user={user} club={club} main={2} userClubs={userClubs} setUserClubs={setUserClubs} />
 
 
                                         <div className="gardesTableContainer">
                                             {loading && <div className="loadingContTable "><div className="lds-dual-ring"></div></div>}
                                             {club.members.length > 0 ?
                                                 <>
-                                                    <input placeholder="Name filter" className="NameFilterInput" id="SearchByNmae" value={searchName} onChange={(evt) => setSearchName(evt.target.value)} />
+                                                    <input placeholder="Filter by members names" className="NameFilterInput" id="SearchByNmae" value={searchName} onChange={(evt) => setSearchName(evt.target.value)} />
                                                     <div className="tableInCont">
 
                                                         <table>

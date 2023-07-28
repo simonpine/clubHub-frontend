@@ -2,7 +2,6 @@ import { ContextUser } from "../context/userContext"
 import AddClubNav from "../components/addClubNav"
 import plusIcon from '../img/plus.png'
 import empty from '../img/empty.png'
-import { exitClub, deleteClub } from "../api"
 import { useState } from "react"
 import ClubCard from "../components/clubCard"
 import User from "../components/user"
@@ -10,7 +9,6 @@ import { Link } from "react-router-dom"
 function Home() {
     const [addClub, setAddClub] = useState(false)
     return (
-
         <>
             {addClub &&
                 <div className="plusExecut">
@@ -18,34 +16,18 @@ function Home() {
                     <AddClubNav />
                 </div>}
             <ContextUser.Consumer>
-                {({ user, userClubs, setUserClubs }) => {
-                    async function exit(clubId) {
-                        await exitClub({
-                            userName: user.userName,
-                            clubId: clubId,
-                            userClubs: user.clubs,
-                        })
-                        setUserClubs(userClubs.filter(item => item.clubId !== clubId))
-                    }
-                    async function delet(clubId) {
-                        await deleteClub({
-                            clubOwner: user.userName,
-                            clubsOfOwner: user.clubs,
-                            clubId: clubId,
-                        }, clubId)
-                        setUserClubs(userClubs.filter(item => item.clubId !== clubId))
-                    }
+                {({ user, userClubs }) => {
                     return user !== null && (
                         <>
                             <div className='LandingNav'>
                                 <User lin={user.userImg} />
                                 <button onClick={() => setAddClub(!addClub)} className="plusButton"><img src={plusIcon} alt="plus button icon" /></button>
                             </div>
-                            {JSON.stringify(user.clubs) !== JSON.stringify([]) ?
+                            {user.clubs.length > 0 ?
                                 <div className="clubListHomeContainer">
                                     {userClubs.map((clubCard) => {
                                         return (
-                                            <ClubCard key={clubCard.clubId} delet={delet} exit={exit} user={user} clubCard={clubCard} />
+                                            <ClubCard key={clubCard.clubId} user={user} clubCard={clubCard} />
                                         )
                                     })}
                                 </div>

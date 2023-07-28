@@ -35,7 +35,7 @@ function Schedule() {
 
     return (
         <ContextUser.Consumer>
-            {({ user }) => {
+            {({ user, userClubs, setUserClubs }) => {
                 function handleSelectEvent(evt) {
                     setCurrentDescription(evt.description)
                     setCurrentTitle(evt.title)
@@ -99,7 +99,7 @@ function Schedule() {
                                                                 <h2 className="inputIdentify">Date:</h2>
                                                                 <input className="inputText" value={dateRef} type="date" onChange={(evt) => setDateRef(evt.target.value)} />
                                                             </div>
-                                                            <button disabled={titleRef.length === 0 || dateRef === '' || descriptionRef.length === 0} className="getIn espCreateEvt">Add event</button>
+                                                            <button disabled={titleRef.length === 0 || dateRef === '' || descriptionRef.length === 0} className="getIn espCreateEvt logInButton">Add event</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -143,7 +143,7 @@ function Schedule() {
 
                                         <div>
 
-                                            <NavClub user={user} club={club} main={5} />
+                                            <NavClub user={user} club={club} main={5} userClubs={userClubs} setUserClubs={setUserClubs} />
                                             <div className="Log allCalendarCont">
                                                 <div className="scheduleContainer">
                                                     <div className="myCustomHeight">

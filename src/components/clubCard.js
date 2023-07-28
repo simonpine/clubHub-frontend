@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { BannersImg } from "../api";
 
-function ClubCard({ clubCard, delet, exit }) {
+function ClubCard({ clubCard }) {
 
 
     return (
         <div className="clubCard" key={clubCard.clubId}>
-            <Link to={{pathname: "/club/" + clubCard.clubId}} className="imgCardConatiner">
+            <Link to={{ pathname: "/club/" + clubCard.clubId }} className="imgCardConatiner">
                 <img src={BannersImg + clubCard.clubBanner} alt="Club banner" />
             </Link>
             <div className="textInCard">
@@ -17,7 +17,8 @@ function ClubCard({ clubCard, delet, exit }) {
                 </div>
                 <p className="pInCard">{clubCard.clubDescription}</p>
             </div>
-            {clubCard.own ? <button onClick={()=> delet(clubCard.clubId)} className="DelExi">Delete</button> : <button onClick={() => exit(clubCard.clubId)} className="DelExi">Exit</button>}
+            {/* <Link className="getIn logInButton" to={{ pathname: "/club/" + clubCard.clubId }}>Get in</Link> */}
+            {/* {clubCard.own ? <button onClick={()=> delet(clubCard.clubId)} className="DelExi">Delete</button> : <button onClick={() => exit(clubCard.clubId)} className="DelExi">Exit</button>} */}
         </div>
     )
 }

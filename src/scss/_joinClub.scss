@@ -3,17 +3,22 @@
     height: 450px;
     background-color: map-get($map:$colors, $key: 'bgBlack');
     border-radius: 40px;
-    padding: 40px;
-    overflow: auto;
+    padding: 30px;
+    overflow: hidden;
     animation-name: apear;
     animation-duration: 0.3s;
     margin: 20px;
+    & .forTheStick{
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+    }
 }
 .mTop{
     margin-top: 20px;
 }
 .cardOfJoinList{
-    height: 170px;
+    height: 140px;
     width: 95%;
     // background-color: map-get($map:$colors, $key: 'bgBlack');
     border: solid 1px map-get($map:$colors, $key: 'complement2BgHover');
@@ -47,11 +52,17 @@
     border-radius: 20px;
     overflow: hidden;
 }
+.pInCardJoin{
+    height: 50px;
+    font-size: 10px;
+    overflow: hidden;
+}
 .pInShow{
     font-size: 10px;
     font-weight: 100;
     max-height: 100px;
     overflow: auto;
+    margin: 10px 0px;
 }
 .joinSelection{
     height: auto;
@@ -60,7 +71,6 @@
     margin-top: 20px;
 }
 .bgShow{
-    height: 220px;
     border-radius: 20px;
     animation-name: apear3;
     animation-duration: 0.3s;
@@ -78,4 +88,36 @@
         margin: 0px;
         opacity: 1;
     }
+}
+.sureJoin{
+    width: 800px;
+    z-index: 100000;
+    position: fixed;
+    background-color: map-get($map: $colors, $key: 'complement3sub');
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 20px;
+    animation-duration: 0.3s;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    transition: 0.3s;
+}
+.h1MoreInfo{
+    color: map-get($map: $colors, $key: 'complement1');
+}
+.OwnerClubMoreInfo{
+    font-size: 20px;
+    color: map-get($map: $colors, $key: 'complement2');
+}
+.pMoreInfo{
+    font-size: 15px;
+    height: 80px;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+.moreInfoBanner{
+    border-radius: 20px;
+    height: 200px;
 }
