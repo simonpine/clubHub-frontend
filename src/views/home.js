@@ -23,7 +23,7 @@ function Home() {
                                 <User lin={user.userImg} />
                                 <button onClick={() => setAddClub(!addClub)} className="plusButton"><img src={plusIcon} alt="plus button icon" /></button>
                             </div>
-                            {user.clubs.length > 0 ?
+                            {userClubs.length > 0 ?
                                 <div className="clubListHomeContainer">
                                     {userClubs.map((clubCard) => {
                                         return (
