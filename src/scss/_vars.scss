@@ -22,6 +22,8 @@ $colors: (
     'errorBg': #ff00004b,
     'green': #00ff6a,
     'blue': #5da2fc,
+    'sureSectionBack': #000000cb,
+    "questionBg": #4f62733b
 );
 
 @mixin flex($flexDirection, $alignContent, $justifyContent, $alignItems, $wrap) {

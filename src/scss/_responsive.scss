@@ -295,6 +295,14 @@
 }
 
 @media (max-width: 700px) {
+    .sureSection{
+        width: 200px;
+        & .especialButtonSure {
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+    }
     .formAddEv, .fullVisionEvt{
         width: 80%;
         & .rowInForm{

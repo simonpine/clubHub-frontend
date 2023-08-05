@@ -16,6 +16,7 @@ export const CustomProviderClub = ({ children }) => {
     const [club, setClub] = useState(null)
     const [grades, setGrades] = useState(null)
     const [eventsCal, setEventsCal] = useState([])
+    const [polls, setPolls] = useState([])
 
 
     useEffect(() => {
@@ -31,6 +32,7 @@ export const CustomProviderClub = ({ children }) => {
                 await setEvents(res[0].events)
                 await setChat(res[0].chat)
                 await setEventsCal(res[0].calendarEvents)
+                await setPolls(res[0].surveys)
             }
         }
         // console.log(sucedio)
@@ -70,7 +72,7 @@ export const CustomProviderClub = ({ children }) => {
         await socket.emit('newChatMessage', forSocket)
     }
     return (
-        <ContextClub.Provider value={{ club, setClub, grades, setGrades, setRefresh, events, sumbmit, chat, sumbmitChat, eventsCal, setEventsCal, refresh }}>
+        <ContextClub.Provider value={{ club, setClub, grades, setGrades, setRefresh, events, sumbmit, chat, sumbmitChat, eventsCal, setEventsCal, refresh, polls, setPolls }}>
             {children}
         </ContextClub.Provider>
     )

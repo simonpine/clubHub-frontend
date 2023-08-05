@@ -37,7 +37,7 @@ function Home() {
                                         <img className="empty" src={empty} alt="empty" />
                                         <h3 className="noH3">You are not in any club</h3>
                                         <div className="linksEmp">
-                                            <Link to={{
+                                            <Link style={{margin: '0px'}} to={{
                                                 pathname: "/joinClub",
                                             }} className="getInCreate">Join club</Link>
                                             <Link to={{

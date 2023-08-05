@@ -1,0 +1,91 @@
+.CreateSurveySection {
+    @extend .formAddEv;
+    width: 700px;
+    height: auto;
+}
+
+.titlePlubBAnnerConrt {
+    width: 100%;
+    @include flex(row-reverse, normal, space-between, normal, nowrap);
+
+    & div {
+        width: 40%;
+    }
+}
+
+#myImaasdge {
+    height: 60px;
+    width: 40%;
+    border-radius: 10px;
+    & img{
+        border-radius: 10px;  
+    }
+}
+.questionsContainer{
+    margin-top: 20px;
+    overflow: auto;
+    max-height: 500px;
+}
+.cardSurveyQuestion{
+    background-color: map-get($map: $colors, $key: 'questionBg');
+    border-radius: 20px;
+    height: auto;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+.QuestionInput{
+    @extend .inputText;
+    width: 80%;
+    background: none;
+}
+.QuestionPlusDelete{
+    @include flex(row, normal, space-between, normal, nowrap);
+    margin-bottom: 20px;
+}
+.ButtonDeleteQuestion{
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    &:hover{
+        cursor: pointer;
+    }
+    &:disabled{
+        opacity: 0.5;
+        &:hover{
+            cursor:auto;
+        }
+    }
+}
+.AnswersContainer{
+    @include flex(column, normal, normal, baseline, nowrap);
+}
+.inputAnswer{
+    @extend .inputText;
+    border: solid 1px map-get($map: $colors, $key: 'complement1');
+    background: none;
+    // border-radius: 10px;
+}
+.AnswerContainer{
+    margin-bottom: 10px;
+    @include flex(row, center, center, center, nowrap);
+}
+.delteAnsButton{
+    margin-left: 10px;
+    background: none;
+    width: 25px;
+    border: none;
+    &:hover{
+        cursor:pointer;
+    }
+    &:disabled{
+        opacity: 0.5;
+        &:hover{
+            cursor:auto;
+        }
+    }
+}
+.addAnsewr{
+    margin-top: 0px;
+    border-radius: 0px;
+}
