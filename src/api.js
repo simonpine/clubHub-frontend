@@ -14,6 +14,7 @@ const APIc = urlBase + '/clubs'
 const API3e =  urlBase + '/userExitClub'
 export const BannersImg = urlBase + '/images/banners/'
 export const chatsFlies = urlBase + '/images/chats/'
+export const surveysBanner = urlBase + '/images/surveys/'
 
 
 export const getUser = async (id) => {
@@ -147,6 +148,32 @@ export const sendMsgChat = async (obj) => {
 export const calendarUpdate = async (obj) => {
     await fetch(`${API3}/calendar`, {
         method: 'POST',
+        headers: { Accept: 'application/json', "Content-Type": 'application/json' },
+        body: obj
+    })
+
+}
+
+export const addSurveyToServer = async (obj) => {
+    await fetch(`${API3}/addSurvey`, {
+        method: 'POST',
+        body: obj
+    })
+
+}
+
+export const addRes = async (obj) => {
+    await fetch(`${API3}/addRes`, {
+        method: 'POST',
+        headers: { Accept: 'application/json', "Content-Type": 'application/json' },
+        body: obj
+    })
+
+}
+
+export const deleteSurvey = async (obj) => {
+    await fetch(`${API3}/deleteSurvey`, {
+        method: 'DELETE',
         headers: { Accept: 'application/json', "Content-Type": 'application/json' },
         body: obj
     })

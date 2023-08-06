@@ -17,75 +17,232 @@
     height: 60px;
     width: 40%;
     border-radius: 10px;
-    & img{
-        border-radius: 10px;  
+
+    & img {
+        border-radius: 10px;
     }
 }
-.questionsContainer{
+
+.questionsContainer {
     margin-top: 20px;
     overflow: auto;
     max-height: 500px;
 }
-.cardSurveyQuestion{
+
+.cardSurveyQuestion {
     background-color: map-get($map: $colors, $key: 'questionBg');
     border-radius: 20px;
     height: auto;
     margin-bottom: 10px;
     padding: 20px;
 }
-.QuestionInput{
+
+.QuestionInput {
     @extend .inputText;
     width: 80%;
     background: none;
 }
-.QuestionPlusDelete{
+
+.QuestionPlusDelete {
     @include flex(row, normal, space-between, normal, nowrap);
     margin-bottom: 20px;
 }
-.ButtonDeleteQuestion{
+
+.ButtonDeleteQuestion {
     width: 30px;
     height: 30px;
     background: none;
     border: none;
-    &:hover{
+
+    &:hover {
         cursor: pointer;
     }
-    &:disabled{
+
+    &:disabled {
         opacity: 0.5;
-        &:hover{
-            cursor:auto;
+
+        &:hover {
+            cursor: auto;
         }
     }
 }
-.AnswersContainer{
+
+.AnswersContainer {
     @include flex(column, normal, normal, baseline, nowrap);
 }
-.inputAnswer{
+
+.inputAnswer {
     @extend .inputText;
     border: solid 1px map-get($map: $colors, $key: 'complement1');
     background: none;
     // border-radius: 10px;
 }
-.AnswerContainer{
+
+.AnswerContainer {
     margin-bottom: 10px;
     @include flex(row, center, center, center, nowrap);
 }
-.delteAnsButton{
+
+.delteAnsButton {
     margin-left: 10px;
     background: none;
     width: 25px;
     border: none;
-    &:hover{
-        cursor:pointer;
+
+    &:hover {
+        cursor: pointer;
     }
-    &:disabled{
+
+    &:disabled {
         opacity: 0.5;
-        &:hover{
-            cursor:auto;
+
+        &:hover {
+            cursor: auto;
         }
     }
 }
-.addAnsewr{
+
+.addAnsewr {
     margin-top: 0px;
     border-radius: 0px;
+}
+
+.cardSurvey {
+    margin: 20px;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    border-radius: 20px;
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    @include flex(column, center, space-between, flex-start, nowrap);
+
+    & img {
+        height: 100px;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    & h3 {
+        font-weight: 400;
+        width: 100%;
+        height: 25px;
+        overflow: hidden;
+        font-size: 20px;
+    }
+
+    & h4 {
+        font-weight: 100;
+        width: 100%;
+        font-size: 15px;
+        color: map-get($map: $colors, $key: 'complement1');
+    }
+}
+
+.addSurveyInCardButton {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    & img {
+        width: 40%;
+        height: 40%;
+        margin: 0px
+    }
+}
+
+.cardSurveySpecial {
+    @extend .cardSurvey;
+    transition: 0.2s;
+
+    &:hover {
+        cursor: pointer;
+        background-color: map-get($map: $colors, $key: 'complement2BgHover');
+    }
+}
+
+.NoOne {
+    width: 100%;
+    // text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+
+}
+
+.questions {
+    color: map-get($map: $colors, $key: 'complement1');
+    margin-bottom: 10px;
+}
+
+//===================================================================
+input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: none;
+
+    margin: 0;
+
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+}
+
+input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em map-get($map: $colors, $key: 'complement1');
+    /* Windows High Contrast Mode */
+    background-color: map-get($map: $colors, $key: 'complement1');
+}
+
+input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+.inpPlusLabel {
+    display: flex;
+    align-items: center;
+    height: 35px;
+
+    & label {
+        margin-left: 10px;
+    }
+}
+
+//===================================================================
+
+.showCharts{
+    max-height: 500px;
+    overflow: auto;
+    width: 100%;
+}
+.ChartPlusTitleContainer{
+    @include flex(column, center, space-between, center, nowrap);
+    margin-top: 30px;
+    width: 100%;
+    overflow: hidden;
+    // border-bottom: 1px solid map-get($map: $colors, $key: 'complement1');
+    & h2{
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}
+.chartCont{
+    width: 100%;
+    height: 400px;
 }

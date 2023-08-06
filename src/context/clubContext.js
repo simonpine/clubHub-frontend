@@ -12,6 +12,7 @@ export const CustomProviderClub = ({ children }) => {
     const { id } = useParams()
     const [events, setEvents] = useState([])
     const [chat, setChat] = useState([])
+
     const [refresh, setRefresh] = useState(Math.floor(100000 + Math.random() * 900000))
     const [club, setClub] = useState(null)
     const [grades, setGrades] = useState(null)
@@ -32,13 +33,29 @@ export const CustomProviderClub = ({ children }) => {
                 await setEvents(res[0].events)
                 await setChat(res[0].chat)
                 await setEventsCal(res[0].calendarEvents)
-                await setPolls(res[0].surveys)
+                await setPolls((res[0].surveys))
             }
         }
         // console.log(sucedio)
         setDefault()
 
     }, [id])
+
+    async function deaf() {
+        const res = await getClubId(id)
+        if ((res[0]) === undefined) {
+            window.location.reload(true)
+
+        }
+        else {
+            await setClub(res[0])
+            await setGrades(res[0].gardes)
+            await setEvents(res[0].events)
+            await setChat(res[0].chat)
+            await setEventsCal(res[0].calendarEvents)
+            await setPolls((res[0].surveys))
+        }
+    }
 
     useEffect(() => {
         socket = io(urlBase)
@@ -72,7 +89,7 @@ export const CustomProviderClub = ({ children }) => {
         await socket.emit('newChatMessage', forSocket)
     }
     return (
-        <ContextClub.Provider value={{ club, setClub, grades, setGrades, setRefresh, events, sumbmit, chat, sumbmitChat, eventsCal, setEventsCal, refresh, polls, setPolls }}>
+        <ContextClub.Provider value={{ club, grades, setRefresh, events, sumbmit, chat, sumbmitChat, eventsCal, refresh, polls, deaf }}>
             {children}
         </ContextClub.Provider>
     )

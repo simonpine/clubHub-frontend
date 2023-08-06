@@ -5,7 +5,7 @@ import closePng from '../img/close.png'
 import { useNavigate } from "react-router-dom";
 import { exitClub, deleteClub } from "../api"
 
-function NavClub({ user, club, main, userClubs, setUserClubs }) {
+function NavClub({ user, club, main, userClubs, deafUs }) {
     const navigate = useNavigate()
     const [close, setClose] = useState('close')
     const [close2, setClose2] = useState('closeBgc')
@@ -43,9 +43,8 @@ function NavClub({ user, club, main, userClubs, setUserClubs }) {
             userClubs: userClubs,
         })
 
-        await setUserClubs(userClubs.filter(item => item.clubId !== club.id))
+        await deafUs()
         await navigate('/home')
-
     }
     async function delet() {
         await deleteClub({
@@ -54,8 +53,8 @@ function NavClub({ user, club, main, userClubs, setUserClubs }) {
             clubId: club.id,
         }, club.id)
 
-        await setUserClubs(userClubs.filter(item => item.clubId !== club.id))
-        navigate('/home')
+        await deafUs()
+        await navigate('/home')
     }
     return (
         <>

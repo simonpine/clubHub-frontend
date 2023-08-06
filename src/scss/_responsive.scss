@@ -242,7 +242,8 @@
     .rbc-toolbar-label {
         margin: 10px;
     }
-    .rbc-month-view{
+
+    .rbc-month-view {
         border: 1px solid map-get($map: $colors, $key: 'complement1');
         border-radius: 5px;
     }
@@ -295,23 +296,29 @@
 }
 
 @media (max-width: 700px) {
-    .sureSection{
+    .sureSection {
         width: 200px;
+
         & .especialButtonSure {
             margin-top: 10px;
             width: 100%;
         }
-        
+
     }
-    .formAddEv, .fullVisionEvt{
+
+    .formAddEv,
+    .fullVisionEvt {
         width: 80%;
-        & .rowInForm{
+
+        & .rowInForm {
             flex-direction: column;
-            & .sectionAddEv{
+
+            & .sectionAddEv {
                 width: 100%;
             }
         }
     }
+
     .myImage {
         margin-bottom: 20px;
     }
@@ -341,6 +348,20 @@
 }
 
 @media (max-width: 500px) {
+    .titlePlubBAnnerConrt {
+        flex-direction: column;
+        align-items: stretch;
+
+        & div {
+            margin-top: 10px;
+            width: 100%;
+        }
+    }
+
+    #myImaasdge {
+        width: 100%;
+    }
+
     .contContiner {
         height: fit-content;
     }

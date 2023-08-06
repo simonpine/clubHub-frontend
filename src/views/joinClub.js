@@ -27,7 +27,7 @@ function JoinClub() {
     }, [])
     return (
         <ContextUser.Consumer>
-            {({ user, userClubs, setUserClubs }) => {
+            {({ user, userClubs, deafUs }) => {
                 async function searchClub(evt) {
                     await setloading(true)
                     await evt.preventDefault()
@@ -65,7 +65,6 @@ function JoinClub() {
                         clubBanner: club.clubBanner,
                         clubDescription: club.description,
                     }
-                    await setUserClubs([...userClubs, userClubsObj])
                     await setShow({})
                     await joinToClub({
                         newMembers: [...club.members, user.userName],
@@ -73,6 +72,7 @@ function JoinClub() {
                         clubsOfMember: ([...userClubs, userClubsObj]),
                         newMember: user.userName,
                     })
+                    await deafUs()
                 }
                 return user !== null && (
                     <div>

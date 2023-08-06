@@ -35,7 +35,7 @@ function Schedule() {
 
     return (
         <ContextUser.Consumer>
-            {({ user, userClubs, setUserClubs }) => {
+            {({ user, userClubs, deafUs }) => {
                 function handleSelectEvent(evt) {
                     setCurrentDescription(evt.description)
                     setCurrentTitle(evt.title)
@@ -47,7 +47,7 @@ function Schedule() {
                             <User lin={user.userImg} />
                         </div>
                         <ContextClub.Consumer>
-                            {({ club, eventsCal, setEventsCal }) => {
+                            {({ club, eventsCal, deaf }) => {
                                 async function handleSubmit(evt) {
                                     evt.preventDefault();
                                     const da = await dateRef.split('-')
@@ -59,16 +59,29 @@ function Schedule() {
                                         start: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
                                         end: new Date(da[0] + '-' + da[1] + '-' + da[2][0] + (+da[2][1] + 1)),
                                     }
-                                    await setEventsCal([...eventsCal, nuwEvt])
-                                    await setDescriptionRef('')
-                                    await setTitleRef('')
-                                    await setDateRef('')
 
                                     await calendarUpdate(JSON.stringify({
                                         clubId: club.id,
                                         calendarEvts: [...eventsCal, nuwEvt],
                                     }))
                                     await setSure(false)
+
+                                    await deaf()
+                                    await setDescriptionRef('')
+                                    await setTitleRef('')
+                                    await setDateRef('')
+                                }
+                                async function deleteEvent() {
+                                    const newArr = await eventsCal.filter((item) => item.id !== currentId)
+                                    await calendarUpdate(JSON.stringify({
+                                        clubId: club.id,
+                                        calendarEvts: newArr,
+                                    }))
+
+                                    await deaf()
+                                    await setCurrentDescription('')
+                                    await setCurrentId('')
+                                    await setCurrentTitle('')
                                 }
                                 return club && (
 
@@ -121,17 +134,7 @@ function Schedule() {
                                                     <h2>{currentTitle}</h2>
                                                     <p>{currentDescription}</p>
                                                     {currentTitle !== '' & club.clubOwner === user.userName ?
-                                                        <button onClick={() => {
-                                                            const newArr = eventsCal.filter((item) => item.id !== currentId)
-                                                            setEventsCal(newArr)
-                                                            calendarUpdate(JSON.stringify({
-                                                                clubId: club.id,
-                                                                calendarEvts: newArr,
-                                                            }))
-                                                            setCurrentDescription('')
-                                                            setCurrentId('')
-                                                            setCurrentTitle('')
-                                                        }} className="DelExi">Delete event</button>
+                                                        <button onClick={deleteEvent} className="DelExi">Delete event</button>
                                                         :
                                                         <></>
                                                     }
@@ -143,7 +146,7 @@ function Schedule() {
 
                                         <div>
 
-                                            <NavClub user={user} club={club} main={5} userClubs={userClubs} setUserClubs={setUserClubs} />
+                                            <NavClub user={user} club={club} main={5} userClubs={userClubs} deafUs={deafUs} />
                                             <div className="Log allCalendarCont">
                                                 <div className="scheduleContainer">
                                                     <div className="myCustomHeight">

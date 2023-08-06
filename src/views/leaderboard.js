@@ -18,7 +18,7 @@ function Leaderboard() {
 
     return (
         <ContextUser.Consumer>
-            {({ user, userClubs, setUserClubs }) => {
+            {({ user, userClubs, deafUs }) => {
                 return user && (
                     <>
                         <div className='LandingNav'>
@@ -29,7 +29,7 @@ function Leaderboard() {
                                 return club && (
                                     <div>
 
-                                        <NavClub user={user} club={club} main={6} userClubs={userClubs} setUserClubs={setUserClubs} />
+                                        <NavClub user={user} club={club} main={6} userClubs={userClubs} deafUs={deafUs} />
                                         <div className="Log">
 
                                             <div>

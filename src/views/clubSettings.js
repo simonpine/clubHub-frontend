@@ -23,7 +23,7 @@ function ClubSettings() {
     const formData = new FormData()
     return (
         <ContextUser.Consumer>
-            {({ user, userClubs, setUserClubs }) => {
+            {({ user, userClubs, deafUs }) => {
                 return user && (
                     <>
                         <div className='LandingNav'>
@@ -342,7 +342,7 @@ function ClubSettings() {
                                             </div>
                                         }
 
-                                        <NavClub userClubs={userClubs} setUserClubs={setUserClubs} user={user} club={club} main={4} />
+                                        <NavClub userClubs={userClubs} deafUs={deafUs} user={user} club={club} main={4} />
 
 
                                         <div className="Log">

@@ -8,7 +8,7 @@ function ForgotPassword() {
     const navigate = useNavigate();
     return (
         <ContextUser.Consumer>
-            {({ saveUser }) => {
+            {() => {
                 async function LogInFunction(evt) {
                     evt.preventDefault();
                     await setloading(true)

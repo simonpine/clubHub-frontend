@@ -34,21 +34,37 @@ export const CustomProvider = ({ children }) => {
         }
 
         setDefault()
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    async function deafUs() {
+        if ((localStorage.length) > 0) {
+            const search = JSON.parse(localStorage.getItem("user"))
+            const res = await getUser(search)
+
+            if (res.length > 0) {
+                await setUser(res[0])
+
+                await setUserClubs(res[0].clubs)
+                await pathname === '/login' && navigate('/home')
+            }
+            else {
+                localStorage.clear()
+                navigate('/login')
+            }
+        }
+        else {
+            navigate('/login')
+        }
+    }
+
     function saveUser(item) {
         setUser(item)
         setUserClubs(item.clubs)
         localStorage.setItem('user', JSON.stringify(item.userName))
         navigate('/home')
     }
-
-    function deleteClub(id) {
-        setUserClubs(userClubs.filter(item => item.clubId !== id))
-    }
     return (
-        <ContextUser.Provider value={{ user, saveUser, deleteClub, userClubs, setUserClubs }}>
+        <ContextUser.Provider value={{ user, saveUser, userClubs, deafUs }}>
             {children}
         </ContextUser.Provider>
     )

@@ -21,7 +21,7 @@ function ClubGrades() {
 
     return (
         <ContextUser.Consumer>
-            {({ user, userClubs, setUserClubs }) => {
+            {({ user, userClubs, deafUs }) => {
                 return user && (
                     <>
                         <div className='LandingNav'>
@@ -43,7 +43,7 @@ function ClubGrades() {
 
                                 return club && (
                                     <div>
-                                        <NavClub user={user} club={club} main={2} userClubs={userClubs} setUserClubs={setUserClubs} />
+                                        <NavClub user={user} club={club} main={2} userClubs={userClubs} deafUs={deafUs} />
 
 
                                         <div className="gardesTableContainer">
