@@ -75,12 +75,12 @@ function NewAccount() {
                                             <select id="mySelect" onChange={(evt) => {
                                                 setQuestionRef(evt.target.value)
                                             }} className="inputTextSelect">
-                                                <option>Select a quiestion:</option>
+                                                <option>Select a question:</option>
                                                 <option>What was the name of your first teacher?</option>
                                                 <option>What is the name of your favorite childhood friend?</option>
                                                 <option>In which city were you born?</option>
                                                 <option>What is the name of your maternal grandmother?</option>
-                                                <option>What was the make and model of your first car?</option>
+                                                <option>What was the model of your first car?</option>
                                                 <option>What is the name of the street you grew up on?</option>
                                                 <option>What was the name of the first book you read as a child?</option>
                                                 <option>What is your favorite movie?</option>
