@@ -92,6 +92,7 @@ img {
     border-radius: 100px;
     font-weight: 500;
     letter-spacing: 1.5px;
+    z-index: 100;
     transition: 0.2s;
     &:hover{
         background-color: map-get($map:$colors, $key: 'bgBlackHover');

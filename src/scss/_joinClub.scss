@@ -106,10 +106,13 @@
 }
 .h1MoreInfo{
     color: map-get($map: $colors, $key: 'complement1');
+    font-size: 25px;
+    margin: 10px 0px;
 }
 .OwnerClubMoreInfo{
     font-size: 20px;
     color: map-get($map: $colors, $key: 'complement2');
+    margin-bottom: 10px;
 }
 .pMoreInfo{
     font-size: 15px;

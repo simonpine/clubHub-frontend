@@ -69,6 +69,8 @@ function CreateClub() {
 
                 return user !== null && (
                     <div>
+                        {loading && <div className="loadingContSpe"><div className="lds-dual-ring"></div></div>}
+
                         <div className='LandingNav'>
                             <Link to={{
                                 pathname: "/userSettings",
@@ -79,8 +81,6 @@ function CreateClub() {
                         </div>
                         <div className="Log revers">
                             <div className="pasd">
-                                {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
-
                                 <form onSubmit={(evt) => {
                                     evt.preventDefault()
                                     submitClub(user)
@@ -102,6 +102,7 @@ function CreateClub() {
 
                             </div>
                             <div className="ImgChanger">
+
                                 <h2 className="inputIdentify">Club banner</h2>
                                 <div className='userLogoSettings'>
                                     {selectedImage && <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' />}

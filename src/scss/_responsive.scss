@@ -161,6 +161,7 @@
     }
 
     .clublistjoinCont {
+        margin-top: 0px;
         animation: none;
         width: 100%;
         padding: 10px;
@@ -170,7 +171,7 @@
         margin-top: 70px;
     }
 
-    .clublistjoinCont {
+    .pasd {
         margin-top: 70px;
     }
 
@@ -296,6 +297,9 @@
 }
 
 @media (max-width: 700px) {
+    .cardSurvey{
+        width: 90%;
+    }
     .sureSection {
         width: 200px;
 

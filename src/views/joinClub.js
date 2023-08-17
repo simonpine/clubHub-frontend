@@ -73,6 +73,7 @@ function JoinClub() {
                         newMember: user.userName,
                     })
                     await deafUs()
+                    await setSure(false)
                 }
                 return user !== null && (
                     <div>
@@ -93,7 +94,6 @@ function JoinClub() {
                                             <p className="pMoreInfo">{moreInfoClub.description}</p>
                                             <button className="getIn logInButton" onClick={() => {
                                                 serverChange(moreInfoClub)
-                                                setSure(false)
                                             }}>Join</button>
                                         </div>
                                     </div>
@@ -113,20 +113,10 @@ function JoinClub() {
                             </Link>
                             <button onClick={() => navigate(-1)} className='getIn'>Return</button>
                         </div>
-                        <div className="Log revers">
-                            <div className="clublistjoinCont">
-                                <div className="forTheStick">
-                                    {clubList.map(item => {
-                                        return !userClubs.some(a => a.clubId === item.id) && (
-                                            <ClubCardJoin key={item.id} jo={join} item={item} />
+                        {loading && <div className="loadingContSpe"><div className="lds-dual-ring"></div></div>}
 
-                                        )
-                                    })}
-                                </div>
-                            </div>
+                        <div className="Log">
                             <div className="pasd mar0">
-                                {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
-
                                 <div className="formLogin joinSelection">
                                     <form onSubmit={searchClub}>
                                         <h2 className="inputIdentify">Search by code:</h2>
@@ -138,9 +128,7 @@ function JoinClub() {
                                     {JSON.stringify(show) === JSON.stringify({}) ? <h3 className="errorAnoun totop"> {err}</h3> :
                                         <div className="bgShow totop">
                                             <div className="firstPartShow">
-                                                <div className="ShowImgCont">
-                                                    <img src={BannersImg + show.clubBanner} alt="Club Banner" />
-                                                </div>
+
                                                 <div>
                                                     <h2>{show.title}</h2>
                                                     <h5 className="green">{show.clubOwner}</h5>
@@ -152,6 +140,16 @@ function JoinClub() {
                                         </div>
                                     }
 
+                                </div>
+                            </div>
+                            <div className="clublistjoinCont">
+                                <div className="forTheStick">
+                                    {clubList.map(item => {
+                                        return !userClubs.some(a => a.clubId === item.id) && (
+                                            <ClubCardJoin key={item.id} jo={join} item={item} />
+
+                                        )
+                                    })}
                                 </div>
                             </div>
                         </div>

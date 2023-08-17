@@ -46,9 +46,8 @@ function NewAccount() {
                         <div className='LogInNav'>
                             <button onClick={() => navigate(-1)} className='getIn'>Return</button>
                         </div>
+                        {loading && <div className="loadingContSpe"><div className="lds-dual-ring"></div></div>}
                         <div className="Log">
-                            {loading && <div className="loadingCont CreateCont"><div className="lds-dual-ring"></div></div>}
-
                             <form onSubmit={CreateFunction} className="CreateCont">
                                 <div className="headerErr">
                                     <h1 className="h1LogCards">Create account</h1>

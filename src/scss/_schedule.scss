@@ -172,7 +172,7 @@
     height: auto;
 
     & h2 {
-        font-size: 30px;
+        font-size: 25px;
         margin-bottom: 10px;
         color: map-get($map: $colors, $key: 'complement1');
 
@@ -181,13 +181,14 @@
     & p {
         overflow: auto;
         max-height: 140px;
+        font-size: 15px;
     }
 }
 
 .closeButtonFormColendar {
     background: none;
     border: none;
-    width: 30px;
+    width: 35px;
     margin-bottom: 10px;
     opacity: 0.8;
     transition: 0.1s;

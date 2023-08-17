@@ -66,6 +66,7 @@
 }
 
 .logInButton {
+    z-index: 0;
     background-color: map-get($map: $colors, $key: 'complement2Bg');
 
     &:hover {
@@ -144,9 +145,11 @@
     width: 400px;
     height: 450px;
     position: absolute;
+    border-radius: 20px;
     margin: 20px;
     padding: 40px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
+    z-index: 50;
 }
 //=================================================\
 .log2{
@@ -170,3 +173,10 @@
     @include flex(row, center, space-between, center, wrap);
     color: map-get($map: $colors, $key: 'complement3');
   }
+  .loadingContSpe {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    backdrop-filter: blur(5px);
+    z-index: 50;
+}

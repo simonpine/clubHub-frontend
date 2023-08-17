@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { getUser, editUser } from "../api";
 import { useParams } from "react-router-dom";
 function ForgotPasswordRecover() {
-    const [loading, setloading] = useState(true)
 
     const [err, setErr] = useState('')
     const [question, setQuestion] = useState('')
@@ -31,7 +30,7 @@ function ForgotPasswordRecover() {
                 await setAnswer(res['answer'])
                 await setMyObj(res)
             }
-            await setloading(false)
+            // await setloading(false)
         }
         getFullUser()
 
@@ -41,7 +40,7 @@ function ForgotPasswordRecover() {
             {() => {
                 async function LogInFunction(evt) {
                     evt.preventDefault();
-                    await setloading(true)
+                    // await setloading(true)
                     setErr('')
 
                     if (passwordRef !== confirmPasswordRef) {
@@ -54,7 +53,7 @@ function ForgotPasswordRecover() {
                         await editUser(myObj.userName, JSON.stringify(myObj.clubs), md5(passwordRef), myObj.userImg, myObj.question, myObj.answer, myObj.description, myObj.userName)
                         await navigate('/login')
                     }
-                    await setloading(false)
+                    // await setloading(false)
                 }
                 return (
                     <div>
@@ -66,7 +65,6 @@ function ForgotPasswordRecover() {
                                 <img src={clubHub} alt='clubHub, app logo' />
                             </div>
                             <div className="LoadingAndFormCont">
-                                {loading && <div className="loadingCont formChangePass"><div className="lds-dual-ring"></div></div>}
                                 {exist ?
                                     <form onSubmit={LogInFunction} className="formLogin formChangePass">
                                         <div className="headerErr">

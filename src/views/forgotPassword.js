@@ -25,7 +25,9 @@ function ForgotPassword() {
                                 <img src={clubHub} alt='clubHub, app logo' />
                             </div>
                             <div className="LoadingAndFormCont">
-                                {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
+                                {loading && <div style={{
+                                    height: '250px'
+                                }} className="loadingCont"><div className="lds-dual-ring"></div></div>}
                                 <form onSubmit={LogInFunction} className="formRecover1">
                                     <div className="headerErr">
                                         <h1 className="h1LogCards">Recovery</h1>

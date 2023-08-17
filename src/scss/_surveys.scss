@@ -139,8 +139,8 @@
 }
 
 .addSurveyInCardButton {
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 150px;
     background: none;
     border: none;
 
@@ -158,6 +158,8 @@
 .cardSurveySpecial {
     @extend .cardSurvey;
     transition: 0.2s;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
         cursor: pointer;
