@@ -67,7 +67,7 @@
     color: map-get($map: $colors, $key: 'complement1');
 }
 .lesOpp{
-    opacity: 0.3;
+    display: none;
 }
 .h3InTable{
     margin: 10px 0px;

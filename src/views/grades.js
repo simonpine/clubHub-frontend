@@ -50,7 +50,7 @@ function ClubGrades() {
                                             {loading && <div className="loadingContTable "><div className="lds-dual-ring"></div></div>}
                                             {club.members.length > 0 ?
                                                 <>
-                                                    <input placeholder="Filter by members names" className="NameFilterInput" id="SearchByNmae" value={searchName} onChange={(evt) => setSearchName(evt.target.value)} />
+                                                    <input placeholder="Filter by members names" className={club.clubOwner !== user.userName ? "lesOpp NameFilterInput" : 'NameFilterInput'} id="SearchByNmae" value={searchName} onChange={(evt) => setSearchName(evt.target.value)} />
                                                     <div className="tableInCont">
 
                                                         <table>
