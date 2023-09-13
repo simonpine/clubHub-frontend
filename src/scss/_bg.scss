@@ -3,7 +3,7 @@
     height: 100vh;
     position: fixed;
     background-color: map-get($map: $colors, $key: 'bgBlur');
-    // backdrop-filter: blur(200px);
+    backdrop-filter: blur(200px);
     z-index: -1;
 }
 
@@ -16,7 +16,7 @@
 
 .circle {
     position: fixed;
-    // border-radius: 100%;
+    border-radius: 100%;
     z-index: -2;
 }
 
