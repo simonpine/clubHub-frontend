@@ -62,3 +62,7 @@ html {
     background-color: map-get($map: $colors, $key: 'complement1');
     border-radius: 5px;
 }
+
+textarea {
+    resize: none;
+  }
