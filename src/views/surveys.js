@@ -207,7 +207,8 @@ function Surveys() {
                                         banner: UploadFile.name,
                                         questionary: currentSurvey,
                                         title: titleRef,
-                                        answers
+                                        answers,
+                                        whoAnswered: [],
                                     }
 
                                     await formData.append('polls', JSON.stringify([...polls, newSurvey]))
@@ -240,7 +241,8 @@ function Surveys() {
                                     await addRes(JSON.stringify({
                                         clubId: club.id,
                                         newAnswers: res,
-                                        pollId: currentAnswering.id
+                                        pollId: currentAnswering.id,
+                                        userAns: user.userName
                                     }))
                                     setCurrentAnswering(null)
                                     setRes([])
@@ -426,13 +428,13 @@ function Surveys() {
                                             :
                                             <div className="clubListHomeContainer">
                                                 {polls.map(item => {
-
+                                                    console.log(item)
                                                     return (
                                                         <div className="cardSurvey" key={item.id}>
                                                             <img alt="Survey banner" src={surveysBanner + item.banner} />
                                                             <h3>{item.title}</h3>
                                                             <h4>{item.questionary.length} {item.questionary.length > 1 ? <>questions</> : <>question</>}</h4>
-                                                            <button onClick={() => setCurrentAnswering(item)} className="getIn logInButton">{club.clubOwner === user.userName ? <>Results</> : <>Fill out</>}</button>
+                                                            <button disabled={item.whoAnswered.some(it => it === user.userName)}  onClick={() => setCurrentAnswering(item)} className="getIn logInButton">{club.clubOwner === user.userName ? <>Results</> : item.whoAnswered.some(it => it === user.userName) ? <>Answered</> : <>Fill out</>}</button>
                                                         </div>
                                                     )
                                                 })}
