@@ -237,6 +237,14 @@
     }
 }
 
+.messCont2{
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    rotate: 180deg;
+    @include flex(column-reverse, normal, normal, flex-end, nowrap);
+}
+
 .mess {
     max-width: 70%;
 
@@ -376,6 +384,7 @@
 .chatContainerEvt {
     background: none;
     height: auto;
+    // flex-direction: column-reverse;
 }
 
 .allFormContEvt {
@@ -388,10 +397,12 @@
 .msgContEvt {
     padding: 0px;
     height: auto;
+    
 }
 
 .messEvents {
     width: 100%;
+    
 }
 
 .allMessageContEvt {

@@ -187,7 +187,7 @@ function ClubEvent() {
                                                             }
                                                         </form>}
                                                     <div className={club.clubOwner !== user.userName ? "oneH msgCont msgContEvt" : 'msgCont msgContEvt'}>
-                                                        <div className="messCont">
+                                                        <div className="messCont2">
                                                             {events.length !== 0 &&
 
 
