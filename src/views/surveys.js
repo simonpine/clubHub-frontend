@@ -428,7 +428,6 @@ function Surveys() {
                                             :
                                             <div className="clubListHomeContainer">
                                                 {polls.map(item => {
-                                                    console.log(item)
                                                     return (
                                                         <div className="cardSurvey" key={item.id}>
                                                             <img alt="Survey banner" src={surveysBanner + item.banner} />
