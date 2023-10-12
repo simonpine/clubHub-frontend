@@ -2,8 +2,8 @@
     width: 700px;
     height: 450px;
     background-color: map-get($map:$colors, $key: 'bgBlack');
-    border-radius: 40px;
-    padding: 30px;
+    border-radius: 30px;
+    padding: 20px;
     overflow: hidden;
     animation-name: apear;
     animation-duration: 0.3s;
@@ -23,14 +23,14 @@
     // background-color: map-get($map:$colors, $key: 'bgBlack');
     border: solid 1px map-get($map:$colors, $key: 'complement2BgHover');
     padding: 2%;
-    border-radius: 30px;
+    border-radius: 20px;
     @include flex(row, center, space-between, flex-start, wrap);
     margin-bottom: 20px;
 }
 .imgCardListCont{
     width: 35%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 10px;
     overflow: hidden;
 }
 .textInClubCardJoin{
@@ -116,11 +116,11 @@
 }
 .pMoreInfo{
     font-size: 15px;
-    height: 80px;
+    max-height: 80px;
     overflow: auto;
     margin-bottom: 10px;
 }
 .moreInfoBanner{
     border-radius: 10px;
-    height: 200px;
+    height: 300px;
 }

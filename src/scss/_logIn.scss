@@ -26,7 +26,7 @@
     width: 400px;
     height: 450px;
     background-color: map-get($map: $colors, $key: 'bgBlack');
-    border-radius: 40px;
+    border-radius: 20px;
     padding: 40px;
     @include flex(column, normal, space-between, normal, wrap)
 }

@@ -45,7 +45,7 @@
     width: 700px;
     height: 640px;
     background-color: map-get($map: $colors, $key: 'bgBlack');
-    border-radius: 40px;
+    border-radius: 30px;
     animation-name: apear2;
     animation-duration: 0.3s;
 }
@@ -90,7 +90,7 @@
 .allFormCont {
     height: 40px;
     width: 100%;
-    padding: 20px 25px 20px;
+    padding: 10px 25px 20px;
     // background-color: map-get($map: $colors, $key: 'bgBlack');
     border-radius: 0px 0px 40px 40px;
     @include flex(row, flex-end, space-between, flex-end, wrap);
@@ -99,7 +99,7 @@
 
 .contForFiles {
     backdrop-filter: blur(5px);
-    margin-bottom: 40px;
+    margin-bottom: 26px;
     width: 100%;
     height: 200px;
     background-color: map-get($map: $colors, $key: 'bgBlack');
@@ -224,15 +224,15 @@
 .msgCont {
     width: 100%;
     overflow: hidden;
-    height: 510px;
+    height: 530px;
     padding: 20px 25px;
 
     & .messCont {
         height: 100%;
         width: 100%;
         overflow: auto;
-        rotate: 180deg;
-        @include flex(column, normal, normal, flex-end, nowrap);
+        // rotate: 180deg;
+        @include flex(column-reverse, normal, normal, flex-start, nowrap);
 
     }
 }
@@ -241,18 +241,17 @@
     height: 100%;
     width: 100%;
     overflow: auto;
-    rotate: 180deg;
-    @include flex(column-reverse, normal, normal, flex-end, nowrap);
+    @include flex(column, normal, normal, flex-start, nowrap);
 }
 
 .mess {
     max-width: 70%;
 
-    margin-right: 10px;
+    margin-left: 10px;
     background-color: map-get($map: $colors, $key: 'chatMessageOther');
-    rotate: 180deg;
+    // rotate: 180deg;
     padding: 10px 20px;
-    border-radius: 5px 20px 20px 20px;
+    border-radius: 5px 15px 15px 15px;
 }
 
 .oneH {
@@ -267,7 +266,7 @@
 
 .logo {
 
-    rotate: 180deg;
+    // rotate: 180deg;
     width: 30px;
     height: 30px;
     border-radius: 20px;
@@ -282,7 +281,7 @@
     animation-duration: 0.3s;
     margin-bottom: 30px;
     margin-right: 10px;
-    @include flex(row-reverse, normal, normal, flex-end, nowrap);
+    @include flex(row, normal, normal, flex-start, nowrap);
 }
 
 .textMessage {
@@ -294,6 +293,7 @@
     border-radius: 10px;
     margin-top: 10px;
     margin-bottom: 5px;
+    max-height: 400px
 }
 
 .downLoadButton {
@@ -324,15 +324,15 @@
 }
 
 .otherSender {
-    flex-direction: row;
-    margin-right: 0px;
-    align-self: flex-start;
+    flex-direction: row-reverse;
+    margin-right: 10px;
+    align-self: flex-end;
 
     & .mess {
         background-color: map-get($map: $colors, $key: 'chatMessageOwn');
         margin: 0px;
-        margin-left: 10px;
-        border-radius: 20px 5px 20px 20px;
+        margin-right: 10px;
+        border-radius: 15px 5px 15px 15px;
     }
 
     & .messEvents {
@@ -344,7 +344,7 @@
 
 .chatContainerGeneral {
     @extend .chatContainer;
-    width: 80vw;
+    width: 60vw;
 }
 
 .messInfoEvents {
@@ -406,7 +406,7 @@
 }
 
 .allMessageContEvt {
-    margin: 20px 0px 0px 0px;
+    margin: 0px 0px 20px 0px;
     // margin-top: 20px;
     animation-duration: 0s;
     width: 100%;

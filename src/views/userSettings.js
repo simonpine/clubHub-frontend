@@ -181,6 +181,7 @@ function ForgotPasswordRecover() {
                                         <div>
                                             {/* <h2 className="inputIdentify">Profile picture:</h2> */}
                                             <div>
+                                            <h2 className="inputIdentify">Change icon:</h2>
                                                 <input type="file"
                                                     name="myImage"
                                                     onChange={(event) => {

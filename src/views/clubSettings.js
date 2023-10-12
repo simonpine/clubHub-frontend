@@ -371,7 +371,7 @@ function ClubSettings() {
 
                                             </div>
                                             <div className="ImgChanger">
-                                                <h2 className="inputIdentify">Club banner</h2>
+                                                <h2 className="inputIdentify">Club banner:</h2>
                                                 <div className='userLogoSettings'>
                                                     {selectedImage ? <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' /> : <img src={BannersImg + club.clubBanner} alt='CLub banner' />}
                                                 </div>

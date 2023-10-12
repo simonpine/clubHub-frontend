@@ -118,6 +118,7 @@
     .specialAllForm {
         border-radius: 0px;
         padding: 10px;
+        padding-top: 5;
         height: fit-content;
         background-color: map-get($map: $colors, $key: 'bgBlack');
 
