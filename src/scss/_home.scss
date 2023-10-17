@@ -90,7 +90,7 @@
     animation-name: apearCard;
     animation-duration: 0.3s;
     width: 250px;
-    height: 250px;
+    height: auto;
     background-color: map-get($map: $colors, $key: 'bgBlack');
     padding: 10px;
     border-radius: 20px;
@@ -101,7 +101,7 @@
 .imgCardConatiner {
     overflow: hidden;
     border-radius: 10px;
-    height: 100px;
+    height: 130px;
     width: 100%;
     border: none;
     transition: 0.3s;
@@ -155,7 +155,8 @@
 
 .textInCard {
     @include flex(column, flex-start, center, flex-start, wrap);
-    height: 150px;
+    // height: 150px;
+    margin-top: 10px;
     width: 100%;
 }
 
@@ -170,7 +171,7 @@
 .pInCard {
     font-size: 10px;
     margin-top: 10px;
-    height: 70px;
+    height: 40px;
     overflow: auto;
 }
 
