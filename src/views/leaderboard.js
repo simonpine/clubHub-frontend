@@ -65,16 +65,17 @@ function Leaderboard() {
                                     if (active.id !== over.id) {
                                         const oldIndex = members.findIndex((item) => item === active.id);
                                         const newIndex = members.findIndex((item) => item === over.id);
-                                        await sortMembers(JSON.stringify({ newMembers: (array_move([...members], oldIndex, newIndex)), clubId: club.id }))
-                                        await deaf()
+                                        // await sortMembers(JSON.stringify({ newMembers: (array_move([...members], oldIndex, newIndex)), clubId: club.id }))
+                                        // await deaf()
+                                        setMembers(array_move([...members], oldIndex, newIndex))
                                     }
 
                                 }
 
-                                // async function saveInServer(){
-                                //     await sortMembers(JSON.stringify({ newMembers : members, clubId: club.id}))
-                                //     await deaf()
-                                // }
+                                async function saveInServer(){
+                                    await sortMembers(JSON.stringify({ newMembers : members, clubId: club.id}))
+                                    await deaf()
+                                }
                                 console.log(members)
                                 return club && (
                                     <>
@@ -165,7 +166,7 @@ function Leaderboard() {
                                                                     )
                                                                 })}
                                                             </SortableContext>
-                                                            {/* <button onClick={saveInServer} className="getIn logInButton">Save changes</button> */}
+                                                            <button onClick={saveInServer} className="getIn logInButton">Save changes</button>
                                                         </DndContext>}
 
                                                 </div>
