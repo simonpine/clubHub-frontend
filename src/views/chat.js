@@ -8,7 +8,7 @@ import send from '../img/send.png'
 import userImgPng from '../img/user.png'
 import upload from '../img/upload.png'
 import doc from '../img/document.png'
-import { usersImg } from "../api"
+import { usersImg, exitClub } from "../api"
 import close from '../img/close.png'
 
 
@@ -30,6 +30,7 @@ function Chat() {
         await setUserInfo(result[0])
         await setSure(true)
     }
+
     return (
         <ContextUser.Consumer>
             {({ user, userClubs, serUserClubs }) => {
@@ -42,7 +43,7 @@ function Chat() {
                             <User lin={user.userImg} />
                         </div>
                         <ContextClub.Consumer>
-                            {({ club, chat, sumbmitChat }) => {
+                            {({ club, chat, sumbmitChat, deaf }) => {
 
                                 async function hundleSubmit(evt) {
                                     evt.preventDefault()
@@ -122,6 +123,16 @@ function Chat() {
 
                                 }
 
+                                async function chao(userName, clubsOfUser) {
+                                    await setSure(false)
+                                    await exitClub({
+                                        userName: userName,
+                                        clubId: club.id,
+                                        userClubs: clubsOfUser,
+                                    })
+                                    await deaf()
+                                }
+
                                 return club && (
                                     <div>
                                         <NavClub user={user} club={club} main={3} userClubs={userClubs} serUserClubs={serUserClubs} />
@@ -144,6 +155,13 @@ function Chat() {
 
                                                         </div>
                                                     </div>
+                                                    {user.userName === club.clubOwner & user.userName !== userInfo.userName ?
+                                                        <button onClick={() => chao(userInfo.userName, userInfo.clubs)} className="DelExi">
+                                                            Expel member
+                                                        </button>
+                                                        :
+                                                        <></>
+                                                    }
                                                 </div>
 
                                                 <div className="surebg" onClick={() => {

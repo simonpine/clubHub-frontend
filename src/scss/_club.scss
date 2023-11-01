@@ -426,3 +426,59 @@
 .h1UserInfo{
     margin-bottom: 10px;
 }
+//=============================================================================
+.moreImg{
+    width: 30px;
+    height: 30px;
+}
+.leaderboardCont{
+    position: relative;
+    top: 140px;
+    left: 30vw;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+
+}
+.userOfTheList{
+    width: 100%;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    padding: 10px 0px 10px 20px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.buttonDis{
+    background: none;
+    border: none;
+    &:hover{
+        cursor: pointer;
+    }
+}
+.nomeOfUserInList{
+    font-weight: 300;
+    font-size: 20px;
+}
+.numberInList{
+    font-weight: 700;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.dor{
+    color: #F7C93E;
+}
+.pla{
+    color: #BDBDBD;
+}
+.bro{
+    color: #A36C3F;
+}
+.buttonDis2{
+    @extend .buttonDis;
+    &:hover{
+        cursor: grab;
+    }
+}

@@ -97,6 +97,7 @@
     width: 50px;
     height: 50px;
     padding: 4px;
+    
     & img{
         width: 100%;
         height: 100%;
@@ -109,6 +110,8 @@
         // }
     }
 }
+
+
 
 .inputfile+label svg {
     width: 15px;
@@ -173,4 +176,25 @@
     border: 1px solid map-get($map: $colors, $key: 'complement1');
     border-radius: 40px;
     overflow: hidden;
+}
+.iborrainputfile{
+    // width: 200px;
+    max-width: 160px;
+    overflow: hidden;
+    // flex-direction: column;
+    max-height: 20px;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+}
+.clubWithOutMembers2{
+    position: absolute;
+    font-weight: 200;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    padding: 20px;
+    border-radius: 100px;
+    width: 60vw;
+    text-align: center;
 }

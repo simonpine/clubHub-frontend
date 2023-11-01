@@ -15,6 +15,7 @@ function NavClub({ user, club, main, userClubs, deafUs }) {
     const [main4, setMain4] = useState('')
     const [main5, setMain5] = useState('')
     const [main6, setMain6] = useState('')
+    const [main7, setMain7] = useState('')
     useEffect(() => {
         if (main === 1) {
             setMain1('selected')
@@ -30,6 +31,9 @@ function NavClub({ user, club, main, userClubs, deafUs }) {
         }
         else if (main === 5) {
             setMain5('selected')
+        }
+        else if (main === 7) {
+            setMain7('selected')
         }
         else {
             setMain6('selected')
@@ -76,6 +80,7 @@ function NavClub({ user, club, main, userClubs, deafUs }) {
                     <Link className={"LinkInClubMenu " + main3} to={{ pathname: "/chat/" + club.id }}>Chat</Link>
                     <Link className={"LinkInClubMenu " + main5} to={{ pathname: "/schedule/" + club.id }}>Schedule</Link>
                     <Link className={"LinkInClubMenu " + main6} to={{ pathname: "/surveys/" + club.id }}>Surveys</Link>
+                    <Link className={"LinkInClubMenu " + main7} to={{ pathname: "/leaderboard/" + club.id }}>Leaderboard</Link>
 
                     {club.clubOwner === user.userName && <Link className={"LinkInClubMenu " + main4} to={{ pathname: "/Settings/" + club.id }}>Settings</Link>}
                 </div>
