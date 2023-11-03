@@ -76,7 +76,7 @@ function Leaderboard() {
                                     await sortMembers(JSON.stringify({ newMembers : members, clubId: club.id}))
                                     await deaf()
                                 }
-                                console.log(members)
+                                // console.log(members)
                                 return club && (
                                     <>
                                         {sure &&
