@@ -73,6 +73,10 @@
 
 
 @media (max-width: 1000px) {
+    .leaderboardCont{
+        width: 85vw;
+        left: 5vw;
+    }
     .BlurBack {
         background-color: map-get($map: $colors, $key: 'bgBlackToMobile');
     }
@@ -249,6 +253,9 @@
         border: 1px solid map-get($map: $colors, $key: 'complement1');
         border-radius: 5px;
     }
+    .contForFilesCHa{
+        margin-top: -100%;
+    }
 }
 
 @media (max-width: 900px) {
@@ -343,6 +350,7 @@
         flex-direction: column;
         justify-content: center;
         top: 60px;
+        gap: 10px;
     }
 
     .clubCard {

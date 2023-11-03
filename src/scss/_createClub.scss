@@ -1,4 +1,26 @@
-.textArea{
+.textArea {
     @extend .inputText;
     height: 130px;
+}
+
+.boxesCont {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.labelForBoxes {
+    // margin-bottom: 10px;
+    width: 120px;
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: row-reverse;
+    // padding-bottom: 10px;
+    // border-bottom: 1px solid map-get($map: $colors, $key: 'complement1');
+    
+}
+.TextOfBoxes{
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: 300;
 }

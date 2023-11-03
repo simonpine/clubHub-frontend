@@ -76,8 +76,8 @@ function NavClub({ user, club, main, userClubs, deafUs }) {
                     }}><img alt="colibriLogo" src={closePng} /></button>
 
                     <Link className={"LinkInClubMenu " + main1} to={{ pathname: "/club/" + club.id }}>Events</Link>
-                    <Link className={"LinkInClubMenu " + main2} to={{ pathname: "/gardes/" + club.id }}>Grades</Link>
-                    <Link className={"LinkInClubMenu " + main3} to={{ pathname: "/chat/" + club.id }}>Chat</Link>
+                    {club.existGrades ? <Link className={"LinkInClubMenu " + main2} to={{ pathname: "/gardes/" + club.id }}>Grades</Link> : <></>}
+                    {club.existChat ? <Link className={"LinkInClubMenu " + main3} to={{ pathname: "/chat/" + club.id }}>Chat</Link> : <></>}
                     <Link className={"LinkInClubMenu " + main5} to={{ pathname: "/schedule/" + club.id }}>Schedule</Link>
                     <Link className={"LinkInClubMenu " + main6} to={{ pathname: "/surveys/" + club.id }}>Surveys</Link>
                     <Link className={"LinkInClubMenu " + main7} to={{ pathname: "/leaderboard/" + club.id }}>Leaderboard</Link>

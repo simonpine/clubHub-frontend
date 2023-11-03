@@ -8,8 +8,13 @@ import { useState } from "react";
 import { newClub } from "../api";
 
 function CreateClub() {
-    const [loading, setloading] = useState(false)
+    const [checked, setChecked] = useState(false)
+    const handleClick = () => setChecked(!checked)
 
+    const [checked2, setChecked2] = useState(false)
+    const handleClick2 = () => setChecked2(!checked2)
+
+    const [loading, setloading] = useState(false)
     const [err, setErr] = useState('')
     const [descriptioRef, setDescriptioRef] = useState('')
     const [nameRef, setNameRef] = useState('')
@@ -42,6 +47,10 @@ function CreateClub() {
             await formData.append('description', descriptioRef)
             await formData.append('chat', JSON.stringify([]))
             await formData.append('events', JSON.stringify([]))
+
+            await formData.append('existGrades', JSON.stringify(checked2))
+            await formData.append('existChat', JSON.stringify(checked))
+
             await formData.append('calendarEvents', JSON.stringify([]))
             await formData.append('grades', JSON.stringify({
                 students: [],
@@ -57,10 +66,7 @@ function CreateClub() {
             await user.clubs.push({ own: true, clubId: idForUpload, clubTitle: nameRef, clubBanner: UploadFile.name, clubDescription: descriptioRef })
             await navigate('/home')
         }
-
-
         await setloading(false)
-
     }
     const formData = new FormData()
     return (
@@ -96,6 +102,16 @@ function CreateClub() {
                                     <div>
                                         <h2 className="inputIdentify">Description:</h2>
                                         <textarea id="ClubDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder="A cinema club is a gathering of film enthusiasts who come together to watch and discuss movies. It provides a space for like-minded individuals to share their love for cinema, explore different genres, and engage in meaningful conversations about films." />
+                                    </div>
+                                    <div className="boxesCont">
+                                        <label className="labelForBoxes">
+                                            <h5 className="TextOfBoxes">Have chat</h5>
+                                            <input className="box" onChange={handleClick} checked={checked} type="checkbox"/>
+                                        </label>
+                                        <label className="labelForBoxes">
+                                            <h5 className="TextOfBoxes">Have grades</h5>
+                                            <input className="box" onChange={handleClick2} checked={checked2}  type="checkbox"/>
+                                        </label>
                                     </div>
                                     <button disabled={(descriptioRef.length === 0) || (nameRef.length === 0) || selectedImage === null} className="getIn logInButton">Create</button>
                                 </form>

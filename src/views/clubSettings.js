@@ -2,9 +2,19 @@ import { ContextClub } from "../context/clubContext"
 import { ContextUser } from "../context/userContext"
 import NavClub from "../components/navClub"
 import { useState } from "react"
-import { BannersImg, editClub } from "../api"
+import { BannersImg, changeExists, editClub } from "../api"
 import User from "../components/user"
 function ClubSettings() {
+
+    const [exist, setExist] = useState(false)
+
+    const [checked, setChecked] = useState(false)
+    const handleClick = () => setChecked(!checked)
+
+    const [checked2, setChecked2] = useState(false)
+    const handleClick2 = () => setChecked2(!checked2)
+
+
     const [loading, setloading] = useState(false)
     const [loading2, setloading2] = useState(false)
     const [sure, setSure] = useState(false)
@@ -30,14 +40,14 @@ function ClubSettings() {
                             <User lin={user.userImg} />
                         </div>
                         <ContextClub.Consumer>
-                            {({ club }) => {
+                            {({ club, deaf }) => {
 
                                 async function changeClub(evt) {
                                     await evt.preventDefault();
                                     await await setloading2(true)
                                     await setloading(true)
 
-                                    if (nameRef === '' & selectedImage === null) {
+                                    if (nameRef === '' & selectedImage === null & descriptioRef !== '') {
 
                                         const newClubsArray = await user.clubs.filter(item => item.clubId !== club.id)
                                         await newClubsArray.push({
@@ -75,7 +85,7 @@ function ClubSettings() {
                                         club.description = descriptioRef
                                         user.clubs = newClubsArray
                                     }
-                                    else if (descriptioRef === '' & selectedImage === null) {
+                                     else if (descriptioRef === '' & selectedImage === null & nameRef !== '') {
 
 
                                         const newClubsArray = await user.clubs.filter(item => item.clubId !== club.id)
@@ -113,7 +123,7 @@ function ClubSettings() {
                                         club.title = nameRef
                                         user.clubs = newClubsArray
                                     }
-                                    else if (descriptioRef === '' & nameRef === '') {
+                                    else if (descriptioRef === '' & nameRef === '' & selectedImage !== null) {
 
                                         const UploadFile = await renameFile(selectedImage, club.id)
                                         await formData.append('image', UploadFile)
@@ -153,7 +163,7 @@ function ClubSettings() {
                                         user.clubs = newClubsArray
 
                                     }
-                                    else if (descriptioRef === '') {
+                                    else if (descriptioRef === '' & nameRef !== '' & selectedImage !== null) {
 
                                         const UploadFile = await renameFile(selectedImage, club.id)
                                         await formData.append('image', UploadFile)
@@ -194,7 +204,7 @@ function ClubSettings() {
                                         user.clubs = newClubsArray
 
                                     }
-                                    else if (nameRef === '') {
+                                    else if (nameRef === '' & descriptioRef !== '' & selectedImage !== null) {
                                         const UploadFile = await renameFile(selectedImage, club.id)
                                         await formData.append('image', UploadFile)
 
@@ -234,7 +244,7 @@ function ClubSettings() {
                                         user.clubs = newClubsArray
 
                                     }
-                                    else if (selectedImage === null) {
+                                    else if (selectedImage === null & nameRef !== '' & descriptioRef !== '') {
 
                                         const newClubsArray = await user.clubs.filter(item => item.clubId !== club.id)
                                         await newClubsArray.push({
@@ -272,7 +282,8 @@ function ClubSettings() {
                                         user.clubs = newClubsArray
                                         club.description = descriptioRef
                                     }
-                                    else {
+                                    else if(selectedImage !== null & nameRef !== '' & descriptioRef !== '') {
+
                                         const UploadFile = await renameFile(selectedImage, club.id)
                                         await formData.append('image', UploadFile)
 
@@ -312,8 +323,26 @@ function ClubSettings() {
                                         club.title = nameRef
                                         user.clubs = newClubsArray
                                     }
+                                    
+                                    if(exist){
+                                        if(checked !== club.existChat){
+                                            await changeExists(JSON.stringify({
+                                                which: 'chat',
+                                                clubId: club.id,
+                                                newData: checked
+                                            }))
+                                        }
+                                        if(checked2 !== club.existGrades){
+                                            await changeExists(JSON.stringify({
+                                                which: 'grades',
+                                                clubId: club.id,
+                                                newData: checked2
+                                            }))
+                                        }
+                                    }
 
-
+                                    await deaf()
+                                    await setExist(false)
                                     await setNameRef('')
                                     await setDescriptioRef('')
                                     await setSelectedImage(null)
@@ -321,6 +350,18 @@ function ClubSettings() {
                                     await setloading(false)
                                     await setloading2(false)
                                     await setSure(false)
+                                }
+
+                                function changedTheExist(which) {
+                                    setExist(true)
+                                    if(which === 1){
+                                        setChecked(!club.existChat)
+                                        setChecked2(club.existGrades)
+                                    }
+                                    else{
+                                        setChecked2(!club.existGrades)
+                                        setChecked(club.existChat)
+                                    }
                                 }
 
                                 return club && (
@@ -366,7 +407,30 @@ function ClubSettings() {
                                                         <h2 className="inputIdentify">Change description:</h2>
                                                         <textarea id="changeDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder={club.description} />
                                                     </div>
-                                                    <button disabled={(nameRef.replaceAll(' ', '').length === 0 & descriptioRef.replaceAll(' ', '').length === 0) & selectedImage === null} className="getIn logInButton">Save changes</button>
+                                                    {exist ?
+                                                        <div className="boxesCont">
+                                                            <label className="labelForBoxes">
+                                                                <h5 className="TextOfBoxes">Have chat</h5>
+                                                                <input className="box" onChange={handleClick} checked={checked} type="checkbox" />
+                                                            </label>
+                                                            <label className="labelForBoxes">
+                                                                <h5 className="TextOfBoxes">Have grades</h5>
+                                                                <input className="box" onChange={handleClick2} checked={checked2} type="checkbox" />
+                                                            </label>
+                                                        </div>
+                                                        :
+                                                        <div className="boxesCont">
+                                                            <label className="labelForBoxes">
+                                                                <h5 className="TextOfBoxes">Have chat</h5>
+                                                                <input className="box" onChange={()=> changedTheExist(1)} checked={club.existChat} type="checkbox" />
+                                                            </label>
+                                                            <label className="labelForBoxes">
+                                                                <h5 className="TextOfBoxes">Have grades</h5>
+                                                                <input className="box" onChange={()=> changedTheExist()} checked={club.existGrades} type="checkbox" />
+                                                            </label>
+                                                        </div>
+                                                    }
+                                                    <button disabled={(nameRef.replaceAll(' ', '').length === 0 & descriptioRef.replaceAll(' ', '').length === 0) & selectedImage === null & exist === false} className="getIn logInButton">Save changes</button>
                                                 </form>
 
                                             </div>

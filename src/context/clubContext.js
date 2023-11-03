@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getClubId } from "../api";
 import io from 'socket.io-client'
 import { urlBase } from "../api";
@@ -9,6 +9,7 @@ let socket
 export const ContextClub = createContext()
 
 export const CustomProviderClub = ({ children }) => {
+    const navigate = useNavigate()
     const { id } = useParams()
     const [events, setEvents] = useState([])
     const [chat, setChat] = useState([])
@@ -25,8 +26,8 @@ export const CustomProviderClub = ({ children }) => {
         async function setDefault() {
             const res = await getClubId(id)
             if ((res[0]) === undefined) {
-                window.location.reload(true)
-
+                await navigate('Home')
+                await window.location.reload(true)
             }
             else {
                 await setClub(res[0])

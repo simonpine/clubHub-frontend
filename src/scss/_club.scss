@@ -224,11 +224,11 @@
 .msgCont {
     width: 100%;
     overflow: hidden;
-    height: 530px;
+    height: auto;
     padding: 20px 25px;
 
     & .messCont {
-        height: 100%;
+        max-height: 55vh;
         width: 100%;
         overflow: auto;
         // rotate: 180deg;
@@ -336,6 +336,7 @@
     }
 
     & .messEvents {
+        padding: 10px;
         margin: 0px;
         background-color: black;
     }
@@ -345,6 +346,7 @@
 .chatContainerGeneral {
     @extend .chatContainer;
     width: 60vw;
+    max-height: 70vh;
 }
 
 .messInfoEvents {
@@ -406,13 +408,13 @@
 }
 
 .allMessageContEvt {
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px 15px 0px;
     // margin-top: 20px;
     animation-duration: 0s;
     width: 100%;
 
     & .mess {
-        border-radius: 20px;
+        border-radius: 10px;
     }
 }
 .xplusTitle{

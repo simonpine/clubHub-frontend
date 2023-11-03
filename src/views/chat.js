@@ -221,7 +221,7 @@ function Chat() {
                                                     {selectedImage !== null &&
                                                         <div onClick={() => {
                                                             setSelectedImage(null)
-                                                        }} className='contForFiles'>
+                                                        }} className='contForFiles contForFilesCHa'>
                                                             {selectedImage.type.split('/')[0] === 'image' ?
                                                                 <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' />
                                                                 :
