@@ -2,7 +2,7 @@
 .mainTitle {
     max-width: 1350px;
     font-size: 100px;
-    padding: 20px;
+    padding: 2.4vw;
     letter-spacing: 10px;
     font-weight: 900;
     line-height: 1.8;
@@ -20,7 +20,7 @@
 }
 
 .img1 {
-    width: 38%;
+    width: 35%;
     height: 125px;
     border-radius: 100px;
     overflow: hidden;
@@ -105,8 +105,9 @@ img {
 }
 //----------------------------------Content
 .contContiner{
+    padding: 2.4vw;
     min-height: 100vh;
-    width: 99vw;
+    width: 95vw;
     @include flex(row, center, center, center, wrap)
 }
 .Content{
