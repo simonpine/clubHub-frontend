@@ -155,7 +155,7 @@ function Schedule() {
                                                             events={eventsCal}
                                                             startAccessor="start"
                                                             endAccessor="end"
-                                                            style={{ height: '500px' }}
+                                                            style={{ height: '50vh' }}
                                                             views={{
                                                                 month: true,
                                                                 agenda: true,
