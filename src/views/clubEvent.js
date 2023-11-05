@@ -9,6 +9,23 @@ import send from '../img/send.png'
 import upload from '../img/upload.png'
 import doc from '../img/document.png'
 
+const Linkify = ({children})=> {
+    const isUrl = word => {
+        const urlPattern = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([/]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
+        return word.match(urlPattern)
+    }
+
+    const addMarkup = word => {
+        return isUrl(word) ? 
+            `<a class='linkColor' target="blank" href="${word}">${word}</a>`:  
+            word
+    }
+
+    const words = children.split(' ')
+    const formatedWords = words.map((w, i) => addMarkup(w))
+    const html = formatedWords.join(' ')
+    return (<span className="textMessage" dangerouslySetInnerHTML={{__html: html}} />)
+}
 
 function ClubEvent() {
     const [message, setMessage] = useState('')
@@ -197,13 +214,13 @@ function ClubEvent() {
                                                                             {(evt.typeMess !== 'file' & evt.typeMess !== 'text+file') ?
                                                                                 <div className="mess messEvents" >
                                                                                     <h4 className="messInfo messInfoEvents">{evt.date}</h4>
-                                                                                    {evt.message !== 'null' && <h3 className="textMessage">{evt.message}</h3>}
+                                                                                    {evt.message !== 'null' && <Linkify>{evt.message}</Linkify>}
                                                                                     {evt.fileName !== null & evt.fileName !== 'null' ? <img className="imgUploadedByUser" alt='imgUploadedByUser' src={chatsFlies + evt.fileName} /> : <></>}
                                                                                 </div>
                                                                                 :
                                                                                 <div className="mess messEvents" >
                                                                                     <h4 className="messInfo messInfoEvents">{evt.date}</h4>
-                                                                                    {evt.message !== 'null' && <h3 className="textMessage">{evt.message}</h3>}
+                                                                                    {evt.message !== 'null' && <Linkify className="textMessage">{evt.message}</Linkify>}
                                                                                     {evt.fileName !== null & evt.fileName !== 'null' ?
                                                                                         <button onClick={() => {
                                                                                             const aTag = document.createElement('a')

@@ -73,10 +73,11 @@
 
 
 @media (max-width: 1000px) {
-    .leaderboardCont{
+    .leaderboardCont {
         width: 85vw;
         left: 5vw;
     }
+
     .BlurBack {
         background-color: map-get($map: $colors, $key: 'bgBlackToMobile');
     }
@@ -101,6 +102,7 @@
 
     .msgCont {
         padding: 10PX;
+        height: 80vh;
     }
 
     .spChatChanges {
@@ -119,13 +121,18 @@
         // margin-top: 90px;
     }
 
+    .msgCont .messCont {
+        max-height: 100%;
+    }
+
     .specialAllForm {
+        position: fixed;
         border-radius: 0px;
         padding: 10px;
         padding-top: 5;
-        height: fit-content;
+        // height: fit-content;
         background-color: map-get($map: $colors, $key: 'bgBlack');
-
+        bottom: 0px;
     }
 
     .logInButton {
@@ -253,7 +260,8 @@
         border: 1px solid map-get($map: $colors, $key: 'complement1');
         border-radius: 5px;
     }
-    .contForFilesCHa{
+
+    .contForFilesCHa {
         margin-top: -100%;
     }
 }
@@ -305,9 +313,10 @@
 }
 
 @media (max-width: 700px) {
-    .cardSurvey{
+    .cardSurvey {
         width: 90%;
     }
+
     .sureSection {
         width: 200px;
 

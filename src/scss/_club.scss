@@ -88,9 +88,9 @@
 }
 
 .allFormCont {
-    height: 40px;
-    width: 100%;
-    padding: 10px 25px 20px;
+    height: 5vh;
+    width: 97%;
+    padding: 1.5% 1.5% 1.5%;
     // background-color: map-get($map: $colors, $key: 'bgBlack');
     border-radius: 0px 0px 40px 40px;
     @include flex(row, flex-end, space-between, flex-end, wrap);
@@ -222,10 +222,10 @@
 }
 
 .msgCont {
-    width: 100%;
+    width: 97%;
     overflow: hidden;
     height: auto;
-    padding: 20px 25px;
+    padding: 1.5% 1.5% 0% 1.5%;
 
     & .messCont {
         max-height: 55vh;
@@ -238,20 +238,20 @@
 }
 
 .messCont2{
-    height: 100%;
+    // height: 100%;
     width: 100%;
     overflow: auto;
     @include flex(column, normal, normal, flex-start, nowrap);
 }
 
 .mess {
-    max-width: 70%;
+    max-width: 350px;
 
     margin-left: 10px;
     background-color: map-get($map: $colors, $key: 'chatMessageOther');
     // rotate: 180deg;
-    padding: 10px 20px;
-    border-radius: 5px 15px 15px 15px;
+    padding: 10px 10px;
+    border-radius: 1px 10px 10px 10px;
 }
 
 .oneH {
@@ -332,7 +332,7 @@
         background-color: map-get($map: $colors, $key: 'chatMessageOwn');
         margin: 0px;
         margin-right: 10px;
-        border-radius: 15px 5px 15px 15px;
+        border-radius: 10px 1px 10px 10px;
     }
 
     & .messEvents {
@@ -344,9 +344,12 @@
 }
 
 .chatContainerGeneral {
-    @extend .chatContainer;
+    background-color: map-get($map: $colors, $key: 'bgBlack');
+    border-radius: 30px;
+    animation-name: apear2;
+    animation-duration: 0.3s;
     width: 60vw;
-    max-height: 70vh;
+    // max-height: 70vh;
 }
 
 .messInfoEvents {
@@ -397,6 +400,7 @@
 }
 
 .msgContEvt {
+    width: 100%;
     padding: 0px;
     height: auto;
     
@@ -483,4 +487,7 @@
     &:hover{
         cursor: grab;
     }
+}
+.linkColor{
+    color: map-get($map: $colors, $key: 'complement1');
 }

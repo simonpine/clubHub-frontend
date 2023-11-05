@@ -11,6 +11,23 @@ import doc from '../img/document.png'
 import { usersImg, exitClub } from "../api"
 import close from '../img/close.png'
 
+const Linkify = ({children})=> {
+    const isUrl = word => {
+        const urlPattern = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
+        return word.match(urlPattern)
+    }
+
+    const addMarkup = word => {
+        return isUrl(word) ? 
+            `<a target="blank" href="${word}">${word}</a>`:  
+            word
+    }
+
+    const words = children.split(' ')
+    const formatedWords = words.map((w, i) => addMarkup(w))
+    const html = formatedWords.join(' ')
+    return (<span className="textMessage" dangerouslySetInnerHTML={{__html: html}} />)
+}
 
 function Chat() {
     const [message, setMessage] = useState('')
@@ -187,13 +204,13 @@ function Chat() {
                                                                         {(evt.typeMess !== 'file' & evt.typeMess !== 'text+file') ?
                                                                             <div className="mess" >
                                                                                 <h4 className="messInfo">{evt.from === user.userName ? <>You</> : <>{evt.from}</>} {evt.date}</h4>
-                                                                                {evt.message !== 'null' && <h3 className="textMessage">{evt.message}</h3>}
+                                                                                {evt.message !== 'null' && <Linkify className="textMessage">{evt.message}</Linkify>}
                                                                                 {evt.fileName !== null & evt.fileName !== 'null' ? <img className="imgUploadedByUser" alt='imgUploadedByUser' src={chatsFlies + evt.fileName} /> : <></>}
                                                                             </div>
                                                                             :
                                                                             <div className="mess" >
                                                                                 <h4 className="messInfo">{evt.from === user.userName ? <>You</> : <>{evt.from}</>} {evt.date}</h4>
-                                                                                {evt.message !== 'null' && <h3 className="textMessage">{evt.message}</h3>}
+                                                                                {evt.message !== 'null' && <Linkify className="textMessage">{evt.message}</Linkify>}
                                                                                 {evt.fileName !== null & evt.fileName !== 'null' ?
                                                                                     <button onClick={() => {
                                                                                         const aTag = document.createElement('a')
