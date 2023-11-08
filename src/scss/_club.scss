@@ -290,20 +290,19 @@
 }
 
 .imgUploadedByUser {
-    border-radius: 10px;
+    border-radius: 5px;
     margin-top: 10px;
-    margin-bottom: 5px;
-    max-height: 400px
+    // margin-bottom: 5px;
+    // max-height: 400px
 }
 
 .downLoadButton {
     @include flex(row, center, center, center, nowrap);
     padding: 10px;
     margin-top: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
-    margin-bottom: 5px;
-    background-color: map-get($map: $colors, $key: 'bgBlack');
+    background-color: map-get($map: $colors, $key: 'complement1Disa');
     font-size: 15px;
     transition: 0.3s;
 
