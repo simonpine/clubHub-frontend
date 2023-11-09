@@ -237,7 +237,7 @@
     }
 }
 
-.messCont2{
+.messCont2 {
     // height: 100%;
     width: 100%;
     overflow: auto;
@@ -271,7 +271,7 @@
     height: 30px;
     border-radius: 20px;
 
-    &:hover{
+    &:hover {
         cursor: pointer;
     }
 }
@@ -402,12 +402,12 @@
     width: 100%;
     padding: 0px;
     height: auto;
-    
+
 }
 
 .messEvents {
     width: 100%;
-    
+
 }
 
 .allMessageContEvt {
@@ -420,23 +420,28 @@
         border-radius: 10px;
     }
 }
-.xplusTitle{
+
+.xplusTitle {
     @include flex(row, normal, space-between, flex-start, nowrap);
 }
-.cardTitleUSer{
+
+.cardTitleUSer {
     font-weight: 200;
     color: map-get($map: $colors, $key: 'complement1');
 
 }
-.h1UserInfo{
+
+.h1UserInfo {
     margin-bottom: 10px;
 }
+
 //=============================================================================
-.moreImg{
+.moreImg {
     width: 30px;
     height: 30px;
 }
-.leaderboardCont{
+
+.leaderboardCont {
     position: relative;
     top: 140px;
     left: 30vw;
@@ -445,7 +450,8 @@
     flex-direction: column;
 
 }
-.userOfTheList{
+
+.userOfTheList {
     width: 100%;
     background-color: map-get($map: $colors, $key: 'bgBlack');
     padding: 10px 0px 10px 20px;
@@ -456,37 +462,62 @@
     justify-content: space-between;
     margin-bottom: 20px;
 }
-.buttonDis{
+
+.buttonDis {
     background: none;
     border: none;
-    &:hover{
+
+    &:hover {
         cursor: pointer;
     }
 }
-.nomeOfUserInList{
+
+.nomeOfUserInList {
     font-weight: 300;
     font-size: 20px;
 }
-.numberInList{
+
+.numberInList {
     font-weight: 700;
     font-size: 20px;
     margin-right: 10px;
 }
-.dor{
+
+.dor {
     color: #F7C93E;
 }
-.pla{
+
+.pla {
     color: #BDBDBD;
 }
-.bro{
+
+.bro {
     color: #A36C3F;
 }
-.buttonDis2{
+
+.buttonDis2 {
     @extend .buttonDis;
-    &:hover{
+
+    &:hover {
         cursor: grab;
     }
 }
-.linkColor{
+
+.linkColor {
     color: map-get($map: $colors, $key: 'complement1');
+}
+
+.ExpelPlusSave {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end
+}
+
+.DelExi:disabled {
+    opacity: 0.5;
+
+    &:hover {
+        cursor: default;
+        background-color: map-get($map: $colors, $key: 'errorBg');
+    }
 }

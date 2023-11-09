@@ -15,7 +15,7 @@ function Content(){
           <div className='img7'>
             <img src={img8} alt='Arduino' />
           </div>
-          <p className='p2'>This sudden lack of interest must have been caused by several background problems, and from what I see and have come to talk with colleagues, one of these problems is the organization and communication between members, since they are of different grades. Therefore, this web application seeks to connect students with the teacher, their classmates and the club itself.</p>
+          <p className='p2'>This sudden lack of interest must have been caused by several background problems, and from what I see and have come to talk with colleagues, one of these problems is the organization and communication between members, since they are from different grades. Therefore, this web application seeks to connect students with the teacher, their classmates and the club itself.</p>
         </div>
       </div>
     )

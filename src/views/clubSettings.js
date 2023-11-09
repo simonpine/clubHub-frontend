@@ -2,11 +2,14 @@ import { ContextClub } from "../context/clubContext"
 import { ContextUser } from "../context/userContext"
 import NavClub from "../components/navClub"
 import { useState } from "react"
-import { BannersImg, changeExists, editClub } from "../api"
+import { BannersImg, changeExists, editClub, getUser, exitClub } from "../api"
 import User from "../components/user"
+import close from '../img/close.png'
+
 function ClubSettings() {
 
     const [exist, setExist] = useState(false)
+    const [whoToExpel, setWhoToExpel] = useState('')
 
     const [checked, setChecked] = useState(false)
     const handleClick = () => setChecked(!checked)
@@ -14,6 +17,7 @@ function ClubSettings() {
     const [checked2, setChecked2] = useState(false)
     const handleClick2 = () => setChecked2(!checked2)
 
+    const [expeling, setExpeling] = useState(false)
 
     const [loading, setloading] = useState(false)
     const [loading2, setloading2] = useState(false)
@@ -85,7 +89,7 @@ function ClubSettings() {
                                         club.description = descriptioRef
                                         user.clubs = newClubsArray
                                     }
-                                     else if (descriptioRef === '' & selectedImage === null & nameRef !== '') {
+                                    else if (descriptioRef === '' & selectedImage === null & nameRef !== '') {
 
 
                                         const newClubsArray = await user.clubs.filter(item => item.clubId !== club.id)
@@ -282,7 +286,7 @@ function ClubSettings() {
                                         user.clubs = newClubsArray
                                         club.description = descriptioRef
                                     }
-                                    else if(selectedImage !== null & nameRef !== '' & descriptioRef !== '') {
+                                    else if (selectedImage !== null & nameRef !== '' & descriptioRef !== '') {
 
                                         const UploadFile = await renameFile(selectedImage, club.id)
                                         await formData.append('image', UploadFile)
@@ -323,16 +327,16 @@ function ClubSettings() {
                                         club.title = nameRef
                                         user.clubs = newClubsArray
                                     }
-                                    
-                                    if(exist){
-                                        if(checked !== club.existChat){
+
+                                    if (exist) {
+                                        if (checked !== club.existChat) {
                                             await changeExists(JSON.stringify({
                                                 which: 'chat',
                                                 clubId: club.id,
                                                 newData: checked
                                             }))
                                         }
-                                        if(checked2 !== club.existGrades){
+                                        if (checked2 !== club.existGrades) {
                                             await changeExists(JSON.stringify({
                                                 which: 'grades',
                                                 clubId: club.id,
@@ -354,14 +358,29 @@ function ClubSettings() {
 
                                 function changedTheExist(which) {
                                     setExist(true)
-                                    if(which === 1){
+                                    if (which === 1) {
                                         setChecked(!club.existChat)
                                         setChecked2(club.existGrades)
                                     }
-                                    else{
+                                    else {
                                         setChecked2(!club.existGrades)
                                         setChecked(club.existChat)
                                     }
+                                }
+
+                                async function chao() {
+                                    await setloading2(true)
+                                    const info = await getUser(whoToExpel)
+                                    const toSelect = await info[0]
+                                    await exitClub({
+                                        userName: toSelect.userName,
+                                        clubId: club.id,
+                                        userClubs: toSelect.clubs,
+                                    })
+                                    await deaf()
+                                    await setExpeling(false)
+                                    await setWhoToExpel('')
+                                    await setloading2(false)
                                 }
 
                                 return club && (
@@ -380,6 +399,43 @@ function ClubSettings() {
                                                 {loading2 && <div className="sureSection loadingSure"><div className="lds-dual-ring"></div></div>}
 
                                                 <div className="surebg" onClick={() => setSure(false)}></div>
+                                            </div>
+                                        }
+
+                                        {expeling &&
+                                            <div className="sureCont">
+
+                                                <div className="formAddEv">
+                                                    <div className="xplusTitle">
+                                                        <button onClick={() => {
+                                                            setExpeling(false)
+                                                        }} className="closeButtonFormColendar">
+                                                            <img src={close} alt="colse button" />
+                                                        </button>
+                                                    </div>
+                                                    <div>
+                                                        <h3 className="inputIdentify">Selet the member to expel</h3>
+                                                        <select onChange={(evt) => setWhoToExpel(evt.target.value)} className="inputTextSelect" id="mySelect">
+                                                            <option>Select:</option>
+                                                            {club.members.map(member => {
+
+                                                                return (
+                                                                    <option value={member}>{member}</option>
+
+                                                                )
+                                                            })}
+                                                        </select>
+                                                    </div>
+                                                    <button disabled={whoToExpel === '' || whoToExpel === 'Select:'} onClick={() => chao()} className="DelExi">
+                                                        Expel member
+                                                    </button>
+
+                                                </div>
+                                                {loading2 && <div className="sureSection loadingSure"><div className="lds-dual-ring"></div></div>}
+
+                                                <div className="surebg" onClick={() => {
+                                                    setExpeling(false)
+                                                }}></div>
                                             </div>
                                         }
 
@@ -422,15 +478,18 @@ function ClubSettings() {
                                                         <div className="boxesCont">
                                                             <label className="labelForBoxes">
                                                                 <h5 className="TextOfBoxes">Have chat</h5>
-                                                                <input className="box" onChange={()=> changedTheExist(1)} checked={club.existChat} type="checkbox" />
+                                                                <input className="box" onChange={() => changedTheExist(1)} checked={club.existChat} type="checkbox" />
                                                             </label>
                                                             <label className="labelForBoxes">
                                                                 <h5 className="TextOfBoxes">Have grades</h5>
-                                                                <input className="box" onChange={()=> changedTheExist()} checked={club.existGrades} type="checkbox" />
+                                                                <input className="box" onChange={() => changedTheExist()} checked={club.existGrades} type="checkbox" />
                                                             </label>
                                                         </div>
                                                     }
-                                                    <button disabled={(nameRef.replaceAll(' ', '').length === 0 & descriptioRef.replaceAll(' ', '').length === 0) & selectedImage === null & exist === false} className="getIn logInButton">Save changes</button>
+                                                    <div className="ExpelPlusSave">
+                                                        <button disabled={(nameRef.replaceAll(' ', '').length === 0 & descriptioRef.replaceAll(' ', '').length === 0) & selectedImage === null & exist === false} className="getIn logInButton">Save changes</button>
+                                                        <button style={{margin: 0}} type='button' onClick={() => setExpeling(true)} className="DelExi">Expel a user</button>
+                                                    </div>
                                                 </form>
 
                                             </div>
