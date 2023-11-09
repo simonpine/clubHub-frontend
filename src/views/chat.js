@@ -205,13 +205,13 @@ function Chat() {
                                                                         {(evt.typeMess !== 'file' & evt.typeMess !== 'text+file') ?
                                                                             <div className="mess" >
                                                                                 <h4 className="messInfo">{evt.from === user.userName ? <>You</> : <>{evt.from}</>} {evt.date}</h4>
-                                                                                {evt.message !== 'null' ? <Linkify className="textMessage">{evt.message}</Linkify> : <></>}
+                                                                                {evt.message !== 'null' & evt.message !== null ? <Linkify className="textMessage">{evt.message}</Linkify> : <></>}
                                                                                 {evt.fileName !== null & evt.fileName !== 'null' ? <img className="imgUploadedByUser" alt='imgUploadedByUser' src={chatsFlies + evt.fileName} /> : <></>}
                                                                             </div>
                                                                             :
                                                                             <div className="mess" >
                                                                                 <h4 className="messInfo">{evt.from === user.userName ? <>You</> : <>{evt.from}</>} {evt.date}</h4>
-                                                                                {evt.message !== 'null' ? <Linkify className="textMessage">{evt.message}</Linkify> : <></>}
+                                                                                {evt.message !== 'null' & evt.message !== null ? <Linkify className="textMessage">{evt.message}</Linkify> : <></>}
                                                                                 {evt.fileName !== null & evt.fileName !== 'null' ?
                                                                                     <button onClick={() => {
                                                                                         const aTag = document.createElement('a')
