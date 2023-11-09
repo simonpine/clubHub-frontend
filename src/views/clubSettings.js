@@ -488,7 +488,7 @@ function ClubSettings() {
                                                     }
                                                     <div className="ExpelPlusSave">
                                                         <button disabled={(nameRef.replaceAll(' ', '').length === 0 & descriptioRef.replaceAll(' ', '').length === 0) & selectedImage === null & exist === false} className="getIn logInButton">Save changes</button>
-                                                        <button style={{margin: 0}} type='button' onClick={() => setExpeling(true)} className="DelExi">Expel a user</button>
+                                                        <button disabled={club.members.length === 0} style={{margin: 0}} type='button' onClick={() => setExpeling(true)} className="DelExi">Expel a member</button>
                                                     </div>
                                                 </form>
 
