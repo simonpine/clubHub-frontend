@@ -297,12 +297,13 @@
 }
 
 .downLoadButton {
-    @include flex(row, center, center, center, nowrap);
+    @include flex(row, center, flex-start, center, nowrap);
+    width: 100%;
     padding: 10px;
     margin-top: 10px;
     border-radius: 5px;
     border: none;
-    background-color: map-get($map: $colors, $key: 'complement1Disa');
+    background-color: rgba(214, 173, 123, 0.1196078431);
     font-size: 15px;
     transition: 0.3s;
 
@@ -317,7 +318,7 @@
     }
 
     &:active {
-        background-color: map-get($map: $colors, $key: 'bgBlackHover');
+        background-color: rgba(214, 173, 123, 0.0596078431);
         color: map-get($map: $colors, $key: 'complement1');
     }
 }
