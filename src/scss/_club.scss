@@ -102,8 +102,8 @@
     margin-bottom: 26px;
     width: 100%;
     height: 200px;
-    background-color: map-get($map: $colors, $key: 'bgBlack');
-    border-radius: 20px;
+    background-color: map-get($map: $colors, $key: 'complement1Disa');
+    border-radius: 15px;
     overflow: hidden;
     animation-name: apearExample;
     animation-duration: 0.2s;
