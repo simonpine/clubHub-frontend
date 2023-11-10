@@ -126,8 +126,6 @@ function JoinClub() {
                                         <input id="CodeOfAClub" value={codeRef} onChange={(evt) => setCodeRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder='97p2a1z6uwc' />
                                         <button disabled={(codeRef.length === 0)} className="getIn logInButton mTop">Search</button>
                                     </form>
-
-
                                     {JSON.stringify(show) === JSON.stringify({}) ? <h3 className="errorAnoun totop"> {err}</h3> :
                                         <div className="bgShow totop">
                                             <div className="firstPartShow">
@@ -142,7 +140,6 @@ function JoinClub() {
                                             <button onClick={() => join(show)} className="getIn logInButton">More info</button>
                                         </div>
                                     }
-
                                 </div>
                             </div>
                             <div className="clublistjoinCont">
@@ -150,7 +147,6 @@ function JoinClub() {
                                     {clubList.map(item => {
                                         return !userClubs.some(a => a.clubId === item.id) && (
                                             <ClubCardJoin key={item.id} jo={join} item={item} />
-
                                         )
                                     })}
                                 </div>
