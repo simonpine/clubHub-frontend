@@ -5,8 +5,6 @@ import userPng from '../img/user.png'
 import { getUser, editUser, uploadFile, usersImg } from "../api";
 function ForgotPasswordRecover() {
     const [loading, setloading] = useState(false)
-    const [loading2, setloading2] = useState(false)
-
     const [err, setErr] = useState('')
     const [passwordRef, setPasswordRef] = useState('')
     const [confirmPasswordRef, setConfirmPasswordRef] = useState('')
@@ -59,7 +57,7 @@ function ForgotPasswordRecover() {
             {({ user }) => {
                 async function setTheData(evt) {
                     await evt.preventDefault();
-                    await setloading2(true)
+                    await setloading(true)
                     if (descriptionRef !== '') {
                         await editUser(user.userName, JSON.stringify(user.clubs), user.pasword, user.userImg, user.question, user.answer, descriptionRef, user.userName)
                         user.description = await descriptionRef
@@ -139,6 +137,7 @@ function ForgotPasswordRecover() {
                     await setConfirmPasswordRef('')
                     await setPasswordRef('')
                     await setSelectedImage(null)
+                    await setloading(false)
                     await navigate('/home')
 
                 }
@@ -162,8 +161,6 @@ function ForgotPasswordRecover() {
                                         <button onClick={() => setSure(false)} className="getIn especialButtonSure red">No, cancel</button>
                                     </div>
                                 </div>
-                                {loading2 && <div className="sureSection loadingSure"><div className="lds-dual-ring"></div></div>}
-
                                 <div className="surebg" onClick={() => setSure(false)}></div>
                             </div>
                         }

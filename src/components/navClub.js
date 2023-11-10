@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { exitClub, deleteClub } from "../api"
 
 function NavClub({ user, club, main, userClubs, deafUs }) {
+    const [loading, setloading] = useState(false)
     const navigate = useNavigate()
     const [close, setClose] = useState('close')
     const [close2, setClose2] = useState('closeBgc')
@@ -41,6 +42,7 @@ function NavClub({ user, club, main, userClubs, deafUs }) {
     }, [main])
 
     async function exit() {
+        await setloading(true)
         await exitClub({
             userName: user.userName,
             clubId: club.id,
@@ -48,9 +50,11 @@ function NavClub({ user, club, main, userClubs, deafUs }) {
         })
 
         await deafUs()
+        await setloading(false)
         await navigate('/home')
     }
     async function delet() {
+        await setloading(true)
         await deleteClub({
             clubOwner: user.userName,
             clubsOfOwner: user.clubs,
@@ -58,10 +62,13 @@ function NavClub({ user, club, main, userClubs, deafUs }) {
         }, club.id)
 
         await deafUs()
+        await setloading(false)
         await navigate('/home')
     }
     return (
         <>
+            {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
+
             <Link to={{ pathname: "/home" }} className="getIn espPlusButton2">Back Home</Link>
             <button onClick={() => {
                 setClose('')

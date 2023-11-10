@@ -20,7 +20,6 @@ function ClubSettings() {
     const [expeling, setExpeling] = useState(false)
 
     const [loading, setloading] = useState(false)
-    const [loading2, setloading2] = useState(false)
     const [sure, setSure] = useState(false)
     const [err, setErr] = useState('')
     const [descriptioRef, setDescriptioRef] = useState('')
@@ -48,7 +47,6 @@ function ClubSettings() {
 
                                 async function changeClub(evt) {
                                     await evt.preventDefault();
-                                    await await setloading2(true)
                                     await setloading(true)
 
                                     if (nameRef === '' & selectedImage === null & descriptioRef !== '') {
@@ -352,7 +350,6 @@ function ClubSettings() {
                                     await setSelectedImage(null)
                                     await setFileName('Change banner')
                                     await setloading(false)
-                                    await setloading2(false)
                                     await setSure(false)
                                 }
 
@@ -369,7 +366,7 @@ function ClubSettings() {
                                 }
 
                                 async function chao() {
-                                    await setloading2(true)
+                                    await setloading(true)
                                     const info = await getUser(whoToExpel)
                                     const toSelect = await info[0]
                                     await exitClub({
@@ -380,159 +377,157 @@ function ClubSettings() {
                                     await deaf()
                                     await setExpeling(false)
                                     await setWhoToExpel('')
-                                    await setloading2(false)
+                                    await setloading(false)
                                 }
 
                                 return club && (
-                                    <div>
-                                        {sure &&
-                                            <div className="sureCont">
+                                    <>
+                                        {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
 
-                                                <div className="sureSection">
+                                        <div>
+                                            {sure &&
+                                                <div className="sureCont">
 
-                                                    <h2>Are you sure of the changes?</h2>
-                                                    <div>
-                                                        <button onClick={changeClub} className="getIn">Yes, save changes</button>
-                                                        <button onClick={() => setSure(false)} className="getIn red">No, cancel</button>
+                                                    <div className="sureSection">
+
+                                                        <h2>Are you sure of the changes?</h2>
+                                                        <div>
+                                                            <button onClick={changeClub} className="getIn">Yes, save changes</button>
+                                                            <button onClick={() => setSure(false)} className="getIn red">No, cancel</button>
+                                                        </div>
                                                     </div>
+                                                    <div className="surebg" onClick={() => setSure(false)}></div>
                                                 </div>
-                                                {loading2 && <div className="sureSection loadingSure"><div className="lds-dual-ring"></div></div>}
+                                            }
 
-                                                <div className="surebg" onClick={() => setSure(false)}></div>
-                                            </div>
-                                        }
+                                            {expeling &&
+                                                <div className="sureCont">
 
-                                        {expeling &&
-                                            <div className="sureCont">
+                                                    <div className="formAddEv">
+                                                        <div className="xplusTitle">
+                                                            <button onClick={() => {
+                                                                setExpeling(false)
+                                                            }} className="closeButtonFormColendar">
+                                                                <img src={close} alt="colse button" />
+                                                            </button>
+                                                        </div>
+                                                        <div>
+                                                            <h3 className="inputIdentify">Select the member to expel:</h3>
+                                                            <select onChange={(evt) => setWhoToExpel(evt.target.value)} className="inputTextSelect" id="mySelect">
+                                                                <option>Select:</option>
+                                                                {club.members.map(member => {
 
-                                                <div className="formAddEv">
-                                                    <div className="xplusTitle">
-                                                        <button onClick={() => {
-                                                            setExpeling(false)
-                                                        }} className="closeButtonFormColendar">
-                                                            <img src={close} alt="colse button" />
+                                                                    return (
+                                                                        <option value={member}>{member}</option>
+
+                                                                    )
+                                                                })}
+                                                            </select>
+                                                        </div>
+                                                        <button disabled={whoToExpel === '' || whoToExpel === 'Select:'} onClick={() => chao()} className="DelExi">
+                                                            Expel member
                                                         </button>
+
                                                     </div>
-                                                    <div>
-                                                        <h3 className="inputIdentify">Select the member to expel:</h3>
-                                                        <select onChange={(evt) => setWhoToExpel(evt.target.value)} className="inputTextSelect" id="mySelect">
-                                                            <option>Select:</option>
-                                                            {club.members.map(member => {
-
-                                                                return (
-                                                                    <option value={member}>{member}</option>
-
-                                                                )
-                                                            })}
-                                                        </select>
-                                                    </div>
-                                                    <button disabled={whoToExpel === '' || whoToExpel === 'Select:'} onClick={() => chao()} className="DelExi">
-                                                        Expel member
-                                                    </button>
-
+                                                    <div className="surebg" onClick={() => {
+                                                        setExpeling(false)
+                                                    }}></div>
                                                 </div>
-                                                {loading2 && <div className="sureSection loadingSure"><div className="lds-dual-ring"></div></div>}
+                                            }
 
-                                                <div className="surebg" onClick={() => {
-                                                    setExpeling(false)
-                                                }}></div>
-                                            </div>
-                                        }
-
-                                        <NavClub userClubs={userClubs} deafUs={deafUs} user={user} club={club} main={4} />
+                                            <NavClub userClubs={userClubs} deafUs={deafUs} user={user} club={club} main={4} />
 
 
-                                        <div className="Log">
+                                            <div className="Log">
 
-                                            <div className="pasd">
-                                                {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
-
-                                                <form onSubmit={(evt) => {
-                                                    evt.preventDefault()
-                                                    setSure(true)
-                                                }} className="formLogin">
-                                                    <div className="headerErr">
-                                                        <h1 className="h1LogCards">Club settings</h1>
-                                                        <h3 className="errorAnoun"> {err}</h3>
-                                                    </div>
-                                                    <div>
-                                                        <h2 className="inputIdentify">Change club name:</h2>
-                                                        <input id='changeTitle' value={nameRef} onChange={(evt) => setNameRef(evt.target.value)} className="inputText" type="text" placeholder={club.title} />
-                                                    </div>
-                                                    <div>
-                                                        <h2 className="inputIdentify">Change description:</h2>
-                                                        <textarea id="changeDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder={club.description} />
-                                                    </div>
-                                                    {exist ?
-                                                        <div className="boxesCont">
-                                                            <label className="labelForBoxes">
-                                                                <h5 className="TextOfBoxes">Have chat</h5>
-                                                                <input className="box" onChange={handleClick} checked={checked} type="checkbox" />
-                                                            </label>
-                                                            <label className="labelForBoxes">
-                                                                <h5 className="TextOfBoxes">Have grades</h5>
-                                                                <input className="box" onChange={handleClick2} checked={checked2} type="checkbox" />
-                                                            </label>
-                                                        </div>
-                                                        :
-                                                        <div className="boxesCont">
-                                                            <label className="labelForBoxes">
-                                                                <h5 className="TextOfBoxes">Have chat</h5>
-                                                                <input className="box" onChange={() => changedTheExist(1)} checked={club.existChat} type="checkbox" />
-                                                            </label>
-                                                            <label className="labelForBoxes">
-                                                                <h5 className="TextOfBoxes">Have grades</h5>
-                                                                <input className="box" onChange={() => changedTheExist()} checked={club.existGrades} type="checkbox" />
-                                                            </label>
-                                                        </div>
-                                                    }
-                                                    <div className="ExpelPlusSave">
-                                                        <button disabled={(nameRef.replaceAll(' ', '').length === 0 & descriptioRef.replaceAll(' ', '').length === 0) & selectedImage === null & exist === false} className="getIn logInButton">Save changes</button>
-                                                        <button disabled={club.members.length === 0} style={{margin: 0}} type='button' onClick={() => setExpeling(true)} className="DelExi">Expel a member</button>
-                                                    </div>
-                                                </form>
-
-                                            </div>
-                                            <div className="ImgChanger">
-                                                <h2 className="inputIdentify">Club banner:</h2>
-                                                <div className='userLogoSettings'>
-                                                    {selectedImage ? <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' /> : <img src={BannersImg + club.clubBanner} alt='CLub banner' />}
-                                                </div>
-
-                                                <div className="container-input">
-                                                    <input type="file"
-
-                                                        name="myImage"
-                                                        onChange={(event) => {
-                                                            setErr('')
-                                                            if (event.target.files[0] !== undefined) {
-                                                                const fileSize = event.target.files[0].size;
-                                                                if (fileSize < 700000) {
-                                                                    setFileName(event.target.files[0].name)
-                                                                    setSelectedImage(event.target.files[0]);
-                                                                }
-                                                                else {
-                                                                    setErr('File is bigger than the expected size')
-                                                                }
-                                                            }
-
-                                                        }} id="myImage" className="inputfile inputfile-1" accept="image/png, image/jpeg" />
-                                                    <label className="buttonForSelectImg" htmlFor="myImage">
-                                                        <svg className="iborrainputfile" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
-                                                        <span className="iborrainputfile">{fileName}</span>
-                                                    </label>
-
-                                                    <button onClick={(evt) => {
+                                                <div className="pasd">
+                                                    <form onSubmit={(evt) => {
                                                         evt.preventDefault()
-                                                        setFileName('Change banner')
-                                                        setSelectedImage(null)
+                                                        setSure(true)
+                                                    }} className="formLogin">
+                                                        <div className="headerErr">
+                                                            <h1 className="h1LogCards">Club settings</h1>
+                                                            <h3 className="errorAnoun"> {err}</h3>
+                                                        </div>
+                                                        <div>
+                                                            <h2 className="inputIdentify">Change club name:</h2>
+                                                            <input id='changeTitle' value={nameRef} onChange={(evt) => setNameRef(evt.target.value)} className="inputText" type="text" placeholder={club.title} />
+                                                        </div>
+                                                        <div>
+                                                            <h2 className="inputIdentify">Change description:</h2>
+                                                            <textarea id="changeDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder={club.description} />
+                                                        </div>
+                                                        {exist ?
+                                                            <div className="boxesCont">
+                                                                <label className="labelForBoxes">
+                                                                    <h5 className="TextOfBoxes">Have chat</h5>
+                                                                    <input className="box" onChange={handleClick} checked={checked} type="checkbox" />
+                                                                </label>
+                                                                <label className="labelForBoxes">
+                                                                    <h5 className="TextOfBoxes">Have grades</h5>
+                                                                    <input className="box" onChange={handleClick2} checked={checked2} type="checkbox" />
+                                                                </label>
+                                                            </div>
+                                                            :
+                                                            <div className="boxesCont">
+                                                                <label className="labelForBoxes">
+                                                                    <h5 className="TextOfBoxes">Have chat</h5>
+                                                                    <input className="box" onChange={() => changedTheExist(1)} checked={club.existChat} type="checkbox" />
+                                                                </label>
+                                                                <label className="labelForBoxes">
+                                                                    <h5 className="TextOfBoxes">Have grades</h5>
+                                                                    <input className="box" onChange={() => changedTheExist()} checked={club.existGrades} type="checkbox" />
+                                                                </label>
+                                                            </div>
+                                                        }
+                                                        <div className="ExpelPlusSave">
+                                                            <button disabled={(nameRef.replaceAll(' ', '').length === 0 & descriptioRef.replaceAll(' ', '').length === 0) & selectedImage === null & exist === false} className="getIn logInButton">Save changes</button>
+                                                            <button disabled={club.members.length === 0} style={{ margin: 0 }} type='button' onClick={() => setExpeling(true)} className="DelExi">Expel a member</button>
+                                                        </div>
+                                                    </form>
 
-                                                    }} className="getIn mtop">Delete banner</button>
                                                 </div>
+                                                <div className="ImgChanger">
+                                                    <h2 className="inputIdentify">Club banner:</h2>
+                                                    <div className='userLogoSettings'>
+                                                        {selectedImage ? <img src={URL.createObjectURL(selectedImage)} alt='_Users logo' /> : <img src={BannersImg + club.clubBanner} alt='CLub banner' />}
+                                                    </div>
 
+                                                    <div className="container-input">
+                                                        <input type="file"
+
+                                                            name="myImage"
+                                                            onChange={(event) => {
+                                                                setErr('')
+                                                                if (event.target.files[0] !== undefined) {
+                                                                    const fileSize = event.target.files[0].size;
+                                                                    if (fileSize < 700000) {
+                                                                        setFileName(event.target.files[0].name)
+                                                                        setSelectedImage(event.target.files[0]);
+                                                                    }
+                                                                    else {
+                                                                        setErr('File is bigger than the expected size')
+                                                                    }
+                                                                }
+
+                                                            }} id="myImage" className="inputfile inputfile-1" accept="image/png, image/jpeg" />
+                                                        <label className="buttonForSelectImg" htmlFor="myImage">
+                                                            <svg className="iborrainputfile" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                                                            <span className="iborrainputfile">{fileName}</span>
+                                                        </label>
+
+                                                        <button onClick={(evt) => {
+                                                            evt.preventDefault()
+                                                            setFileName('Change banner')
+                                                            setSelectedImage(null)
+
+                                                        }} className="getIn mtop">Delete banner</button>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </>
                                 )
                             }}
                         </ContextClub.Consumer>

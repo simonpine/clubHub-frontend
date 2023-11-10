@@ -58,6 +58,7 @@ function JoinClub() {
                     setMoreInfoClub(club)
                 }
                 async function serverChange(club) {
+                    await setloading(true)
                     const userClubsObj = await {
                         clubId: club.id,
                         own: false,
@@ -74,9 +75,12 @@ function JoinClub() {
                     })
                     await deafUs()
                     await setSure(false)
+                    await setloading(false)
                 }
                 return user !== null && (
                     <div>
+                        {loading && <div className="loadingCont"><div className="lds-dual-ring"></div></div>}
+
                         {sure &&
                             <div className="sureCont">
 
@@ -113,7 +117,6 @@ function JoinClub() {
                             </Link>
                             <button onClick={() => navigate(-1)} className='getIn'>Return</button>
                         </div>
-                        {loading && <div className="loadingContSpe"><div className="lds-dual-ring"></div></div>}
 
                         <div className="Log">
                             <div className="pasd mar0">

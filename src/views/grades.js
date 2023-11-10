@@ -24,6 +24,8 @@ function ClubGrades() {
             {({ user, userClubs, deafUs }) => {
                 return user && (
                     <>
+                        {loading && <div className="loadingCont "><div className="lds-dual-ring"></div></div>}
+
                         <div className='LandingNav'>
                             <User lin={user.userImg} />
                         </div>
@@ -47,7 +49,6 @@ function ClubGrades() {
 
 
                                         <div className="gardesTableContainer">
-                                            {loading && <div className="loadingContTable "><div className="lds-dual-ring"></div></div>}
                                             {club.members.length > 0 ?
                                                 <>
                                                     <input placeholder="Filter by members names" className={club.clubOwner !== user.userName ? "lesOpp NameFilterInput" : 'NameFilterInput'} id="SearchByNmae" value={searchName} onChange={(evt) => setSearchName(evt.target.value)} />
@@ -81,7 +82,7 @@ function ClubGrades() {
                                                                                             item.total = (item.gardes.reduce((partialSum, a) => partialSum + (+a), 0) / item.gardes.length).toFixed(2)
                                                                                             setRefresh(Math.random())
                                                                                         }
-                                                                                    }} value={item.gardes[index]} /></th> 
+                                                                                    }} value={item.gardes[index]} /></th>
                                                                                 })}
                                                                                 <th className="thDelete"><button onClick={() => {
 
@@ -108,7 +109,7 @@ function ClubGrades() {
 
                                                                                 {grades.students.map(item => {
 
-                                                                                    return (item.studentName.toLowerCase()).includes(searchName.toLowerCase()) && (item.studentName === user.userName ? <th className="butLine" key={item.studentName + index}><h3 className="h3InTable">{item.gardes[index]}</h3></th> : <th className="butLine" key={item.studentName + index}><h3 className="h3InTable lesOpp">{item.gardes[index]}</h3></th> );
+                                                                                    return (item.studentName.toLowerCase()).includes(searchName.toLowerCase()) && (item.studentName === user.userName ? <th className="butLine" key={item.studentName + index}><h3 className="h3InTable">{item.gardes[index]}</h3></th> : <th className="butLine" key={item.studentName + index}><h3 className="h3InTable lesOpp">{item.gardes[index]}</h3></th>);
                                                                                 })}
                                                                             </tr>
                                                                         )
@@ -117,7 +118,7 @@ function ClubGrades() {
                                                                 <tr>
                                                                     <th><h2 className="h2InGradesTable prinInTale">Total</h2></th>
                                                                     {grades.students.map(item => {
-                                                                        return (item.studentName.toLowerCase()).includes(searchName.toLowerCase())  && (item.studentName === user.userName ? <th key={item.studentName}><h2 className="h2InGradesTable">{item.total}</h2></th> : <th key={item.studentName}>{club.clubOwner !== user.userName ? <h2 className="h2InGradesTable lesOpp">{item.total}</h2> : <h2 className="h2InGradesTable">{item.total}</h2>}</th> )
+                                                                        return (item.studentName.toLowerCase()).includes(searchName.toLowerCase()) && (item.studentName === user.userName ? <th key={item.studentName}><h2 className="h2InGradesTable">{item.total}</h2></th> : <th key={item.studentName}>{club.clubOwner !== user.userName ? <h2 className="h2InGradesTable lesOpp">{item.total}</h2> : <h2 className="h2InGradesTable">{item.total}</h2>}</th>)
                                                                     })}
                                                                 </tr>
                                                             </tbody>
