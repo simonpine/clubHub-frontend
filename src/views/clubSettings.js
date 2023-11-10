@@ -414,7 +414,7 @@ function ClubSettings() {
                                                         </button>
                                                     </div>
                                                     <div>
-                                                        <h3 className="inputIdentify">Selet the member to expel</h3>
+                                                        <h3 className="inputIdentify">Select the member to expel:</h3>
                                                         <select onChange={(evt) => setWhoToExpel(evt.target.value)} className="inputTextSelect" id="mySelect">
                                                             <option>Select:</option>
                                                             {club.members.map(member => {
