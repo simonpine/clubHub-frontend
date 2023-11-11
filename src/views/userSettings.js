@@ -185,7 +185,7 @@ function ForgotPasswordRecover() {
                                                         setErr('')
                                                         if (event.target.files[0] !== undefined) {
                                                             const fileSize = event.target.files[0].size;
-                                                            if (fileSize < 700000) {
+                                                            if (fileSize < 10000000) {
                                                                 setSelectedImage(event.target.files[0]);
                                                             }
                                                             else {
