@@ -166,11 +166,12 @@ function ClubEvent() {
                                                                         setSelectedImage(null)
                                                                         if (event.target.files[0] !== undefined) {
                                                                             const fileSize = event.target.files[0].size;
-                                                                            if (fileSize < 900000) {
+                                                                            if (fileSize < 10000000) {
                                                                                 setSelectedImage(event.target.files[0]);
                                                                                 // console.log(event.target.files[0].type)
                                                                             }
                                                                             else {
+                                                                                // console.log(fileSize)
                                                                                 setErr('File is bigger than the expected size')
                                                                             }
                                                                         }
