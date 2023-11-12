@@ -14,6 +14,9 @@ function CreateClub() {
     const [checked2, setChecked2] = useState(false)
     const handleClick2 = () => setChecked2(!checked2)
 
+    const [checked3, setChecked3] = useState(0)
+    const handleClick3 = () => setChecked3(!checked3)
+
     const [loading, setloading] = useState(false)
     const [err, setErr] = useState('')
     const [descriptioRef, setDescriptioRef] = useState('')
@@ -57,7 +60,7 @@ function CreateClub() {
                 grades: ['grade 0'],
             }))
             await formData.append('members', JSON.stringify([]))
-            await formData.append('clubLeader', 'No leader')
+            await formData.append('clubLeader', checked3)
             await formData.append('surveys', JSON.stringify([]))
             await formData.append('clubsOfOwner', JSON.stringify([...user.clubs, { own: true, clubId: idForUpload, clubTitle: nameRef, clubBanner: UploadFile.name, clubDescription: descriptioRef }]))
             await formData.append('clubOwner', user.userName)
@@ -106,14 +109,20 @@ function CreateClub() {
                                         </div>
                                         <div className="boxesCont">
                                             <label className="labelForBoxes">
+                                                <h5 className="TextOfBoxes">Have grades</h5>
+                                                <input className="box" onChange={handleClick2} checked={checked2} type="checkbox" />
+                                            </label>
+                                            <label className="labelForBoxes">
                                                 <h5 className="TextOfBoxes">Have chat</h5>
                                                 <input className="box" onChange={handleClick} checked={checked} type="checkbox" />
                                             </label>
                                             <label className="labelForBoxes">
-                                                <h5 className="TextOfBoxes">Have grades</h5>
-                                                <input className="box" onChange={handleClick2} checked={checked2} type="checkbox" />
+                                                <h5 className="TextOfBoxes">Private</h5>
+                                                <input className="box" onChange={handleClick3} checked={checked3} type="checkbox" />
                                             </label>
+
                                         </div>
+
                                         <button disabled={(descriptioRef.length === 0) || (nameRef.length === 0) || selectedImage === null} className="getIn logInButton">Create</button>
                                     </form>
 
@@ -132,7 +141,7 @@ function CreateClub() {
                                                 setErr('')
                                                 if (event.target.files[0] !== undefined) {
                                                     const fileSize = event.target.files[0].size;
-                                                    if (fileSize < 700000) {
+                                                    if (fileSize < 10000000) {
                                                         setFileName(event.target.files[0].name)
                                                         setSelectedImage(event.target.files[0]);
                                                     }

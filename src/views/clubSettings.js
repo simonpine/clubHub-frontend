@@ -14,6 +14,9 @@ function ClubSettings() {
     const [checked, setChecked] = useState(false)
     const handleClick = () => setChecked(!checked)
 
+    const [checked3, setChecked3] = useState(false)
+    const handleClick3 = () => setChecked3(!checked3)
+
     const [checked2, setChecked2] = useState(false)
     const handleClick2 = () => setChecked2(!checked2)
 
@@ -341,6 +344,13 @@ function ClubSettings() {
                                                 newData: checked2
                                             }))
                                         }
+                                        if (checked3 !== JSON.parse(club.clubLeader)) {
+                                            await changeExists(JSON.stringify({
+                                                which: 'private',
+                                                clubId: club.id,
+                                                newData: checked3
+                                            }))
+                                        }
                                     }
 
                                     await deaf()
@@ -358,10 +368,17 @@ function ClubSettings() {
                                     if (which === 1) {
                                         setChecked(!club.existChat)
                                         setChecked2(club.existGrades)
+                                        setChecked3(JSON.parse(club.clubLeader))
+                                    }
+                                    else if (which === 2){
+                                        setChecked3(!JSON.parse(club.clubLeader))
+                                        setChecked2(club.existGrades)
+                                        setChecked(club.existChat)
                                     }
                                     else {
                                         setChecked2(!club.existGrades)
                                         setChecked(club.existChat)
+                                        setChecked3(JSON.parse(club.clubLeader))
                                     }
                                 }
 
@@ -467,6 +484,10 @@ function ClubSettings() {
                                                                     <h5 className="TextOfBoxes">Have grades</h5>
                                                                     <input className="box" onChange={handleClick2} checked={checked2} type="checkbox" />
                                                                 </label>
+                                                                <label className="labelForBoxes">
+                                                                    <h5 className="TextOfBoxes">Private</h5>
+                                                                    <input className="box" onChange={handleClick3} checked={checked3} type="checkbox" />
+                                                                </label>
                                                             </div>
                                                             :
                                                             <div className="boxesCont">
@@ -477,6 +498,10 @@ function ClubSettings() {
                                                                 <label className="labelForBoxes">
                                                                     <h5 className="TextOfBoxes">Have grades</h5>
                                                                     <input className="box" onChange={() => changedTheExist()} checked={club.existGrades} type="checkbox" />
+                                                                </label>
+                                                                <label className="labelForBoxes">
+                                                                    <h5 className="TextOfBoxes">Private</h5>
+                                                                    <input className="box" onChange={() => changedTheExist(2)} checked={JSON.parse(club.clubLeader)} type="checkbox" />
                                                                 </label>
                                                             </div>
                                                         }
@@ -501,7 +526,7 @@ function ClubSettings() {
                                                                 setErr('')
                                                                 if (event.target.files[0] !== undefined) {
                                                                     const fileSize = event.target.files[0].size;
-                                                                    if (fileSize < 700000) {
+                                                                    if (fileSize < 10000000) {
                                                                         setFileName(event.target.files[0].name)
                                                                         setSelectedImage(event.target.files[0]);
                                                                     }

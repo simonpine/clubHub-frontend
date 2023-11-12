@@ -145,8 +145,11 @@ function JoinClub() {
                             <div className="clublistjoinCont">
                                 <div className="forTheStick">
                                     {clubList.map(item => {
-                                        return !userClubs.some(a => a.clubId === item.id) && (
+                                        console.log(item.clubLeader)
+                                        return !userClubs.some(a => a.clubId === item.id) & item.clubLeader == 0? (
                                             <ClubCardJoin key={item.id} jo={join} item={item} />
+                                        ) : (
+                                            <></>
                                         )
                                     })}
                                 </div>

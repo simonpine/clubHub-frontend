@@ -181,7 +181,8 @@
     left: 5vw;
     width: 90vw;
     @include flex(row, flex-start, flex-start, flex-start, wrap);
-    gap: 80px;
+    gap: 94px;
+    padding-bottom: 40px;
 }
 
 .blubCardTitle {
