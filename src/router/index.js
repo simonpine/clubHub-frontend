@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { CustomProvider } from "../context/userContext.js";
+import { ContextUser, CustomProvider } from "../context/userContext.js";
 import { CustomProviderClub } from "../context/clubContext.js";
 import App from '../App.js'
 import LogIn from '../views/loginPage.js'
@@ -15,7 +15,7 @@ import ClubEvent from "../views/clubEvent.js";
 import ClubSettings from "../views/clubSettings.js";
 import ClubGrades from "../views/grades.js";
 import Chat from "../views/chat.js";
-import Schedule from "../views/schedule.js"; 
+import Schedule from "../views/schedule.js";
 import Surveys from "../views/surveys.js";
 import Leaderboard from "../views/leaderboard.js";
 export const router = createBrowserRouter([
@@ -100,10 +100,14 @@ export const router = createBrowserRouter([
         path: '/club/:id',
         element:
             <CustomProvider>
-                <CustomProviderClub>
-                    <Bg rot={true} />
-                    <ClubEvent />
-                </CustomProviderClub>
+                <ContextUser.Consumer>
+                    {({ user }) =>
+                        user !== null && <CustomProviderClub userName={user.userName}>
+                            {/* <Bg rot={true} /> */}
+                            <ClubEvent />
+                        </CustomProviderClub>
+                    }
+                </ContextUser.Consumer>
             </CustomProvider>,
 
     },
@@ -111,10 +115,14 @@ export const router = createBrowserRouter([
         path: '/settings/:id',
         element:
             <CustomProvider>
-                <CustomProviderClub>
-                    <Bg rot={true} />
-                    <ClubSettings />
-                </CustomProviderClub>
+                <ContextUser.Consumer>
+                    {({ user }) =>
+                        user !== null && <CustomProviderClub userName={user.userName}>
+                            {/* <Bg rot={true} /> */}
+                            <ClubSettings />
+                        </CustomProviderClub>
+                    }
+                </ContextUser.Consumer>
             </CustomProvider>,
 
     },
@@ -122,10 +130,14 @@ export const router = createBrowserRouter([
         path: '/gardes/:id',
         element:
             <CustomProvider>
-                <CustomProviderClub>
-                    <Bg rot={true} />
-                    <ClubGrades />
-                </CustomProviderClub>
+                <ContextUser.Consumer>
+                    {({ user }) =>
+                        user !== null && <CustomProviderClub userName={user.userName}>
+                            {/* <Bg rot={true} /> */}
+                            <ClubGrades />
+                        </CustomProviderClub>
+                    }
+                </ContextUser.Consumer>
             </CustomProvider>,
 
     },
@@ -133,10 +145,14 @@ export const router = createBrowserRouter([
         path: '/chat/:id',
         element:
             <CustomProvider>
-                <CustomProviderClub>
-                    <Bg rot={true} />
-                    <Chat />
-                </CustomProviderClub>
+                <ContextUser.Consumer>
+                    {({ user }) =>
+                        user !== null && <CustomProviderClub userName={user.userName}>
+                            {/* <Bg rot={true} /> */}
+                            <Chat />
+                        </CustomProviderClub>
+                    }
+                </ContextUser.Consumer>
             </CustomProvider>,
 
     },
@@ -144,10 +160,14 @@ export const router = createBrowserRouter([
         path: '/schedule/:id',
         element:
             <CustomProvider>
-                <CustomProviderClub>
-                    <Bg rot={true} />
-                    <Schedule />
-                </CustomProviderClub>
+                <ContextUser.Consumer>
+                    {({ user }) =>
+                        user !== null && <CustomProviderClub userName={user.userName}>
+                            {/* <Bg rot={true} /> */}
+                            <Schedule />
+                        </CustomProviderClub>
+                    }
+                </ContextUser.Consumer>
             </CustomProvider>,
 
     },
@@ -155,41 +175,29 @@ export const router = createBrowserRouter([
         path: '/leaderboard/:id',
         element:
             <CustomProvider>
-                <CustomProviderClub>
-                    <Bg rot={true} />
-                    <Leaderboard />
-                </CustomProviderClub>
+                <ContextUser.Consumer>
+                    {({ user }) =>
+                        user !== null && <CustomProviderClub userName={user.userName}>
+                            {/* <Bg rot={true} /> */}
+                            <Leaderboard />
+                        </CustomProviderClub>
+                    }
+                </ContextUser.Consumer>
             </CustomProvider>,
 
     },
     {
-        path: '/leaderboard/:id',
-        element:
-            <CustomProvider>
-                <CustomProviderClub>
-                    <Bg rot={true} />
-                    <Leaderboard />
-                </CustomProviderClub>
-            </CustomProvider>,
-
-    },    {
-        path: '/leaderboard/:id',
-        element:
-            <CustomProvider>
-                <CustomProviderClub>
-                    <Bg rot={true} />
-                    <Leaderboard />
-                </CustomProviderClub>
-            </CustomProvider>,
-
-    },    {
         path: '/surveys/:id',
         element:
             <CustomProvider>
-                <CustomProviderClub>
-                    <Bg rot={false} />
-                    <Surveys />
-                </CustomProviderClub>
+                <ContextUser.Consumer>
+                    {({ user }) =>
+                        user !== null && <CustomProviderClub userName={user.userName}>
+                            {/* <Bg rot={true} /> */}
+                            <Surveys />
+                        </CustomProviderClub>
+                    }
+                </ContextUser.Consumer>
             </CustomProvider>,
 
     },

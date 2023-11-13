@@ -15,7 +15,13 @@ function CreateClub() {
     const handleClick2 = () => setChecked2(!checked2)
 
     const [checked3, setChecked3] = useState(0)
-    const handleClick3 = () => setChecked3(!checked3)
+    const handleClick3 = () => {
+        if (checked3 === 1) {
+            return setChecked3(0);
+        } else {
+            return setChecked3(1);
+        }
+    }
 
     const [loading, setloading] = useState(false)
     const [err, setErr] = useState('')
@@ -60,7 +66,7 @@ function CreateClub() {
                 grades: ['grade 0'],
             }))
             await formData.append('members', JSON.stringify([]))
-            await formData.append('clubLeader', checked3)
+            await formData.append('clubLeader', JSON.stringify(checked3))
             await formData.append('surveys', JSON.stringify([]))
             await formData.append('clubsOfOwner', JSON.stringify([...user.clubs, { own: true, clubId: idForUpload, clubTitle: nameRef, clubBanner: UploadFile.name, clubDescription: descriptioRef }]))
             await formData.append('clubOwner', user.userName)

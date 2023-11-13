@@ -4,11 +4,13 @@ import { getClubId } from "../api";
 import io from 'socket.io-client'
 import { urlBase } from "../api";
 import { sendMsgEvent, sendMsgChat } from "../api";
+import Bg from "../components/bg";
+
 let socket
 
 export const ContextClub = createContext()
 
-export const CustomProviderClub = ({ children }) => {
+export const CustomProviderClub = ({ children, userName }) => {
     const navigate = useNavigate()
     const { id } = useParams()
     const [events, setEvents] = useState([])
@@ -21,13 +23,14 @@ export const CustomProviderClub = ({ children }) => {
     const [eventsCal, setEventsCal] = useState([])
     const [polls, setPolls] = useState([])
 
-
     useEffect(() => {
         async function setDefault() {
             const res = await getClubId(id)
             if ((res[0]) === undefined) {
                 await navigate('Home')
-                await window.location.reload(true)
+            }
+            else if ((!res[0].members.some(item => item === userName)) & res[0].clubOwner !== userName) {
+                await navigate('Home')
             }
             else {
                 await setClub(res[0])
@@ -94,6 +97,7 @@ export const CustomProviderClub = ({ children }) => {
     }
     return (
         <ContextClub.Provider value={{ club, grades, setRefresh, events, sumbmit, chat, sumbmitChat, eventsCal, refresh, polls, deaf, members, setMembers }}>
+            <Bg rot={true}/>
             {children}
         </ContextClub.Provider>
     )

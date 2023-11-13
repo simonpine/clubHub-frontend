@@ -9,22 +9,22 @@ import send from '../img/send.png'
 import upload from '../img/upload.png'
 import doc from '../img/document.png'
 
-const Linkify = ({children})=> {
+const Linkify = ({ children }) => {
     const isUrl = word => {
         const urlPattern = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([/]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
         return word.match(urlPattern)
     }
 
     const addMarkup = word => {
-        return isUrl(word) ? 
-            `<a class='linkColor' target="blank" href="${word}">${word}</a>`:  
+        return isUrl(word) ?
+            `<a class='linkColor' target="blank" href="${word}">${word}</a>` :
             word
     }
 
     const words = children.split(' ')
     const formatedWords = words.map((w, i) => addMarkup(w))
     const html = formatedWords.join(' ')
-    return (<span className="textMessage" dangerouslySetInnerHTML={{__html: html}} />)
+    return (<span className="textMessage" dangerouslySetInnerHTML={{ __html: html }} />)
 }
 
 function ClubEvent() {
@@ -53,7 +53,6 @@ function ClubEvent() {
                         </div>
                         <ContextClub.Consumer>
                             {({ club, events, sumbmit }) => {
-
                                 async function hundleSubmit(evt) {
                                     evt.preventDefault()
                                     setErr('')
