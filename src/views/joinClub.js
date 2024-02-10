@@ -4,13 +4,13 @@ import { Link } from "react-router-dom"
 import userPng from '../img/user.png'
 import close from '../img/close.png'
 import { useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getClubs, getClubId, BannersImg, usersImg, joinToClub } from "../api";
 import ClubCardJoin from '../components/clubCardJoin'
 
 function JoinClub() {
     const [loading, setloading] = useState(false)
-
+    const asdasd = useRef('');
     const [err, setErr] = useState('')
     const [codeRef, setCodeRef] = useState('')
     const [clubList, setClubList] = useState([])
@@ -142,10 +142,12 @@ function JoinClub() {
                                     }
                                 </div>
                             </div>
-                            <div className="clublistjoinCont">
-                                <div className="forTheStick">
+                            <div className="clublistjoinCont" 
+                            ref={asdasd}
+                            // style={asdasd.current.innerText === '' ?{} : {display: 'block'}}
+                            >
+                                <div className="forTheStick" >
                                     {clubList.map(item => {
-                                        // console.log(item.clubLeader)
                                         return !userClubs.some(a => a.clubId === item.id) & item.clubLeader == 0? (
                                             <ClubCardJoin key={item.id} jo={join} item={item} />
                                         ) : (

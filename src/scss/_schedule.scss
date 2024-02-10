@@ -10,6 +10,8 @@
     // animation-name: apear2;
     animation-duration: 0.3s;
     margin: 90px;
+    animation: 0.3s ;
+    animation-name: apeaCalendar;
 }
 
 .rbc-toolbar-label {
@@ -70,6 +72,17 @@
     border-radius: 20px;
     overflow: hidden;
 }
+
+@keyframes apeaCalendar {
+    0%   {
+        margin-bottom: 140px;
+        opacity: 0;
+    }
+    100% {
+        margin-bottom: 90px;
+        opacity: 1;
+    }
+  }
 
 .rbc-event,
 .rbc-selected,

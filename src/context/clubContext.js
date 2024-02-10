@@ -23,7 +23,7 @@ export const CustomProviderClub = ({ children, userName }) => {
     const [eventsCal, setEventsCal] = useState([])
     const [polls, setPolls] = useState([])
 
-    useEffect(() => {
+    useEffect((navigate) => {
         async function setDefault() {
             const res = await getClubId(id)
             if ((res[0]) === undefined) {

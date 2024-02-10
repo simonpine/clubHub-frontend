@@ -6,7 +6,7 @@
     // min-height: 60vh;
     background-color: map-get($map: $colors, $key: 'bgBlack');
     border-radius: 30px;
-    padding: 40px;
+    padding: 25px;
     max-width: 1000px;
     @include flex(column, normal, space-between, normal, wrap)
 }
