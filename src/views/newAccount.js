@@ -26,10 +26,13 @@ function NewAccount() {
                     const [userName] = await getUserName(nameRef)
                     // console.log(userName)
                     if (userName !== undefined) {
-                        setErr('The username is already taken')
+                        setErr('The mail is already on use')
+                    }
+                    else if(!nameRef.includes("@uniandes.edu.co")){
+                        setErr('Is not a universiti mail')
                     }
                     else if (nameRef.length > 45) {
-                        setErr('The username cannot have more than 45 characters')
+                        setErr('The mail cannot have more than 45 characters')
                     }
                     else if (passwordRef !== confirmPasswordRef || answerRef !== confirmAnswerRef) {
                         setErr('The password/answer do not match')
@@ -56,8 +59,8 @@ function NewAccount() {
                                 <div className="inputsContainerCreateUser">
                                     <div className="sectionInputCreateUser">
                                         <div>
-                                            <h2 className="inputIdentify">Username:</h2>
-                                            <input id="NewUserName" value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder="SimonPine" />
+                                            <h2 className="inputIdentify">Mail:</h2>
+                                            <input id="NewUserName" value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder="example@uniandes.edu.co" />
                                         </div>
                                         <div>
                                             <h2 className="inputIdentify">Password:</h2>

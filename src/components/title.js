@@ -9,7 +9,7 @@ function Title(){
                 <div className='img1'>
                     <img src={img1} alt='Women taking books' />
                 </div>
-                School Clubs <span className='thinFill'>the way to</span>
+                All universities <span className='thinFill'>in one place</span>
                 <div className='img2'>
                     <img src={img2} alt='Child playing piano' />
                 </div>
@@ -17,7 +17,7 @@ function Title(){
                     <img src={img3} alt='Volleyball match' />
                 </div>
                 <div className='topMargin'>
-                    Enjoy
+                    UHub
                 </div></h1>
         </div>
     )

@@ -495,10 +495,10 @@ function ClubSettings() {
                                                                     <h5 className="TextOfBoxes">Have chat</h5>
                                                                     <input className="box" onChange={() => changedTheExist(1)} checked={club.existChat} type="checkbox" />
                                                                 </label>
-                                                                <label className="labelForBoxes">
+                                                                {/* <label className="labelForBoxes">
                                                                     <h5 className="TextOfBoxes">Have grades</h5>
                                                                     <input className="box" onChange={() => changedTheExist()} checked={club.existGrades} type="checkbox" />
-                                                                </label>
+                                                                </label> */}
                                                                 <label className="labelForBoxes">
                                                                     <h5 className="TextOfBoxes">Private</h5>
                                                                     <input className="box" onChange={() => changedTheExist(2)} checked={JSON.parse(club.clubLeader)} type="checkbox" />

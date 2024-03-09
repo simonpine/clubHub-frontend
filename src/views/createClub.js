@@ -114,10 +114,10 @@ function CreateClub() {
                                             <textarea id="ClubDescription" value={descriptioRef} onChange={(evt) => setDescriptioRef(evt.target.value)} className="textArea" placeholder="A cinema club is a gathering of film enthusiasts who come together to watch and discuss movies. It provides a space for like-minded individuals to share their love for cinema, explore different genres, and engage in meaningful conversations about films." />
                                         </div>
                                         <div className="boxesCont">
-                                            <label className="labelForBoxes">
+                                            {/* <label className="labelForBoxes">
                                                 <h5 className="TextOfBoxes">Have grades</h5>
                                                 <input className="box" onChange={handleClick2} checked={checked2} type="checkbox" />
-                                            </label>
+                                            </label> */}
                                             <label className="labelForBoxes">
                                                 <h5 className="TextOfBoxes">Have chat</h5>
                                                 <input className="box" onChange={handleClick} checked={checked} type="checkbox" />

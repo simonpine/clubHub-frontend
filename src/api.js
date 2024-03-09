@@ -34,7 +34,8 @@ export const putUser = async (userName, pasword, question, answer) => {
         pasword,
         question,
         answer,
-        description: "👋 Hey there! I'm using ClubHub"
+        description: "👋 Hey there! I'm using ClubHub",
+        friends: []
     }
     const res = await fetch(AP2, {
         method: 'POST',

@@ -9,6 +9,7 @@ export const CustomProvider = ({ children }) => {
     const { pathname } = useLocation();
     const [user, setUser] = useState(null);
     const [userClubs, setUserClubs] = useState([]);
+    const [userFriends, setUserFriends] = useState([]);
 
 
     useEffect(() => {
@@ -19,8 +20,8 @@ export const CustomProvider = ({ children }) => {
 
                 if (res.length > 0) {
                     await setUser(res[0])
-
                     await setUserClubs(res[0].clubs)
+                    await setUserFriends(res[0].friends)
                     await pathname === '/login' && navigate('/home')
                 }
                 else {
@@ -45,6 +46,7 @@ export const CustomProvider = ({ children }) => {
                 await setUser(res[0])
 
                 await setUserClubs(res[0].clubs)
+                await setUserFriends(res[0].friends)
                 await pathname === '/login' && navigate('/home')
             }
             else {
@@ -60,11 +62,12 @@ export const CustomProvider = ({ children }) => {
     function saveUser(item) {
         setUser(item)
         setUserClubs(item.clubs)
+        setUserFriends(item.friends)
         localStorage.setItem('user', JSON.stringify(item.userName))
         navigate('/home')
     }
     return (
-        <ContextUser.Provider value={{ user, saveUser, userClubs, deafUs }}>
+        <ContextUser.Provider value={{ user, saveUser, userClubs, deafUs, userFriends }}>
             {children}
         </ContextUser.Provider>
     )
