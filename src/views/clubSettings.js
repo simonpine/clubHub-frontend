@@ -480,10 +480,10 @@ function ClubSettings() {
                                                                     <h5 className="TextOfBoxes">Have chat</h5>
                                                                     <input className="box" onChange={handleClick} checked={checked} type="checkbox" />
                                                                 </label>
-                                                                // <label className="labelForBoxes">
-                                                                //     <h5 className="TextOfBoxes">Have grades</h5>
-                                                                //     <input className="box" onChange={handleClick2} checked={checked2} type="checkbox" />
-                                                                // </label>
+                                                                 {/* <label className="labelForBoxes">
+                                                                    <h5 className="TextOfBoxes">Have grades</h5>
+                                                                    <input className="box" onChange={handleClick2} checked={checked2} type="checkbox" />
+                                                                </label>*/}
                                                                 <label className="labelForBoxes">
                                                                     <h5 className="TextOfBoxes">Private</h5>
                                                                     <input className="box" onChange={handleClick3} checked={checked3} type="checkbox" />
