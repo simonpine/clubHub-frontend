@@ -409,8 +409,8 @@ function ClubSettings() {
 
                                                         <h2>Are you sure of the changes?</h2>
                                                         <div>
-                                                            <button onClick={changeClub} className="getIn">Yes, save changes</button>
-                                                            <button onClick={() => setSure(false)} className="getIn red">No, cancel</button>
+                                                            <button onClick={changeClub} className="getIn getIn especialButtonSure">Yes, save changes</button>
+                                                            <button onClick={() => setSure(false)} className="getIn getIn especialButtonSure red">No, cancel</button>
                                                         </div>
                                                     </div>
                                                     <div className="surebg" onClick={() => setSure(false)}></div>
