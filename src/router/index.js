@@ -18,6 +18,7 @@ import Chat from "../views/chat.js";
 import Schedule from "../views/schedule.js";
 import Surveys from "../views/surveys.js";
 import Leaderboard from "../views/leaderboard.js";
+import AddFriends from "../views/addFriends.js"
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -93,6 +94,15 @@ export const router = createBrowserRouter([
             <CustomProvider>
                 <Bg rot={false} />
                 <JoinClub />
+            </CustomProvider>,
+
+    },
+    {
+        path: '/addFriends',
+        element:
+            <CustomProvider>
+                <Bg rot={false} />
+                <AddFriends />
             </CustomProvider>,
 
     },

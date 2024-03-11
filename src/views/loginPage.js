@@ -46,7 +46,7 @@ function LogIn() {
                                         </div>
 
                                         <div className="sectionFormCont">
-                                            <h2 className="inputIdentify">Username:</h2>
+                                            <h2 className="inputIdentify">Mail:</h2>
                                             <input id="UserName" value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder="example@uniandes.edu.co" />
                                         </div>
                                         <div className="sectionFormCont">

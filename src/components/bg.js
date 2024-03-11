@@ -14,8 +14,8 @@ function Bg({ rot }) {
   }, [rot])
   window.addEventListener("scroll", () => {
     const pix = window.pageYOffset
-    setCircle1(`${(pix * 1.7) - 400}px`)
-    setCircle2(`${(pix * 1.7) - 400}px`)
+    setCircle1(`${(pix * 0.7) - 400}px`)
+    setCircle2(`${(pix * 0.7) - 400}px`)
 
   });
   return (

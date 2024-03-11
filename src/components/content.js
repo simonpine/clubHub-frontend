@@ -5,7 +5,7 @@ function Content(){
     return(
         <div className='contContiner'>
         <div className='Content'>
-          <p className='p1'>In my last school year I noticed an interesting initiative that the school was applying around new club-type spaces, which take place during breaks. At first these had a great impact in the community because they encouraged students to do things they liked, but after a couple of months I have seen how they have been left behind.</p>
+          <p className='p1'>After analyzing the conflicts that are generated between universities through social networks, we were able to identify how some university students seek to attract attention through offensive comments towards other universities. Which creates intolerant and toxic environments among students.</p>
           <div className='img8'>
             <img src={img7} alt='Painting tools' />
           </div>
@@ -15,7 +15,7 @@ function Content(){
           <div className='img7'>
             <img src={img8} alt='Arduino' />
           </div>
-          <p className='p2'>This sudden lack of interest must have been caused by several background problems, and from what I see and have come to talk with colleagues, one of these problems is the organization and communication between members, since they are from different grades. Therefore, this web application seeks to connect students with the teacher, their classmates and the club itself.</p>
+          <p className='p2'>Therefore, through the UHub initiative, we seek to bring together different students from Colombian universities in friendly spaces, in which people can share their tastes as a group and individually, making them aware of how they can get along with people from other universities.</p>
         </div>
       </div>
     )
