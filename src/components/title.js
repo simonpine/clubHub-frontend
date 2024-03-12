@@ -9,7 +9,7 @@ function Title(){
                 <div className='img1'>
                     <img src={img1} alt='Women taking books' />
                 </div>
-                All universities <span className='thinFill'>in one place</span>
+                All <span className='thinFill'>in one place</span>
                 <div className='img2'>
                     <img src={img2} alt='Child playing piano' />
                 </div>
