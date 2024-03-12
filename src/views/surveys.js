@@ -253,7 +253,7 @@ function Surveys() {
                                         clubId: club.id,
                                         pollId: currentAnswering.id
                                     }))
-                                    
+
                                     await setCurrentAnswering(null)
                                     await setRes([])
                                     await deaf()
@@ -411,29 +411,31 @@ function Surveys() {
                                         }
                                         <NavClub user={user} club={club} main={6} userClubs={userClubs} deafUs={deafUs} />
                                         {polls.length === 0 ?
-                                            <div className="EmptyMsg">
-                                                <div className="allEmptCont">
-                                                    <img className="empty" src={noTasks} alt="empty" />
-                                                    <h3 className="noH3">No polls assigned yet</h3>
-                                                    {club.clubOwner === user.userName &&
-                                                        <div className="linksEmp">
-                                                            <button style={{
-                                                                margin: '0px'
-                                                            }} onClick={() => setSure(true)} className="getInCreate">Create a new survey</button>
-                                                        </div>
-                                                    }
+                                            <div className="EmptySurveysCont">
+                                                <div className="EmptyMsg">
+                                                    <div className="allEmptCont">
+                                                        <img className="empty" src={noTasks} alt="empty" />
+                                                        <h3 className="noH3">No polls assigned yet</h3>
+                                                        {club.clubOwner === user.userName &&
+                                                            <div className="linksEmp">
+                                                                <button style={{
+                                                                    margin: '0px'
+                                                                }} onClick={() => setSure(true)} className="getInCreate">Create a new survey</button>
+                                                            </div>
+                                                        }
 
+                                                    </div>
                                                 </div>
                                             </div>
                                             :
-                                            <div className="clubListHomeContainer">
+                                            <div className="clubSurveysContainer">
                                                 {polls.map(item => {
                                                     return (
                                                         <div className="cardSurvey" key={item.id}>
                                                             <img alt="Survey banner" src={surveysBanner + item.banner} />
                                                             <h3>{item.title}</h3>
                                                             <h4>{item.questionary.length} {item.questionary.length > 1 ? <>questions</> : <>question</>}</h4>
-                                                            <button disabled={item.whoAnswered.some(it => it === user.userName)}  onClick={() => setCurrentAnswering(item)} className="getIn logInButton">{club.clubOwner === user.userName ? <>Results</> : item.whoAnswered.some(it => it === user.userName) ? <>Answered</> : <>Fill out</>}</button>
+                                                            <button disabled={item.whoAnswered.some(it => it === user.userName)} onClick={() => setCurrentAnswering(item)} className="getIn logInButton">{club.clubOwner === user.userName ? <>Results</> : item.whoAnswered.some(it => it === user.userName) ? <>Answered</> : <>Fill out</>}</button>
                                                         </div>
                                                     )
                                                 })}

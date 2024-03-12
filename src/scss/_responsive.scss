@@ -353,13 +353,18 @@
             width: 100%;
         }
     }
-
+    .clubListHomeContainerCont {
+        margin-top: 100px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
     .clubListHomeContainer {
         align-content: center;
         flex-direction: column;
         justify-content: center;
         top: 60px;
         gap: 10px;
+        height: auto;
     }
 
     .clubCard {

@@ -38,7 +38,10 @@ function ForgotPasswordRecover() {
         }
         else if (nameRef.length !== 0) {
             const [res] = await getUser(nameRef)
-            if (res === undefined) {
+            if(!nameRef.includes("@uniandes.edu.co")  && !nameRef.includes("@urosario.edu.co")){
+                setErr('Is not a universiti mail')
+            }
+            else if (res === undefined) {
                 setSure(true)
             }
             else {
@@ -207,7 +210,7 @@ function ForgotPasswordRecover() {
                                     </div>
                                     <div className="sec">
                                         <div>
-                                            <h2 className="inputIdentify">Change username:</h2>
+                                            <h2 className="inputIdentify">Change mail:</h2>
                                             <input id="NewUserNamee" value={nameRef} onChange={(evt) => setNameRef(evt.target.value.replace(' ', ''))} className="inputText" type="text" placeholder={user.userName} />
                                         </div>
                                         <div>

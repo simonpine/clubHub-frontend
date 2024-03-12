@@ -409,8 +409,8 @@ function ClubSettings() {
 
                                                         <h2>Are you sure of the changes?</h2>
                                                         <div>
-                                                            <button onClick={changeClub} className="getIn">Yes, save changes</button>
-                                                            <button onClick={() => setSure(false)} className="getIn red">No, cancel</button>
+                                                            <button onClick={changeClub} className="getIn getIn especialButtonSure">Yes, save changes</button>
+                                                            <button onClick={() => setSure(false)} className="getIn getIn especialButtonSure red">No, cancel</button>
                                                         </div>
                                                     </div>
                                                     <div className="surebg" onClick={() => setSure(false)}></div>
@@ -480,10 +480,10 @@ function ClubSettings() {
                                                                     <h5 className="TextOfBoxes">Have chat</h5>
                                                                     <input className="box" onChange={handleClick} checked={checked} type="checkbox" />
                                                                 </label>
-                                                                <label className="labelForBoxes">
+                                                                 {/* <label className="labelForBoxes">
                                                                     <h5 className="TextOfBoxes">Have grades</h5>
                                                                     <input className="box" onChange={handleClick2} checked={checked2} type="checkbox" />
-                                                                </label>
+                                                                </label>*/}
                                                                 <label className="labelForBoxes">
                                                                     <h5 className="TextOfBoxes">Private</h5>
                                                                     <input className="box" onChange={handleClick3} checked={checked3} type="checkbox" />

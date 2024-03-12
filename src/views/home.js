@@ -26,7 +26,7 @@ function Home() {
                             </div>
                             <div className="HomePageCont">
                                 {userClubs.length > 0 ?
-                                    <div>
+                                    <div className="clubListHomeContainerCont">
                                         <h2>Clubs:</h2>
                                         <div className="clubListHomeContainer">
                                             {userClubs.map((clubCard) => {

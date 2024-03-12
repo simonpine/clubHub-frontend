@@ -28,7 +28,7 @@ function NewAccount() {
                     if (userName !== undefined) {
                         setErr('The mail is already on use')
                     }
-                    else if(!nameRef.includes("@uniandes.edu.co")){
+                    else if(!nameRef.includes("@uniandes.edu.co")  && !nameRef.includes("@urosario.edu.co")){
                         setErr('Is not a universiti mail')
                     }
                     else if (nameRef.length > 45) {
